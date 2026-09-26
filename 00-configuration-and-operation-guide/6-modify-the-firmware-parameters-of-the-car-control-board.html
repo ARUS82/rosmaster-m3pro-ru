@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Изменение параметров прошивки платы управления машиной — Настройка и запуск</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details open>
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="active" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Настройка и запуск</a> / Изменение параметров прошивки платы управления машиной</div>
+<h1>Изменение параметров прошивки платы управления машиной</h1>
+<p>Для выполнения этого урока необходимо, чтобы в машину была предварительно прошита заводская прошивка, — только тогда можно настраивать параметры прошивки. Изменение параметров прошивки платы управления позволяет настроить поведение машины в соответствии с личными потребностями. Заводская прошивка поставляется со значениями по умолчанию, и их можно не менять, если это не требуется.</p>
+<p>На плату управления машины предварительно прошита заводская прошивка. Если была прошита другая прошивка, выполните действия из урока [12. Курс по плате управления\1. Настройка среды разработки для платы управления\4. Прошивка STM32 через последовательный порт], чтобы заново прошить заводскую прошивку. Заводская прошивка находится в документе [Приложение\Заводская прошивка платы управления].</p>
+<p>В этом уроке в качестве примера рассматривается материнская плата серии Jetson Orin; для остальных материнских плат действия аналогичны.</p>
+<p>Примечание: перед запуском скрипта изменения конфигурации необходимо сначала остановить агент micro-ROS.</p>
+<h2>1. Подключение оборудования</h2>
+<p>Убедитесь, что порт Type-C USB на плате управления подключён к USB-порту материнской платы.</p>
+<h2>2. Изменение параметров</h2>
+<p>Откройте системный терминал, найдите и откройте файл [config_robot.py] в домашнем каталоге пользователя.</p>
+<pre><code>vim ~/config_robot.py
+</code></pre>
+<p>Перейдите в конец файла — там находятся параметры конфигурации: set_ros_domain_id, set_ros_namespace, set_motor_pid_parm, set_imu_yaw_pid_parm, set_ros_scale_line, set_ros_scale_angular и set_arm_mid_value.</p>
+<p>Если нужно изменить какой-либо параметр, снимите символ комментария перед соответствующей функцией.</p>
+<pre><code># robot.set_ros_domain_id(30)
+# robot.set_ros_namespace(&quot;&quot;)
+# robot.set_motor_pid_parm(0.8, 0.06, 0.5)
+# robot.set_imu_yaw_pid_parm(0.6, 0, 0.3)
+
+# robot.set_ros_scale_line(1.0)
+# robot.set_ros_scale_angular(1.0)
+
+# arm_mid_value = [2000, 2000, 2000, 2000, 1486, 3100]
+# robot.set_arm_mid_value(arm_mid_value)
+</code></pre>
+<p>Здесь set_ros_domain_id задаёт ROS DOMAIN ID машины — значение в диапазоне от 0 до 100. Если в локальной сети присутствует несколько устройств, каждому из них следует задать свой ROS_DOMAIN_ID, чтобы избежать взаимных помех. Обратите внимание: значение ROS_DOMAIN_ID должно совпадать со значением в файле .bashrc системного терминала, чтобы обеспечить связь.</p>
+<p>set_ros_namespace задаёт пространство имён (namespace) ROS машины — используется в основном для функции управления несколькими машинами в одной локальной сети.</p>
+<p>set_motor_pid_parm задаёт ПИД-параметры скорости моторов машины.</p>
+<p>set_imu_yaw_pid_parm задаёт ПИД-параметры, используемые для калибровки направления машины по данным IMU.</p>
+<p>set_ros_scale_line задаёт коэффициент масштабирования линейной скорости ROS машины.</p>
+<p>set_ros_scale_angular задаёт коэффициент масштабирования угловой скорости ROS машины.</p>
+<p>Функция set_arm_mid_value задаёт смещение среднего значения манипулятора. Используется в основном для быстрого восстановления значения калибровки манипулятора и, как правило, не требует изменения. Примечание: изменение этого значения повлияет на калибровочное значение манипулятора. Если требуется калибровка манипулятора, обратитесь к уроку по калибровке манипулятора.</p>
+<p>Здесь в качестве примера рассмотрим изменение domain ID на 31:</p>
+<p><img alt="" src="img-002-000.png" /></p>
+<h2>3. Запись конфигурации</h2>
+<p>Примечание: перед запуском скрипта изменения конфигурации необходимо сначала остановить агент micro-ROS.</p>
+<p>Откройте системный терминал и выполните следующую команду, чтобы начать запись конфигурации</p>
+<pre><code>python3 ~/config_robot.py
+</code></pre>
+<p><img alt="" src="img-003-001.png" /></p>
+<p>Вы увидите все итоговые значения параметров, считанные после записи.</p><div class="pager"><a href="4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">&larr; Вход в Docker-контейнер машины</a><a href="7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>

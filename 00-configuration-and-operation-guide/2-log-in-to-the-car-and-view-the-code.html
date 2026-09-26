@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подключение к машине и просмотр кода — Настройка и запуск</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details open>
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="active" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Настройка и запуск</a> / Подключение к машине и просмотр кода</div>
+<h1>Подключение к машине и просмотр кода</h1>
+<p>В этом разделе рассматриваются несколько способов подключения машины к компьютеру и просмотра кода.</p>
+<p>Рекомендуемый порядок действий в этом разделе: подключиться к точке доступа машины / вставить сетевой кабель, чтобы получить IP-адрес → посмотреть IP-адрес на экране OLED → войти по VNC → отключить собственную точку доступа и подключиться к своей Wi-Fi сети (чтобы облегчить дальнейшую работу с функциями больших языковых моделей) → проверить обновлённый IP-адрес на OLED → повторно подключиться по VNC → посмотреть исходный код.</p>
+<p>Имя точки доступа по умолчанию в заводском образе: ROSMASTER, пароль: 12345678, IP-адрес по умолчанию: 192.168.8.88.</p>
+<h2>1. Подключение к машине</h2>
+<p>Независимо от способа подключения к машине, компьютер и машина должны находиться в одной локальной сети. Проще всего обеспечить это, подключившись к одной и той же Wi-Fi сети или точке доступа. Сначала подключитесь к точке доступа машины по умолчанию — ROSMASTER, пароль Wi-Fi — 12345678. После успешного подключения войти можно следующими способами.</p>
+<p>Также можно подключить материнскую плату напрямую по сетевому кабелю. После подключения кабеля экран OLED автоматически обновит IP-адрес. Далее в тексте все операции демонстрируются с использованием IP-адреса, полученного при подключении по сетевому кабелю.</p>
+<h3>1.1 Подключение по SSH (опционально, только для тех, кому это нужно)</h3>
+<p>Для подключения к машине можно использовать putty, MobaXterm или другие инструменты для SSH-подключения. Здесь в качестве примера рассмотрим putty. Адрес для загрузки putty: Download PuTTY: latest release (0.83)</p>
+<p>Выберите установку в соответствии с версией вашей операционной системы. После успешной установки дважды щёлкните для запуска. Интерфейс putty показан на рисунке ниже.</p>
+<p>Выберите здесь SSH, затем введите IP-адрес, отображаемый на экране OLED, в поле Host Name (or IP address). Мой IP-адрес в данном случае — 192.168.2.92, поэтому вводим IP-адрес, как показано на рисунке ниже.</p>
+<p><img alt="" src="img-002-000.png" />
+<img alt="" src="img-002-001.png" /></p>
+<p>Затем нажмите Open — откроется терминал и всплывающее окно; нажмите Accept, чтобы подтвердить получение, как показано ниже.</p>
+<p>Затем в терминале появится строка login as — здесь введите имя пользователя материнской платы и нажмите Enter, после чего будет предложено ввести пароль. Имя пользователя и пароль для каждой материнской платы приведены в таблице ниже:</p>
+<table>
+<thead>
+<tr>
+<th>Материнская плата</th>
+<th>Имя пользователя</th>
+<th>Пароль</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi 5</td>
+<td>pi</td>
+<td>yahboom</td>
+</tr>
+<tr>
+<td>Jetson-Nano</td>
+<td>Jetson</td>
+<td>yahboom</td>
+</tr>
+<tr>
+<td>Orin-Nano</td>
+<td>Jetson</td>
+<td>yahboom</td>
+</tr>
+<tr>
+<td>Orin-NX</td>
+<td>Jetson</td>
+<td>yahboom</td>
+</tr>
+</tbody>
+</table>
+<p>Предположим, что в данном случае используется материнская плата Orin-Nano — тогда вводим jetson и нажимаем Enter, после чего вводим пароль. При вводе пароля символы не отображаются. Введите yahboom и нажмите Enter.</p>
+<p><img alt="" src="img-003-002.png" /></p>
+<p>Интерфейс успешного подключения к машине показан ниже:</p>
+<p><img alt="" src="img-004-003.png" />
+<img alt="" src="img-004-004.png" /></p>
+<p>Таким способом открывается только один терминал, графический интерфейс не отображается. Поэтому SSH подходит для входа без запуска графических программ.</p>
+<h3>1.2 Вход через VNC</h3>
+<h4>1.2.1 Материнская плата Orin без экрана (этот раздел нужно настроить только пользователям платы Orin без подключённого монитора; остальным пользователям этот раздел не нужен — можно переходить сразу к 1.2.2)</h4>
+<p>Поскольку на материнской плате Orin используется система Ubuntu 22.04, для входа в графический режим требуется подключённый монитор. Пользователи, не приобретавшие комплект с монитором, могут не иметь возможности включить графический интерфейс. Ниже описан способ вывода графического интерфейса на виртуальный рабочий стол — он предназначен только для пользователей, у которых к плате Orin не подключён монитор. Пользователи, у которых монитор подключён, а также пользователи Jetson Nano и Raspberry Pi могут пропустить этот шаг.</p>
+<p>Откройте документ «19. Приложение — файлы виртуального рабочего стола» и скопируйте файлы xorg.conf.backup_dp и xorg.conf.backup_vnc в каталог /etc/X11.</p>
+<p>Установите окружение виртуального рабочего стола xserver-xorg-video-dummy:</p>
+<pre><code>sudo apt-get install xserver-xorg-video-dummy
+</code></pre>
+<p>Откройте терминал и введите следующую команду, чтобы включить виртуальный рабочий стол и переключиться в режим VNC.</p>
+<pre><code>sudo cp /etc/X11/xorg.conf.backup_vnc /etc/X11/xorg.conf
+</code></pre>
+<p>Перезагрузите систему — после этого можно входить на рабочий стол без подключённого экрана (переходите к пункту 1.2.2, чтобы подключиться по VNC).</p>
+<pre><code>sudo reboot
+</code></pre>
+<p>Примечание: после переключения в режим VNC подключение по DP становится недействительным (даже если монитор подключён к материнской плате, изображение не будет отображаться). Чтобы снова использовать интерфейс DP для подключения дисплея, нужно вернуть настройки обратно.</p>
+<p>Чтобы отключить виртуальный рабочий стол:</p>
+<p>Если нужно подключить дисплей через DP, откройте терминал и введите следующую команду, чтобы переключиться в режим подключения дисплея через интерфейс DP.</p>
+<pre><code>sudo cp /etc/X11/xorg.conf.backup_dp /etc/X11/xorg.conf
+</code></pre>
+<p>Перезагрузите систему — после этого можно подключить дисплей по кабелю DP.</p>
+<pre><code>sudo reboot
+</code></pre>
+<h4>1.2.2</h4>
+<p>VNC позволяет пользователям удалённо получать доступ к рабочему столу другого компьютера и управлять им по сети. Поэтому, когда нужно получить доступ к рабочему столу машины — например, чтобы запустить отображение изображения с камеры — можно подключиться к машине с помощью VNC. Адрес для загрузки VNC: Download VNC Viewer by RealVNC®</p>
+<p>Скачайте и установите версию, подходящую для вашего компьютера. После успешной установки дважды щёлкните, чтобы открыть программу. Отображаемый экран показан ниже:</p>
+<p>Введите IP-адрес машины. В данном случае мой IP-адрес — 192.168.2.92, как показано ниже.</p>
+<p><img alt="" src="img-006-005.png" />
+<img alt="" src="img-006-006.png" /></p>
+<p>Затем нажмите Enter,</p>
+<p>Введите имя пользователя в поле Username и пароль в поле Password. Обратитесь к таблице в разделе 1.1 — пароль для всех материнских плат одинаковый: yahboom. Затем нажмите OK, чтобы войти на рабочий стол, как показано ниже.</p>
+<p><img alt="" src="img-007-007.png" />
+<img alt="" src="img-007-008.png" /></p>
+<p>Если отображается некорректная картинка, как в следующей ситуации,</p>
+<p>если изображение продолжает мигать и сбрасываться, нужно выполнить настройку, показанную на рисунке ниже.</p>
+<p><img alt="" src="img-008-009.png" />
+<img alt="" src="img-008-010.png" /></p>
+<p>Затем подключитесь снова. К материнской плате Orin можно подключить только один удалённый рабочий стол одновременно. Если подключение не удаётся, проверьте, не подключён ли уже удалённый рабочий стол.</p>
+<p>После подключения, поскольку для работы с большими ИИ-моделями требуется доступ в интернет, а точка доступа машины — это только локальная сеть без выхода в интернет, нужно переключить сеть, чтобы облегчить последующее использование функций больших языковых моделей.</p>
+<h2>2. Просмотр кода</h2>
+<p>Код для материнской платы Orin находится в каталоге /home/jetson, поэтому его можно посмотреть сразу после подключения к машине; код для материнских плат Raspberry Pi 5 и Jetson-Nano находится в запущенном Docker-контейнере, поэтому сначала нужно войти в контейнер, чтобы увидеть код.</p>
+<p>Далее описаны несколько способов просмотра кода, которые облегчат его последующее редактирование и изменение.</p>
+<h3>2.1 jupyter-lab</h3>
+<h4>2.1.1 Материнская плата Orin (использовать jupyter-lab для просмотра и изменения кода не рекомендуется)</h4>
+<p>jupyter-lab запускается автоматически при загрузке системы, поэтому достаточно ввести в браузере IP-адрес и :8888, чтобы открыть jupyter и посмотреть код. В данном случае мой IP-адрес — 192.168.2.92, поэтому в браузере вводим следующее,</p>
+<p><img alt="" src="img-009-011.png" /></p>
+<p>Затем нажмите Enter — появится запрос пароля. Введите yahboom, после чего откроется интерфейс jupyter-lab, как показано ниже.</p>
+<p><img alt="" src="img-009-012.png" /></p>
+<p>Выберите содержимое папки слева, чтобы просмотреть код.</p>
+<h4>2.1.2 Материнские платы Raspberry Pi 5 и Jetson-Nano</h4>
+<p>Нужно войти в Docker-контейнер и выполнить команду jupyter-lab --allow-root, а затем ввести в браузере IP-адрес машины и :8888, чтобы запустить jupyter-lab и посмотреть код машины. Как показано на рисунке ниже, я вхожу в контейнер машины, перехожу в каталог /root и выполняю в терминале команду:</p>
+<pre><code>jupyter-lab --allow-root
+</code></pre>
+<p><img alt="" src="img-009-013.png" /></p>
+<p>Затем в браузере вводим IP-адрес машины и :8888. IP-адрес моей материнской платы Raspberry Pi — 192.168.2.22, поэтому вводим 192.168.2.22:8888, как показано ниже.</p>
+<p><img alt="" src="img-009-014.png" /></p>
+<p>Нажмите Enter. Если потребуется ввести пароль, введите yahboom, чтобы войти в jupyter-lab и посмотреть код.</p><div class="pager"><a href="1-quick-start-handle-to-control-the-car.html">&larr; Быстрый запуск управления машиной с джойстика</a><a href="3-robotic-arm-calibration.html">Калибровка манипулятора &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>
