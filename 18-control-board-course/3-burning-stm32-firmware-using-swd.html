@@ -140,45 +140,33 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1.Development environment setup / Прошивка STM32 через SWD</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1. Настройка среды разработки / Прошивка STM32 через SWD</div>
 <h1>Прошивка STM32 через SWD</h1>
 <ul>
-<li>
-<ol>
-<li>Подключение оборудования</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Прошивка через STM32CubeIDE</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Прошивка через STM32CubeProgrammer</li>
-</ol>
-</li>
+<li>1. Подключение оборудования</li>
+<li>2. Прошивка через STM32CubeIDE</li>
+<li>3. Прошивка через STM32CubeProgrammer</li>
 </ul>
 <h2>1. Подключение оборудования</h2>
 <p>Понадобится программатор. В качестве примера рассмотрим ST-LINK, подключаемый к интерфейсу SWD.</p>
 <p>Используйте порт Type-C для питания плата управления.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="03-img-001-000.png" /></p>
 <h2>2. Прошивка через STM32CubeIDE</h2>
 <p>Откройте проект в STM32CubeIDE.</p>
 <p>Выберите имя проекта, нажмите кнопку компиляции и убедитесь, что проект собирается без ошибок. В качестве примера рассмотрим проект LED.</p>
 <p>Выберите проект, который требуется прошить, и нажмите зелёную кнопку запуска (play). При первом нажатии зелёной кнопки запуска откроется окно настройки параметров отладки. Выберите интерфейсы ST-LINK и SWD, затем нажмите Apply, а затем OK, чтобы начать прошивку. После этого для начала прошивки достаточно просто нажимать зелёную кнопку запуска.</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="03-img-002-001.png" />
+<img alt="" src="03-img-002-002.png" /></p>
 <h2>3. Прошивка через STM32CubeProgrammer</h2>
 <p>Если для прошивки доступен только hex-файл без полного исходного кода функциональности, можно использовать STM32CubeProgrammer для прошивки.</p>
 <p>Откройте программу STM32CubeProgrammer, выберите режим ST-LINK, установите Port на SWD и нажмите Connect для подключения к устройству.</p>
-<p><img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="03-img-003-003.png" /></p>
 <p>При успешном подключении статус изменится.</p>
-<p><img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="03-img-003-004.png" /></p>
 <p>Нажмите кнопку download, чтобы перейти на страницу загрузки, нажмите [Browse], чтобы выбрать hex-файл для загрузки, а затем нажмите [Start Programming], чтобы начать прошивку.</p>
-<p><img alt="" src="img-004-005.png" /></p>
+<p><img alt="" src="03-img-004-005.png" /></p>
 <p>После завершения прошивки появится соответствующее уведомление.</p>
-<p><img alt="" src="img-004-006.png" /></p><div class="pager"><a href="2-set-up-the-stm32cubeide-development-environment.html">&larr; Настройка среды разработки STM32CubeIDE</a><a href="4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт &rarr;</a></div>
+<p><img alt="" src="03-img-004-006.png" /></p><div class="pager"><a href="2-set-up-the-stm32cubeide-development-environment.html">&larr; Настройка среды разработки STM32CubeIDE</a><a href="4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт &rarr;</a></div>
 </main>
 </div>
 </body>

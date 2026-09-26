@@ -140,46 +140,26 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Управление буззером</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Управление буззером</div>
 <h1>Управление буззером</h1>
 <ul>
-<li>
-<ol>
-<li>Цель эксперимента</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Подключение оборудования</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Анализ основного кода</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Компиляция, загрузка и прошивка firmware</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Результаты эксперимента</li>
-</ol>
-</li>
+<li>1. Цель эксперимента</li>
+<li>2. Подключение оборудования</li>
+<li>3. Анализ основного кода</li>
+<li>4. Компиляция, загрузка и прошивка firmware</li>
+<li>5. Результаты эксперимента</li>
 </ul>
 <h2>1. Цель эксперимента</h2>
 <p>Считывание состояния кнопки KEY1 на плата управления STM32 и управление звуковым сигналом активного буззера.</p>
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, кнопка KEY1 и буззер — встроенные компоненты платы, поэтому дополнительные устройства не требуются. Подключите кабель Type-C к компьютеру и порту USB Connect на плата управления STM32.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="10-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Откройте STM32CubeIDE и импортируйте проект. Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/Beep
 </code></pre>
 <p>Инициализируйте периферийные GPIO: BEEP_GPIO соответствует выводу PE5 согласно электрической схеме, режим GPIO — выходной; KEY1 соответствует выводу PC15, режим GPIO — вход с подтяжкой вверх (pull-up).</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="10-img-002-001.png" /></p>
 <pre><code class="language-c">#define BEEP_Pin GPIO_PIN_5
 #define BEEP_GPIO_Port GPIOE
 #define LED_MCU_Pin GPIO_PIN_13
@@ -193,7 +173,7 @@ void MX_GPIO_Init(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
 </code></pre>
-<p><img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="10-img-002-002.png" /></p>
 <pre><code class="language-c">    /* GPIO Ports Clock Enable */
     __HAL_RCC_GPIOE_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -291,14 +271,14 @@ void MX_GPIO_Init(void)
 <h2>4. Компиляция, загрузка и прошивка firmware</h2>
 <p>Выберите проект для компиляции в панели управления файлами STM32CubeIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать сборку.</p>
 <p>Если ошибок и предупреждений нет, компиляция завершена.</p>
-<p><img alt="" src="img-005-003.png" /></p>
+<p><img alt="" src="10-img-005-003.png" /></p>
 <p>Нажмите и удерживайте кнопку BOOT0, затем нажмите кнопку RESET для сброса, отпустите кнопку BOOT0, чтобы войти в режим прошивки через последовательный порт. Затем используйте инструмент прошивки через последовательный порт, чтобы записать firmware на плату.</p>
 <p>Если у вас есть ST-LINK или J-Link, можно также использовать STM32CubeIDE для прошивки firmware одним нажатием — это более удобно и быстро.</p>
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>При нажатии KEY1 буззер издаёт один звуковой сигнал.</p>
-<p><img alt="" src="img-005-004.png" />
-<img alt="" src="img-005-005.png" /></p><div class="pager"><a href="2-button-functions.html">&larr; Функции кнопки</a><a href="4-serial-communication.html">Обмен данными по последовательному порту &rarr;</a></div>
+<p><img alt="" src="10-img-005-004.png" />
+<img alt="" src="10-img-005-005.png" /></p><div class="pager"><a href="2-button-functions.html">&larr; Функции кнопки</a><a href="4-serial-communication.html">Обмен данными по последовательному порту &rarr;</a></div>
 </main>
 </div>
 </body>

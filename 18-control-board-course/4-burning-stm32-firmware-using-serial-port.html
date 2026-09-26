@@ -140,24 +140,12 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1.Development environment setup / Прошивка STM32 через последовательный порт</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1. Настройка среды разработки / Прошивка STM32 через последовательный порт</div>
 <h1>Прошивка STM32 через последовательный порт</h1>
 <ul>
-<li>
-<ol>
-<li>Загрузка и установка инструментов</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Подключение оборудования</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Прошивка через STM32CubeProgrammer</li>
-</ol>
-</li>
+<li>1. Загрузка и установка инструментов</li>
+<li>2. Подключение оборудования</li>
+<li>3. Прошивка через STM32CubeProgrammer</li>
 </ul>
 <h2>1. Загрузка и установка инструментов</h2>
 <p>В качестве примера рассмотрим 64-битную систему Win.</p>
@@ -168,19 +156,19 @@
 <pre><code>https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip
 </code></pre>
 <p>После скачивания инструмента прошивки и драйвера последовательного порта распакуйте их и следуйте подсказкам для установки.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="04-img-001-000.png" /></p>
 <h2>2. Подключение оборудования</h2>
 <p>Используйте кабель Type-C для подключения к компьютеру.</p>
 <h2>3. Прошивка через STM32CubeProgrammer</h2>
 <p>Откройте программу STM32CubeProgrammer, выберите режим [UART], укажите соответствующий номер последовательного порта в поле [Port], остальные параметры показаны на рисунке ниже.</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="04-img-002-001.png" />
+<img alt="" src="04-img-002-002.png" /></p>
 <p>Теперь нажмите и удерживайте кнопку BOOT на плата управления, ещё раз нажмите кнопку RESET, а затем отпустите кнопку BOOT. STM32 перейдёт в режим прошивки через последовательный порт. Нажмите кнопку [Connect], чтобы подключиться.</p>
 <p>При успешном подключении статус изменится.</p>
-<p><img alt="" src="img-003-003.png" />
-<img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="04-img-003-003.png" />
+<img alt="" src="04-img-003-004.png" /></p>
 <p>Нажмите кнопку download, чтобы перейти на страницу загрузки, нажмите [Browse], чтобы выбрать hex-файл для загрузки, а затем нажмите [Start Programming], чтобы начать прошивку.</p>
-<p><img alt="" src="img-003-005.png" /></p>
+<p><img alt="" src="04-img-003-005.png" /></p>
 <p>После завершения прошивки появится соответствующее уведомление.</p><div class="pager"><a href="3-burning-stm32-firmware-using-swd.html">&larr; Прошивка STM32 через SWD</a><a href="5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS &rarr;</a></div>
 </main>
 </div>

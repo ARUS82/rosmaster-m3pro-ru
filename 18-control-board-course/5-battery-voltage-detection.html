@@ -140,47 +140,27 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Определение напряжения батареи</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Определение напряжения батареи</div>
 <h1>Определение напряжения батареи</h1>
 <ul>
-<li>
-<ol>
-<li>Цель эксперимента</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Подключение оборудования</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Анализ основного кода</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Компиляция, загрузка и прошивка firmware</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Результаты эксперимента</li>
-</ol>
-</li>
+<li>1. Цель эксперимента</li>
+<li>2. Подключение оборудования</li>
+<li>3. Анализ основного кода</li>
+<li>4. Компиляция, загрузка и прошивка firmware</li>
+<li>5. Результаты эксперимента</li>
 </ul>
 <h2>1. Цель эксперимента</h2>
 <p>Использование функции определения напряжения на плата управления STM32 для изучения считывания значений АЦП (ADC).</p>
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, схема определения напряжения батареи уже встроена в плата управления STM32, батарею необходимо подключить к разъёму питания.</p>
 <p>Подключите кабель Type-C к компьютеру и порту USB Connect на плата управления STM32.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="12-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/Adc
 </code></pre>
 <p>Сначала инициализируйте канал АЦП для определения напряжения батареи. Аппаратный вывод GPIO, подключённый к цепи определения напряжения, — PC0, соответствующий канал АЦП — ADC1_INP10.</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="12-img-002-001.png" /></p>
 <pre><code class="language-c">void MX_ADC1_Init(void)
 {
 
@@ -203,7 +183,7 @@
     hadc1.Init.LowPowerAutoWait = DISABLE;
     hadc1.Init.ContinuousConvMode = DISABLE;
 </code></pre>
-<p><img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="12-img-002-002.png" /></p>
 <pre><code class="language-c">    hadc1.Init.NbrOfConversion = 1;
     hadc1.Init.DiscontinuousConvMode = DISABLE;
     hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
@@ -320,9 +300,9 @@
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Подключите плату расширения к компьютеру через кабель Type-C, откройте программу-терминал последовательного порта (конкретные параметры показаны на рисунке ниже), и вы увидите, что терминал выводит текущее напряжение батареи.</p>
 <p>Первое значение — это значение АЦП, второе — напряжение на выводе GPIO, третье — напряжение батареи.</p>
-<p><img alt="" src="img-005-003.png" />
-<img alt="" src="img-005-004.png" />
-<img alt="" src="img-006-005.png" /></p><div class="pager"><a href="4-serial-communication.html">&larr; Обмен данными по последовательному порту</a><a href="6-driving-pwm-servo.html">Управление ШИМ-сервоприводом &rarr;</a></div>
+<p><img alt="" src="12-img-005-003.png" />
+<img alt="" src="12-img-005-004.png" />
+<img alt="" src="12-img-006-005.png" /></p><div class="pager"><a href="4-serial-communication.html">&larr; Обмен данными по последовательному порту</a><a href="6-driving-pwm-servo.html">Управление ШИМ-сервоприводом &rarr;</a></div>
 </main>
 </div>
 </body>

@@ -140,31 +140,19 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1.Development environment setup / Установка и запуск агента micro-ROS</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1. Настройка среды разработки / Установка и запуск агента micro-ROS</div>
 <h1>Установка и запуск агента micro-ROS</h1>
 <ul>
-<li>
-<ol>
-<li>Запуск агента micro-ROS через Docker</li>
-</ol>
-</li>
+<li>1. Запуск агента micro-ROS через Docker</li>
 <li>Запуск serial-прокси через Docker</li>
 <li>Ошибка запуска агента</li>
-<li>
-<ol>
-<li>Запуск агента micro-ROS из исходного кода</li>
-</ol>
-</li>
+<li>2. Запуск агента micro-ROS из исходного кода</li>
 <li>Установка зависимости tinyxml2</li>
 <li>Установка инструмента python3-rosdep</li>
 <li>Компиляция окружения micro_ros_setup</li>
 <li>Компиляция окружения micro_ros_agent</li>
 <li>Запуск serial-прокси micro-ROS из исходного кода</li>
-<li>
-<ol>
-<li>Запуск агента micro-ROS с использованием заводского образа</li>
-</ol>
-</li>
+<li>3. Запуск агента micro-ROS с использованием заводского образа</li>
 </ul>
 <p>Примечание: можно выбрать любой из трёх способов запуска.</p>
 <h2>1. Запуск агента micro-ROS через Docker</h2>
@@ -236,9 +224,9 @@ gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte
 <p>Скомпилируйте рабочую область:</p>
 <pre><code class="language-bash">colcon build
 </code></pre>
-<p><img alt="" src="img-003-000.png" />
-<img alt="" src="img-003-001.png" />
-<img alt="" src="img-003-002.png" /></p>
+<p><img alt="" src="06-img-003-000.png" />
+<img alt="" src="06-img-003-001.png" />
+<img alt="" src="06-img-003-002.png" /></p>
 <p>Активируйте окружение micro_ros_setup:</p>
 <pre><code class="language-bash">source install/local_setup.bash
 </code></pre>
@@ -257,7 +245,7 @@ ros2 run micro_ros_setup build_agent.sh
 <p>Здесь <code>--dev /dev/myserial</code> — привязываемое устройство последовательного порта, значение можно также изменить на <code>/dev/ttyUSB0</code> и т. п.</p>
 <p><code>-b 2000000</code> — скорость передачи данных (baud rate).</p>
 <p>Чтобы завершить работу прокси, нажмите Ctrl+C в терминале.</p>
-<p><img alt="" src="img-004-003.png" /></p>
+<p><img alt="" src="06-img-004-003.png" /></p>
 <h2>3. Запуск агента micro-ROS с использованием заводского образа</h2>
 <p>В заводской системе-образе функция прокси уже интегрирована и оформлена в виде скрипта. Достаточно выполнить следующую команду, чтобы включить прокси.</p>
 <pre><code class="language-bash">sh ~/start_agent.sh

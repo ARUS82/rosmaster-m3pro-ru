@@ -140,34 +140,14 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Считывание данных энкодера мотора</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Считывание данных энкодера мотора</div>
 <h1>Считывание данных энкодера мотора</h1>
 <ul>
-<li>
-<ol>
-<li>Цель эксперимента</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Подключение оборудования</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Анализ основного кода</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Компиляция, загрузка и прошивка firmware</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Результаты эксперимента</li>
-</ol>
-</li>
+<li>1. Цель эксперимента</li>
+<li>2. Подключение оборудования</li>
+<li>3. Анализ основного кода</li>
+<li>4. Компиляция, загрузка и прошивка firmware</li>
+<li>5. Результаты эксперимента</li>
 </ul>
 <h2>1. Цель эксперимента</h2>
 <p>Использование интерфейса мотора с энкодером на плата управления STM32 и изучение применения таймера STM32 для подсчёта импульсов энкодера мотора.</p>
@@ -175,13 +155,13 @@
 <p>Как показано на рисунке ниже, плата управления STM32 имеет четыре встроенных интерфейса управления моторами с энкодером. Для этого требуется дополнительно подключить мотор с энкодером. Интерфейс управления моторами поддерживает моторы с энкодером типа 520. Поскольку моторы с энкодером требуют высокого напряжения и тока, их необходимо питать от батареи.</p>
 <p>Подключите кабель Type-C к USB-порту компьютера и порту USB Connect на плата управления STM32.</p>
 <p>Соответствие названий четырёх интерфейсов моторов: переднее левое колесо → M1, заднее левое колесо → M2, переднее правое колесо → M3, заднее правое колесо → M4.</p>
-<p><img alt="" src="img-002-000.png" /></p>
+<p><img alt="" src="15-img-002-000.png" /></p>
 <p>Соответствие GPIO для энкодера мотора показано в таблице ниже:</p>
-<p><img alt="" src="img-003-001.png" />
-<img alt="" src="img-003-002.png" />
-<img alt="" src="img-003-003.png" />
-<img alt="" src="img-003-004.png" />
-<img alt="" src="img-003-005.png" /></p>
+<p><img alt="" src="15-img-003-001.png" />
+<img alt="" src="15-img-003-002.png" />
+<img alt="" src="15-img-003-003.png" />
+<img alt="" src="15-img-003-004.png" />
+<img alt="" src="15-img-003-005.png" /></p>
 <table>
 <thead>
 <tr>
@@ -261,7 +241,7 @@
     sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
     sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
 </code></pre>
-<p><img alt="" src="img-005-006.png" /></p>
+<p><img alt="" src="15-img-005-006.png" /></p>
 <pre><code class="language-c">    sConfig.IC2Filter = 0;
     if (HAL_TIM_Encoder_Init(&amp;htim2, &amp;sConfig) != HAL_OK)
     {
@@ -286,7 +266,7 @@ void MX_TIM3_Init(void)
     htim3.Instance = TIM3;
     htim3.Init.Prescaler = 0;
 </code></pre>
-<p><img alt="" src="img-006-007.png" /></p>
+<p><img alt="" src="15-img-006-007.png" /></p>
 <pre><code class="language-c">htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
       htim3.Init.Period = 65535;
       htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -405,11 +385,11 @@ void MX_TIM3_Init(void)
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Возьмём мотор 3 в качестве примера: при вращении колеса вперёд данные энкодера накапливаются. При повороте колеса вперёд на один оборот данные энкодера увеличиваются приблизительно на 2464. Из-за некоторой погрешности при ручном повороте значения могут немного отличаться — это нормально, если разница не слишком велика.</p>
-<p><img alt="" src="img-009-008.png" />
-<img alt="" src="img-009-009.png" /></p>
+<p><img alt="" src="15-img-009-008.png" />
+<img alt="" src="15-img-009-009.png" /></p>
 <p>Нажмите кнопку сброса (RESET) на плата управления STM32, чтобы сбросить значение до 0.</p>
 <p>При вращении колеса назад данные энкодера уменьшаются. Если колесо совершает оборот назад, значение уменьшается приблизительно на 2464.</p>
-<p><img alt="" src="img-010-010.png" /></p><div class="pager"><a href="7-drive-motor.html">&larr; Управление мотором</a><a href="9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора &rarr;</a></div>
+<p><img alt="" src="15-img-010-010.png" /></p><div class="pager"><a href="7-drive-motor.html">&larr; Управление мотором</a><a href="9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора &rarr;</a></div>
 </main>
 </div>
 </body>

@@ -140,49 +140,17 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1.Development environment setup / Компиляция библиотеки драйвера micro-ROS</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1. Настройка среды разработки / Компиляция библиотеки драйвера micro-ROS</div>
 <h1>Компиляция библиотеки драйвера micro-ROS</h1>
 <ul>
-<li>
-<ol>
-<li>Установка кросс-компилятора</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Получение файлов библиотеки STM32-microros</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Изменение параметров</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Добавление переменных окружения</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Запуск компиляции</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Решение проблемы с include</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Итоговый файл</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Импорт проекта в STM32CUBEIDE</li>
-</ol>
-</li>
+<li>1. Установка кросс-компилятора</li>
+<li>2. Получение файлов библиотеки STM32-microros</li>
+<li>3. Изменение параметров</li>
+<li>4. Добавление переменных окружения</li>
+<li>5. Запуск компиляции</li>
+<li>6. Решение проблемы с include</li>
+<li>7. Итоговый файл</li>
+<li>8. Импорт проекта в STM32CUBEIDE</li>
 </ul>
 <p>Примечание: библиотеку драйвера micro-ROS необходимо компилировать в Ubuntu. Рекомендуется Ubuntu 22.04.</p>
 <h2>1. Установка кросс-компилятора</h2>
@@ -195,7 +163,7 @@
 <p>И добавьте путь к исполняемым файлам в переменную окружения .bashrc домашнего каталога пользователя.</p>
 <pre><code class="language-bash">export PATH=$PATH:/opt/gcc-arm-none-eabi/bin
 </code></pre>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="05-img-001-000.png" /></p>
 <h2>2. Получение файлов библиотеки STM32-microros</h2>
 <p>Скачайте и скомпилируйте инструмент настройки micro-ROS.</p>
 <pre><code class="language-bash">mkdir uros_ws &amp;&amp; cd uros_ws
@@ -209,7 +177,7 @@ source install/local_setup.bash
 <pre><code class="language-bash">ros2 run micro_ros_setup create_firmware_ws.sh generate_lib
 </code></pre>
 <p>Проверьте рабочую область. Теперь должно быть пять папок, среди которых папка firmware содержит файлы библиотеки STM32-microros: build, firmware, install, log, src.</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="05-img-002-001.png" /></p>
 <h2>3. Изменение параметров</h2>
 <p>Откройте файл toolchain.cmake:</p>
 <pre><code class="language-bash">vim ~/uros_ws/firmware/toolchain.cmake
@@ -233,7 +201,7 @@ set(FLAGS &quot;-O2 -ffunction-sections -fdata-sections -fno-exceptions -mcpu=co
 # -mcpu=cortex-m7 указывает архитектуру микроконтроллера
 # -mfpu=fpv5-d16 -mfloat-abi=hard указывает на поддержку компиляции с аппаратной плавающей точкой
 </code></pre>
-<p><img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="05-img-002-002.png" /></p>
 <pre><code class="language-cmake">set(CMAKE_C_FLAGS_INIT &quot;-std=c11 ${FLAGS} -DCLOCK_MONOTONIC=0 -D'__attribute__(x)='&quot; CACHE STRING &quot;&quot; FORCE)
 set(CMAKE_CXX_FLAGS_INIT &quot;-std=c++11 ${FLAGS} -fno-rtti -DCLOCK_MONOTONIC=0 -D'__attribute__(x)='&quot; CACHE STRING &quot;&quot; FORCE)
 
@@ -358,16 +326,16 @@ ls ~/uros_ws/firmware/build/include
 </code></pre>
 <h2>8. Импорт проекта в STM32CUBEIDE</h2>
 <p>Создайте в проекте новую папку Microros, затем скопируйте в неё папки include и libmicroros, сгенерированные на предыдущем шаге.</p>
-<p><img alt="" src="img-006-003.png" /></p>
+<p><img alt="" src="05-img-006-003.png" /></p>
 <p>Щёлкните правой кнопкой мыши, чтобы открыть свойства проекта, затем нажмите [Settings] → [MCU/MPU GCC Compiler] → [include paths], чтобы добавить путь к каталогу include библиотеки micro-ROS, а затем нажмите [Apply], чтобы применить изменения.</p>
-<p><img alt="" src="img-006-004.png" /></p>
+<p><img alt="" src="05-img-006-004.png" /></p>
 <p>Добавьте папку microros в качестве пути с исходным кодом проекта.</p>
-<p><img alt="" src="img-007-005.png" /></p>
+<p><img alt="" src="05-img-007-005.png" /></p>
 <p>Импортируйте путь к библиотеке micro-ROS.</p>
-<p><img alt="" src="img-007-006.png" />
-<img alt="" src="img-007-007.png" /></p>
+<p><img alt="" src="05-img-007-006.png" />
+<img alt="" src="05-img-007-007.png" /></p>
 <p>Подключите файл библиотеки micro-ROS к проекту. Убедитесь, что имя совпадает с именем файла статической библиотеки libmicroros.a (без учёта префикса «lib» и суффикса «.a», то есть просто <code>microros</code>).</p>
-<p><img alt="" src="img-008-008.png" /></p><div class="pager"><a href="4-burning-stm32-firmware-using-serial-port.html">&larr; Прошивка STM32 через последовательный порт</a><a href="6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS &rarr;</a></div>
+<p><img alt="" src="05-img-008-008.png" /></p><div class="pager"><a href="4-burning-stm32-firmware-using-serial-port.html">&larr; Прошивка STM32 через последовательный порт</a><a href="6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS &rarr;</a></div>
 </main>
 </div>
 </body>

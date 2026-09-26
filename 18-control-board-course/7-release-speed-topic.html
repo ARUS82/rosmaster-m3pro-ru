@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3.Control board micro_ros basic routine / Публикация топика скорости (odom)</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3. Базовые примеры micro-ROS / Публикация топика скорости (odom)</div>
 <h1>Публикация топика скорости (odom)</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -161,7 +161,7 @@
 <pre><code>Board_Samples/Microros_Samples/Publisher_odom
 </code></pre>
 <p>Создание издателя (publisher) "odom_raw" с указанием типа информации издателя как nav_msgs/msg/Odometry.</p>
-<p><img alt="" src="img-002-000.png" /></p>
+<p><img alt="" src="32-img-002-000.png" /></p>
 <pre><code class="language-c">RCCHECK(rclc_publisher_init_default(
           &amp;odom_publisher,
           &amp;node,
@@ -276,8 +276,8 @@ angular_vel_z)
 <pre><code>sh ~/start_agent.sh
 </code></pre>
 <p>После успешного подключения создаются узел (node), издатель (publisher) и подписчик (subscriber).</p>
-<p><img alt="" src="img-005-001.png" />
-<img alt="" src="img-005-002.png" /></p>
+<p><img alt="" src="32-img-005-001.png" />
+<img alt="" src="32-img-005-002.png" /></p>
 <p>Откройте другой терминал и просмотрите узел /YB_Example_Node.</p>
 <pre><code>ros2 node list
 ros2 node info /YB_Example_Node
@@ -290,8 +290,8 @@ z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}&quot;
 <pre><code>ros2 topic echo /odom_raw
 </code></pre>
 <p>Нажмите Ctrl+C, чтобы завершить выполнение команды.</p>
-<p><img alt="" src="img-006-003.png" />
-<img alt="" src="img-006-004.png" /></p>
+<p><img alt="" src="32-img-006-003.png" />
+<img alt="" src="32-img-006-004.png" /></p>
 <p>Проверьте частоту топика /odom_raw. Частота около 20 Гц является нормой.</p>
 <pre><code>ros2 topic hz /odom_raw
 </code></pre>
@@ -300,8 +300,8 @@ z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}&quot;
 <pre><code>ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 0.0, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}&quot;
 </code></pre>
-<p><img alt="" src="img-007-005.png" />
-<img alt="" src="img-007-006.png" /></p><div class="pager"><a href="6-subscribe-to-the-rate-control-topic.html">&larr; Подписка на топик управления скоростью</a><a href="8-publish-imu-data-topic.html">Публикация топика данных IMU &rarr;</a></div>
+<p><img alt="" src="32-img-007-005.png" />
+<img alt="" src="32-img-007-006.png" /></p><div class="pager"><a href="6-subscribe-to-the-rate-control-topic.html">&larr; Подписка на топик управления скоростью</a><a href="8-publish-imu-data-topic.html">Публикация топика данных IMU &rarr;</a></div>
 </main>
 </div>
 </body>

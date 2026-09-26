@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3.Control board micro_ros basic routine / Подписка и публикация нескольких топиков</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3. Базовые примеры micro-ROS / Подписка и публикация нескольких топиков</div>
 <h1>Подписка и публикация нескольких топиков</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -156,7 +156,7 @@
 <p>Подключите USB-кабель Type-C к USB-порту главной вычислительной платы и к порту USB Connect на плате управления STM32.</p>
 <p>Если у вас есть модуль USB-UART, например CH340, вы можете подключить его к программе для работы с последовательным портом, чтобы просматривать отладочную информацию.</p>
 <p>Поскольку ROS2 требует окружения Ubuntu, рекомендуется установить на главную вычислительную плату Ubuntu 22.04 и окружение ROS2.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="28-img-001-000.png" /></p>
 <p>Примечание: существует много типов главных вычислительных плат. Здесь в качестве примера рассматривается плата серии Jetson Orin с заводским образом, прошитым по умолчанию.</p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы в виртуальной машине:</p>
@@ -329,8 +329,8 @@ void subscriber_callback_3(const void *msgin)
 <pre><code>sh ~/start_agent.sh
 </code></pre>
 <p>После успешного подключения создаются три узла и три подписчика.</p>
-<p><img alt="" src="img-005-001.png" />
-<img alt="" src="img-005-002.png" /></p>
+<p><img alt="" src="28-img-005-001.png" />
+<img alt="" src="28-img-005-002.png" /></p>
 <p>Откройте другой терминал и просмотрите узел /YB_Example_Node.</p>
 <pre><code>ros2 node list
 ros2 node info /YB_Example_Node
@@ -356,7 +356,7 @@ ros2 topic hz /int32_publisher_3
 ros2 topic echo /int32_publisher_2
 ros2 topic echo /int32_publisher_3
 </code></pre>
-<p><img alt="" src="img-006-003.png" /></p>
+<p><img alt="" src="28-img-006-003.png" /></p>
 <p>Нажмите Ctrl+C, чтобы завершить выполнение команды.</p><div class="pager"><a href="2-subscribe-to-a-topic.html">&larr; Подписка на топик</a><a href="4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером &rarr;</a></div>
 </main>
 </div>

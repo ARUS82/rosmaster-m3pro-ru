@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3.Control board micro_ros basic routine / Подписка на топик управления зуммером</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3. Базовые примеры micro-ROS / Подписка на топик управления зуммером</div>
 <h1>Подписка на топик управления зуммером</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -155,7 +155,7 @@
 <p>Как показано на рисунке ниже, плата управления STM32 имеет встроенный активный зуммер.</p>
 <p>Используйте USB-кабель Type-C, чтобы соединить USB-порт главной вычислительной платы с портом USB Connect на плате управления STM32.</p>
 <p>Поскольку ROS2 требует окружения Ubuntu, рекомендуется установить на главную вычислительную плату Ubuntu 22.04 и окружение ROS2.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="29-img-001-000.png" /></p>
 <p>Примечание: существует много типов главных вычислительных плат. Здесь в качестве примера рассматривается плата серии Jetson Orin с заводским образом, прошитым по умолчанию.</p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы в виртуальной машине:</p>
@@ -209,9 +209,9 @@
 <pre><code>ros2 node list
 ros2 node info /YB_Example_Node
 </code></pre>
-<p><img alt="" src="img-003-001.png" />
-<img alt="" src="img-003-002.png" />
-<img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="29-img-003-001.png" />
+<img alt="" src="29-img-003-002.png" />
+<img alt="" src="29-img-003-003.png" /></p>
 <p>Опубликуйте данные в топик /beep, чтобы включить зуммер на постоянный звуковой сигнал.</p>
 <pre><code>ros2 topic pub --once /beep std_msgs/msg/UInt16 &quot;data: 1&quot;
 </code></pre>
@@ -221,7 +221,7 @@ ros2 node info /YB_Example_Node
 <p>Опубликуйте данные в топик /beep, чтобы зуммер прозвучал в течение 300 миллисекунд и затем автоматически выключился.</p>
 <pre><code>ros2 topic pub --once /beep std_msgs/msg/UInt16 &quot;data: 300&quot;
 </code></pre>
-<p><img alt="" src="img-004-004.png" /></p><div class="pager"><a href="3-multi-topic-subscription-and-publishing.html">&larr; Подписка и публикация нескольких топиков</a><a href="5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода &rarr;</a></div>
+<p><img alt="" src="29-img-004-004.png" /></p><div class="pager"><a href="3-multi-topic-subscription-and-publishing.html">&larr; Подписка и публикация нескольких топиков</a><a href="5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода &rarr;</a></div>
 </main>
 </div>
 </body>

@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3.Control board micro_ros basic routine / Подписка на топик управления скоростью</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3. Базовые примеры micro-ROS / Подписка на топик управления скоростью</div>
 <h1>Подписка на топик управления скоростью</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -161,7 +161,7 @@
 <pre><code>Board_Samples/Microros_Samples/Subscriber_twist
 </code></pre>
 <p>Создание подписчика с именем "cmd_vel" и указанием типа топика ROS geometry_msgs/msg/Twist.</p>
-<p><img alt="" src="img-002-000.png" /></p>
+<p><img alt="" src="31-img-002-000.png" /></p>
 <pre><code class="language-c">RCCHECK(rclc_subscription_init_default(
          &amp;twist_subscriber,
          &amp;node,
@@ -198,7 +198,7 @@
 <h2>4. Компиляция, загрузка и прошивка firmware</h2>
 <p>Выберите проект для компиляции в окне управления файлами STM32CUBEIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать компиляцию.</p>
 <p>Если ошибок и предупреждений нет, компиляция завершена успешно.</p>
-<p><img alt="" src="img-003-001.png" /></p>
+<p><img alt="" src="31-img-003-001.png" /></p>
 <p>Поскольку последовательный порт связи Type-C, используемый агентом (agent) micro-ROS, совмещён с портом прошивки, рекомендуется использовать для прошивки инструмент ST-Link.</p>
 <p>Если вы прошиваете через последовательный порт, сначала подключите кабель Type-C к USB-порту компьютера, войдите в режим загрузки через последовательный порт, прошейте firmware, а затем снова подключите кабель к USB-порту главной вычислительной платы.</p>
 <h2>5. Результаты эксперимента</h2>
@@ -216,8 +216,8 @@ ros2 node info /YB_Example_Node
 <pre><code>ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 0.5, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}&quot;
 </code></pre>
-<p><img alt="" src="img-004-002.png" />
-<img alt="" src="img-004-003.png" /></p>
+<p><img alt="" src="31-img-004-002.png" />
+<img alt="" src="31-img-004-003.png" /></p>
 <p>Опубликуйте данные в топик /cmd_vel, чтобы заставить робота вращаться со скоростью 1.5 рад/с.</p>
 <pre><code>ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 0.0, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.5}}&quot;
@@ -226,7 +226,7 @@ z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.5}}&quot;
 <pre><code>ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 0.0, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}&quot;
 </code></pre>
-<p><img alt="" src="img-005-004.png" /></p><div class="pager"><a href="5-subscribe-to-the-bus-servo-topic.html">&larr; Подписка на топик шинного сервопривода</a><a href="7-release-speed-topic.html">Публикация топика скорости (odom) &rarr;</a></div>
+<p><img alt="" src="31-img-005-004.png" /></p><div class="pager"><a href="5-subscribe-to-the-bus-servo-topic.html">&larr; Подписка на топик шинного сервопривода</a><a href="7-release-speed-topic.html">Публикация топика скорости (odom) &rarr;</a></div>
 </main>
 </div>
 </body>

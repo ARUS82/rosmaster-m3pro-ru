@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3.Control board micro_ros basic routine / Подписка на топик шинного сервопривода</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3. Базовые примеры micro-ROS / Подписка на топик шинного сервопривода</div>
 <h1>Подписка на топик шинного сервопривода</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -155,7 +155,7 @@
 <p>Как показано на рисунке ниже, плата управления STM32 имеет три встроенных интерфейса для шинных сервоприводов. Чтобы увидеть результат, необходимо подготовить и подключить дополнительные шинные сервоприводы.</p>
 <p>Используйте USB-кабель Type-C, чтобы соединить USB-порт главной вычислительной платы с портом USB Connect на плате управления STM32.</p>
 <p>Поскольку шинный сервопривод требует высокого напряжения и тока, питание должно осуществляться от аккумулятора.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="30-img-001-000.png" /></p>
 <p>Примечание: существует много типов главных вычислительных плат. Здесь в качестве примера рассматривается плата серии Jetson Orin с заводским образом, прошитым по умолчанию.</p>
 <p>Примечание: имеется три интерфейса шинных сервоприводов (S3/S4/S5), из которых S3 — это интерфейс для шинного сервопривода на 6.8В, а S4 и S5 — интерфейсы для шинных сервоприводов на 12В. Поскольку шинный сервопривод манипулятора M3PRO работает на 6.8В, в качестве примера мы будем использовать S3.</p>
 <h2>3. Анализ основного кода</h2>
@@ -215,8 +215,8 @@ int16 time
 <pre><code>sh ~/start_agent.sh
 </code></pre>
 <p>После успешного подключения создаются узел (node) и два подписчика (subscriber).</p>
-<p><img alt="" src="img-003-001.png" />
-<img alt="" src="img-003-002.png" /></p>
+<p><img alt="" src="30-img-003-001.png" />
+<img alt="" src="30-img-003-002.png" /></p>
 <p>Откройте другой терминал и просмотрите узел /YB_Example_Node.</p>
 <pre><code>ros2 node list
 ros2 node info /YB_Example_Node
@@ -230,7 +230,7 @@ ros2 node info /YB_Example_Node
 <pre><code>ros2 topic pub --once /arm_joint arm_msgs/msg/ArmJoint &quot;{id: 1, joint: 120, time:
 1000}&quot;
 </code></pre>
-<p><img alt="" src="img-004-003.png" /></p><div class="pager"><a href="4-subscribe-to-the-buzzer-topic.html">&larr; Подписка на топик управления зуммером</a><a href="6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью &rarr;</a></div>
+<p><img alt="" src="30-img-004-003.png" /></p><div class="pager"><a href="4-subscribe-to-the-buzzer-topic.html">&larr; Подписка на топик управления зуммером</a><a href="6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью &rarr;</a></div>
 </main>
 </div>
 </body>
