@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>23. Преобразование координат TF2 в ROS2 — Базовый курс ROS2</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details open>
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="active" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Базовый курс ROS2</a> / 23. Преобразование координат TF2 в ROS2</div>
+<h1>23. Преобразование координат TF2 в ROS2</h1>
+<h2>1. Введение в TF2</h2>
+<p>Системы координат — это очень знакомое понятие и ключевая основа в робототехнике. В полноценной робототехнической системе существует множество систем координат. Как управлять взаимными позиционными отношениями между этими системами координат? ROS предоставляет мощный инструмент управления системами координат: TF2.</p>
+<p>Справочник по системе TF: tf: The transform library | IEEE Conference Publication | IEEE Xplore</p>
+<h2>2. Системы координат в робототехнике</h2>
+<p>Системы координат также крайне важны в системах мобильных роботов. Например, центральная точка мобильного робота — это базовая система координат (Base Link), а положение радара называется laser link. По мере движения робота одометрия накапливает информацию о его положении. Референсная система для этого положения называется системой координат одометрии (odom). Сама одометрия подвержена накопленным ошибкам и дрейфу. Референсная система для абсолютного положения называется системой координат карты (map).</p>
+<p>Отношения между слоями систем координат сложны. Некоторые из них относительно фиксированы, другие постоянно меняются. Даже, казалось бы, простые системы координат могут стать сложными в пространственном контексте, что делает хорошую систему управления системами координат крайне важной.</p>
+<p><img alt="" src="img-001-000.png" /></p>
+<p>Базовая теория преобразований систем координат объясняется в каждом учебнике по робототехнике. Её можно разбить на два компонента: перемещение (translation) и вращение (rotation). Эти компоненты описываются матрицей 4×4. При построении системы координат в пространстве преобразование между этими двумя компонентами по сути является математическим описанием векторов.</p>
+<p>Базовые принципы функциональности TF в ROS инкапсулируют эти математические преобразования. Подробную теоретическую информацию можно найти в учебниках по робототехнике. Мы в первую очередь объясним, как использовать систему управления координатами TF.</p>
+<h2>3. Операции с TF через командную строку</h2>
+<p>Сначала рассмотрим пример с двумя черепахами, чтобы понять алгоритм следования робота на основе систем координат. Для удобства демонстрации этот урок лучше выполнять в виртуальной машине</p>
+<h3>3.1 Установка соответствующих инструментов</h3>
+<p>Для этого примера требуется установить соответствующие пакеты функций, пример симулятора черепах TF и инструмент визуализации дерева TF.</p>
+<pre><code>sudo apt install ros-${ROS_DISTRO}-turtle-tf2-py ros-humble-tf2-tools
+sudo pip3 install transforms3d
+sudo apt install ros-${ROS_DISTRO}-rqt-tf-tree
+</code></pre>
+<h3>3.2 Запуск</h3>
+<p>Затем можно запустить систему с помощью файла запуска. После этого можно управлять одной из черепах, а другая будет автоматически следовать.</p>
+<pre><code>ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py
+ros2 run turtlesim turtle_teleop_key
+</code></pre>
+<p>Когда мы управляем движением одной черепахи, другая черепаха будет следовать за ней.</p>
+<p><img alt="" src="img-002-001.png" /></p>
+<h3>3.3 Просмотр дерева TF</h3>
+<pre><code>ros2 run rqt_tf_tree rqt_tf_tree
+</code></pre>
+<p>Вы можете просмотреть дерево преобразований TF в окне rqt.</p>
+<p><img alt="" src="img-003-002.png" /></p>
+<h3>3.4 Запрос информации о преобразовании координат</h3>
+<p>Просто просмотреть структуру системы координат недостаточно. Если мы хотим узнать конкретную взаимосвязь между двумя системами координат, можно использовать инструмент tf2_echo:</p>
+<pre><code>ros2 run tf2_ros tf2_echo turtle2 turtle1
+</code></pre>
+<p>После успешного запуска терминал будет многократно выводить значения преобразования системы координат.</p>
+<p><img alt="" src="img-003-003.png" /></p>
+<h2>3.5 Визуализация системы координат</h2>
+<ul>
+<li>Запустите rviz2 и добавьте плагин отображения TF.</li>
+</ul>
+<pre><code>rviz2
+</code></pre>
+<p>Установите референсную систему координат в rviz2 на "world", добавьте плагин отображения TF, а затем анимируйте черепаху. Оси координат в rviz начнут двигаться. Не правда ли, так намного интуитивнее?</p>
+<p><img alt="" src="img-004-004.png" />
+<img alt="" src="img-004-005.png" /></p>
+<h2>4. Статическое преобразование координат</h2>
+<p>Статическое преобразование координат означает фиксированное относительное положение между двумя системами координат. Например, положение между радаром и base_link фиксировано.</p>
+<p>Пример: для удобства демонстрации этот урок лучше выполнять в виртуальной машине</p>
+<h3>4.1. Публикация позы от A к B</h3>
+<pre><code>ros2 run tf2_ros static_transform_publisher 0 0 3 0 0 3.14 A B
+</code></pre>
+<h3>4.2. Мониторинг/получение отношений TF</h3>
+<pre><code>ros2 run tf2_ros tf2_echo A B
+</code></pre>
+<h3>4.3. Визуализация в RVIZ</h3>
+<ul>
+<li>Запустите rviz2 и добавьте плагин отображения TF.</li>
+</ul>
+<pre><code>rviz2
+</code></pre>
+<p><img alt="" src="img-005-006.png" />
+<img alt="" src="img-005-007.png" /></p>
+<h2>5. Введение в пример</h2>
+<p>В предыдущем уроке мы объяснили отношение TF в примере следования черепах, предоставленном системой. В этом уроке мы реализуем эту функциональность самостоятельно.</p>
+<p>Содержание курса:</p>
+<ul>
+<li>Реализация примера следования черепахи через программирование</li>
+<li>Освоение реализации динамического broadcaster (передатчика) через программирование</li>
+<li>Освоение реализации преобразований координат между отслеживаемыми системами координат через программирование</li>
+<li>Освоение использования ПИД-регулятора для преобразования физических величин (расстояние, угол) в переменные управления скоростью</li>
+</ul>
+<p>Продвинутый материал:</p>
+<ul>
+<li>Понимание способности системы TF преобразовывать системы координат во временном измерении</li>
+</ul>
+<h2>6. Анализ принципов работы примера следования черепахи</h2>
+<p><img alt="" src="img-006-008.png" /></p>
+<p>В симуляторе двух черепах мы можем определить три системы координат. Например, глобальная референсная система симулятора называется "world", а системы координат turtle1 и turtle2 находятся в центре двух черепах. Таким образом, относительное положение turtle1 и системы координат world представляет положение turtle1, и аналогично для turtle2.</p>
+<p>Чтобы заставить Черепаху 2 двигаться к Черепахе 1, мы проводим линию, соединяющую их, и добавляем стрелку. Не напоминает ли это векторные вычисления, изученные в школе? Векторы используются для описания преобразований координат, поэтому в этом примере следования TF может отлично решить эту задачу.</p>
+<p>Длина вектора представляет расстояние, а направление — угол. Зная расстояние и угол, мы можем вычислить скорость, задав случайный промежуток времени. Затем мы инкапсулируем и публикуем топик скорости, и Черепаха 2 начинает двигаться.</p>
+<p>Таким образом, суть этого примера — выполнение векторных вычислений с использованием системы координат. Поскольку обе черепахи постоянно движутся, векторы также должны вычисляться с определённой периодичностью. Для этого требуется использование динамической передачи (broadcast) и мониторинга (listening) TF.</p>
+<h2>7. Создание нового пакета</h2>
+<ol>
+<li>Создайте новый пакет в директории src рабочего пространства для хранения наших файлов.</li>
+</ol>
+<pre><code>ros2 pkg create pkg_tf --build-type ament_python --dependencies rclpy --node-
+name turtle_tf_broadcaster
+</code></pre>
+<p>Выполнение приведённой выше команды создаст пакет pkg_tf и ноду turtle_tf_broadcaster. Соответствующие конфигурационные файлы будут настроены автоматически. Добавьте следующий код в файл turtle_tf_broadcaster.py:</p>
+<pre><code class="language-python">import rclpy                                                 # ROS2 Python interface
+library
+from rclpy.node import Node                                  # ROS2 node class
+from geometry_msgs.msg import TransformStamped               # Coordinate transformation
+message
+import tf_transformations                                    # TF coordinate
+transformation library
+from tf2_ros import TransformBroadcaster                     # TF coordinate
+transformation broadcaster
+from turtlesim.msg import Pose                               # TurtleSim turtle position
+message
+
+
+class TurtleTFBroadcaster(Node):
+
+
+     def __init__(self, name):
+          super().__init__(name)                                          # Initialize the
+ROS2 node parent class
+
+
+          self.declare_parameter('turtlename', 'turtle')                  # Create a
+parameter for the turtle name
+          self.turtlename = self.get_parameter(                           # Externally set
+parameter value takes precedence; otherwise, default value is used.
+               'turtlename').get_parameter_value().string_value
+
+
+          self.tf_broadcaster = TransformBroadcaster(self)                # Create and
+initialize a TF coordinate transformation broadcast object
+
+
+          self.subscription = self.create_subscription(                   # Create a
+subscriber to subscribe to turtle position messages
+               Pose,
+               f'/{self.turtlename}/pose',                                # Use the turtle
+name obtained from the parameters
+               self.turtle_pose_callback, 1)
+
+
+     def turtle_pose_callback(self, msg):                                           # Create a
+callback function to handle turtle position messages and convert them into
+coordinate transformations
+          transform = TransformStamped()                                            # Create a
+coordinate transformation message object
+          transform.header.stamp = self.get_clock().now().to_msg()                   # Set the
+timestamp of the coordinate transformation message
+          transform.header.frame_id = 'world'                                        # Set the
+source coordinate system for the coordinate transformation
+          transform.child_frame_id = self.turtlename                                 # Set the
+target coordinate system for the coordinate transformation
+          transform.transform.translation.x = msg.x                                  # Set the
+X, Y, and Z translations in the coordinate transformation
+          transform.transform.translation.y = msg.y
+          transform.transform.translation.z = 0.0
+          q = tf_transformations.quaternion_from_euler(0, 0, msg.theta) # Convert
+Euler angles to quaternions (roll, pitch, yaw)
+          transform.transform.rotation.x = q[0]                                      # Set the
+X, Y, and Z rotations (quaternions) in the coordinate transformation
+          transform.transform.rotation.y = q[1]
+          transform.transform.rotation.z = q[2]
+          transform.transform.rotation.w = q[3]
+
+
+          # Send the transformation
+          self.tf_broadcaster.sendTransform(transform)               # Broadcast the
+coordinate transformation. When the turtle's position changes, the coordinate
+transformation information will be updated in time.
+
+
+def main(args=None):
+   rclpy.init(args=args)                                           # Initialize the ROS2
+Python interface
+   node = TurtleTFBroadcaster(&quot;turtle_tf_broadcaster&quot;)             # Create and initialize
+a ROS2 node object
+   rclpy.spin(node)                                                # Loop and wait for
+ROS2 to exit
+   node.destroy_node()                                             # Destroy the node
+object
+   rclpy.shutdown()                                                # Shut down the ROS2
+Python interface
+</code></pre>
+<ol>
+<li>Далее создайте новый файл [turtle_following.py] в той же директории, что и turtle_tf_broadcaster.py, и добавьте следующий код:</li>
+</ol>
+<pre><code class="language-python">import math
+import rclpy                                                         # ROS2 Python
+interface library
+from rclpy.node import Node                                          # ROS2 node class
+import tf_transformations                                            # TF coordinate
+transformation library
+from tf2_ros import TransformException                               # TF left-side
+transformation exception class
+from tf2_ros.buffer import Buffer                                    # Buffer class for
+storing coordinate transformation information
+from tf2_ros.transform_listener import TransformListener             # Listener class for
+coordinate transformations
+from geometry_msgs.msg import Twist                                  # ROS2 velocity
+control message
+from turtlesim.srv import Spawn                                      # Turtle spawning
+service interface
+class TurtleFollowing(Node):
+   def __init__(self, name):
+       super().__init__(name)                                         # Initialize
+the ROS2 node parent class
+
+
+       self.declare_parameter('source_frame', 'turtle1')              # Create a
+parameter for the source coordinate frame name
+       self.source_frame = self.get_parameter(                        # Externally
+set parameter values ••take precedence; otherwise, use the default values.
+            'source_frame').get_parameter_value().string_value
+
+
+       self.tf_buffer = Buffer()                                      # Create a
+buffer to store coordinate transformation information
+       self.tf_listener = TransformListener(self.tf_buffer, self)     # Create a
+coordinate transformation listener
+
+
+       self.spawner = self.create_client(Spawn, 'spawn')              # Create a
+client to request turtle spawning
+       self.turtle_spawning_service_ready = False                     # Flag
+indicating whether the turtle spawning service has been requested
+       self.turtle_spawned = False                                    # Flag
+indicating whether the turtle was successfully spawned
+
+
+       self.publisher = self.create_publisher(Twist, 'turtle2/cmd_vel', 1) #
+Create a velocity topic for following the moving turtle
+
+
+       self.timer = self.create_timer(1.0, self.on_timer)            # Create a
+fixed-period timer to control the movement of the following turtle
+
+
+   def on_timer(self):
+       from_frame_rel = self.source_frame                            # Source
+coordinate system
+       to_frame_rel      = 'turtle2'                                 # Target
+coordinate system
+
+
+       if self.turtle_spawning_service_ready:                        # If the
+turtle spawning service has been requested
+            if self.turtle_spawned:                                  # If the
+follower turtle has been spawned
+               try:
+                      now = rclpy.time.Time()                        # Get the
+current time in the ROS system
+                      trans = self.tf_buffer.lookup_transform(       ## Monitor
+the coordinate transformation from the source coordinate system to the target
+coordinate system at the current moment
+                          to_frame_rel,
+                          from_frame_rel,
+                          now)
+               except TransformException as ex:                      # If the
+coordinate transformation acquisition fails, report the exception
+                      self.get_logger().info(
+                          f'Could not transform {to_frame_rel} to
+{from_frame_rel}: {ex}')
+                      return
+
+
+               msg = Twist()                                         # Create a
+speed control message
+                  scale_rotation_rate = 1.0                              # Calculate
+angular velocity based on the turtle's angle.
+                  msg.angular.z = scale_rotation_rate * math.atan2(
+                       trans.transform.translation.y,
+                       trans.transform.translation.x)
+
+
+                  scale_forward_speed = 0.5                              # Calculate
+linear velocity based on the turtle's distance.
+                  msg.linear.x = scale_forward_speed * math.sqrt(
+                       trans.transform.translation.x ** 2 +
+                       trans.transform.translation.y ** 2)
+
+
+                  self.publisher.publish(msg)                          # Publish
+velocity command for the turtle to follow.
+             else:                                                       # If the
+following turtle is not spawned.
+                  if self.result.done():                               # Check if
+the turtle is spawned.
+                       self.get_logger().info(
+                           f'Successfully spawned {self.result.result().name}')
+                       self.turtle_spawned = True
+                  else:                                                  # Still no
+following turtle spawned.
+                       self.get_logger().info('Spawn is not finished')
+        else:                                                            # If no
+turtle spawning service is requested
+             if self.spawner.service_is_ready():                         # If the
+turtle spawning server is ready
+                  request = Spawn.Request()                              # Create a
+request data
+                  request.name = 'turtle2'                             # Set the
+content of the request data, including turtle name, xy position, and posture
+                  request.x = float(4)
+                  request.y = float(2)
+                  request.theta = float(0)
+
+
+                  self.result = self.spawner.call_async(request)      # Send
+service request
+                  self.turtle_spawning_service_ready = True            # Set the
+flag to indicate that the request has been sent
+             else:
+                  self.get_logger().info('Service is not ready')      # Turtle
+spawning server is not ready
+
+
+def main(args=None):
+   rclpy.init(args=args)                            # ROS2 Python interface
+initialization
+   node = TurtleFollowing(&quot;turtle_following&quot;)       # Create and initialize a ROS2
+node object.
+   rclpy.spin(node)                                 # Loop and wait for ROS2 to
+exit.
+   node.destroy_node()                              # Destroy the node object
+   rclpy.shutdown()                                 # Shut down the ROS2 Python
+interface.
+</code></pre>
+<ol>
+<li>Создайте новую папку launch в пакете pkg_tf, создайте в ней новый файл [turtle_following.launch.py] и добавьте следующее содержимое:</li>
+</ol>
+<pre><code class="language-python">from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+
+
+    return LaunchDescription([
+         DeclareLaunchArgument('source_frame', default_value='turtle1',
+description='Target frame name.'),
+         Node(
+              package='turtlesim',
+              executable='turtlesim_node',
+         ),
+         Node(
+              package='pkg_tf',
+              executable='turtle_tf_broadcaster',
+              name='broadcaster1',
+              parameters=[
+                   {'turtlename': 'turtle1'}
+              ]
+         ),
+         Node(
+              package='pkg_tf',
+              executable='turtle_tf_broadcaster',
+              name='broadcaster2',
+              parameters=[
+                   {'turtlename': 'turtle2'}
+              ]
+         ),
+         Node(
+              package='pkg_tf',
+              executable='turtle_following',
+              name='listener',
+              parameters=[
+                   {'source_frame': LaunchConfiguration('source_frame')}
+              ]
+         ),
+    ])
+</code></pre>
+<h2>8. Редактирование конфигурационного файла</h2>
+<h3>8.1. Настройка в setup.py</h3>
+<ul>
+<li>Импортируйте соответствующие библиотеки</li>
+</ul>
+<pre><code class="language-python">import os
+from glob import glob
+</code></pre>
+<ul>
+<li>Добавьте информацию о ноде turtle_following и добавьте следующую команду для копирования файла запуска в общую директорию (shared) в install.</li>
+</ul>
+<pre><code class="language-python">(os.path.join('share',package_name,'launch'),glob('launch/*')),
+</code></pre>
+<h2>9. Компиляция пакета</h2>
+<pre><code>colcon build --packages-select pkg_tf
+</code></pre>
+<h2>10. Запуск программы</h2>
+<ul>
+<li>Обновите переменные окружения терминала, затем запустите</li>
+</ul>
+<pre><code>ros2 launch pkg_tf turtle_following.launch.py
+</code></pre>
+<p><img alt="" src="img-012-009.png" />
+<img alt="" src="img-012-010.png" />
+<img alt="" src="img-012-011.png" /></p>
+<p>Запустите ноду клавиатурного управления черепахой, управляя движением первой черепахи; вторая черепаха будет автоматически следовать.</p>
+<pre><code>ros2 run turtlesim turtle_teleop_key
+</code></pre>
+<p>В этом терминале нажимайте клавиши вверх, вниз, влево и вправо на клавиатуре, чтобы управлять движением одной черепахи. Другая черепаха будет следовать за ней, пока они не совпадут.</p>
+<h2>11. Продвинутый материал</h2>
+<ul>
+<li>Понимание возможностей TF по преобразованию во времени</li>
+</ul>
+<p>Buffer автоматически кэширует все отношения преобразования TF в системе TF за последние 10 секунд (можно задать любую желаемую продолжительность кэширования с помощью конструктора Buffer). Все преобразования в буфере привязаны к временным меткам и прослеживаемы. Даже если две системы координат относятся к разным моментам времени, отношение преобразования между ними может быть найдено. Подробное объяснение этого принципа приведено в источниках, посвящённых проектированию систем TF (источники находятся в папке этого раздела, либо можно перейти по ссылке в начале раздела).</p>
+<p>Ниже приведено дополнение к описанному выше примеру следования черепахи. Красная стрелка показывает, что преобразование между двумя системами координат в разные моменты времени можно найти во временном измерении.</p>
+<p><img alt="" src="img-013-012.png" />
+<img alt="" src="img-013-013.png" /></p>
+<p><img alt="" src="img-014-014.png" /></p><div class="pager"><a href="22-ros2-gazebo-simulation-platform.html">&larr; 22. Платформа симуляции Gazebo в ROS2</a><a href="tfthe-transform-library.html">tf: библиотека преобразований &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>
