@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Транспортировка цветных блоков — Курс по лидару</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details open>
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="active" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по лидару</a> / Транспортировка цветных блоков</div>
+<h1>Транспортировка цветных блоков</h1>
+<h2>1. Описание содержания</h2>
+<p>В этом разделе объясняется, как объединить навигацию nav2, распознавание цветных блоков и трёхмерный захват манипулятором для реализации сложной функции транспортировки объектов.</p>
+<p>В этом разделе команды вводятся в терминале. Какой терминал открывать, зависит от типа используемой материнской платы. В этом разделе в качестве примера используется Raspberry Pi 5. Для материнских плат Raspberry Pi и Jetson-Nano необходимо открыть терминал на хост-компьютере и ввести команду для входа в Docker-контейнер. После входа в контейнер вводите команды этого раздела уже внутри него. Инструкции по входу в Docker-контейнер с хост-компьютера см. в руководстве к изделию [Configuration and Operation Guide] — [Enter the Docker] (для пользователей Jetson-Nano и Raspberry Pi 5, см. соответствующий раздел).</p>
+<p>Для плат Orin достаточно просто открыть терминал и ввести команды этого раздела.</p>
+<h2>2. Запуск программы</h2>
+<p>Виртуальная машина должна находиться в одной локальной сети с роботом, и значение <code>ROS_DOMAIN_ID</code> должно совпадать на обоих устройствах. Измените значение <code>ROS_DOMAIN_ID</code> в файле <code>~/.bashrc</code> и обновите переменные окружения после изменения.</p>
+<p>Введите следующую команду в терминале 1 робота, чтобы запустить программу камеры и решение кинематики манипулятора:</p>
+<pre><code>ros2 launch M3Pro_demo camera_arm_kin.launch.py
+</code></pre>
+<p>Введите следующую команду в терминале 2 робота, чтобы запустить программу слияния данных шасси и фильтрации объединённых данных лидара:</p>
+<pre><code>ros2 launch M3Pro_navigation base_bringup.launch.py
+</code></pre>
+<p>Введите следующую команду в терминале 3 робота, чтобы запустить программу захвата:</p>
+<pre><code>ros2 run M3Pro_demo grasp_transport
+</code></pre>
+<p>Введите следующую команду в терминале 4 робота, чтобы запустить программу распознавания цветных блоков:</p>
+<pre><code>ros2 run M3Pro_demo color_transport
+</code></pre>
+<p>Затем поместите цветной блок под камеру так, чтобы весь блок целиком попал в кадр, как показано ниже.</p>
+<p><img alt="" src="img-002-000.png" /></p>
+<p>Введите команду в терминале 1 виртуальной машины, чтобы запустить отображение навигации в rviz.</p>
+<pre><code>ros2 launch slam_view slam_view.launch.py
+</code></pre>
+<p>Введите следующую команду в терминале 5 робота, чтобы запустить navigation2:</p>
+<pre><code>ros2 launch M3Pro_navigation navigation2.launch.py map_dir:=/root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml
+</code></pre>
+<p>Здесь <code>/root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml</code> замените на путь к файлу вашей собственной карты в формате yaml.</p>
+<p>Введите следующую команду в терминале 2 виртуальной машины, чтобы запустить программу проверки статуса навигации:</p>
+<pre><code>ros2 run yahboom_nav2_bringup get_nav2_status_V2
+</code></pre>
+<p>После запуска в rviz на виртуальной машине с помощью инструмента [2D Pose Estimate] задайте роботу начальное положение, исходя из его фактического положения в пространстве и на карте. Убедитесь, что препятствия, отсканированные лидаром робота, совпадают с чёрными областями на карте, как показано на рисунке ниже.</p>
+<p>Затем нажмите [Waypoint/Nav Through Poses Mode] в [Navigation2 navigation plug-in] и выберите его, как показано ниже.</p>
+<p>Затем с помощью клавиш выберите, какой цветной блок захватить, или цвет калибровочного блока.</p>
+<p><img alt="" src="img-003-001.png" /></p>
+<ul>
+<li>Нажмите <code>R</code> или <code>r</code>: сортировать красные блоки.</li>
+<li>Нажмите <code>G</code> или <code>g</code>: сортировать зелёные блоки.</li>
+<li>Нажмите <code>B</code> или <code>b</code>: сортировать синие блоки.</li>
+<li>Нажмите <code>Y</code> или <code>y</code>: сортировать жёлтые блоки.</li>
+<li>Нажмите <code>C</code> или <code>c</code>: откалибровать цвет выбранного блока.</li>
+</ul>
+<p>После выбора цвета блока будет сформировано бинарное изображение, размещённое рядом с цветным изображением. Белая часть бинарного изображения — это выбранный цветной блок. Предположим, мы выбираем захват синего блока и нажимаем клавишу <code>b</code>, как показано ниже.</p>
+<p><img alt="" src="img-003-002.png" /></p>
+<p>Если в этот момент синий цвет не распознаётся, необходимо нажать клавишу <code>c</code>, чтобы откалибровать значение HSV синего блока. После входа в режим калибровки с помощью мыши выделите область в центре синего блока и отпустите кнопку мыши, чтобы завершить калибровку, как показано на рисунке ниже.</p>
+<p><img alt="" src="img-004-003.png" /></p>
+<p>После выбора цвета нажмите пробел, чтобы начать захват объекта. Если расстояние слишком большое или слишком маленькое, программа управляет перемещением шасси робота для корректировки расстояния. После того как манипулятор захватит объект, сработает звуковой сигнализатор, и робот переместится в положение для транспортировки. Наконец, робот повернётся на 90 градусов и войдёт в режим навигационной транспортировки.</p>
+<p>Вход в режим навигационной транспортировки. В rviz с помощью [Nav2 Goal] задайте целевую точку. Робот построит путь и выполнит навигацию к этой точке. По достижении цели манипулятор опустит захват, чтобы положить цветной блок, а затем автономно вернётся навигацией в исходное положение для следующего распознавания цветного блока.</p>
+<h2>3. Анализ основного кода</h2>
+<p>Импорт необходимых библиотек:</p>
+<pre><code class="language-python">import cv2
+import os
+import numpy as np
+import message_filters
+from cv_bridge import CvBridge
+import cv2 as cv
+#Импорт библиотеки распознавания цвета
+from M3Pro_demo.color_common import *
+from arm_interface.srv import ArmKinemarics
+from arm_interface.msg import AprilTagInfo,CurJoints
+from arm_msgs.msg import ArmJoints,ArmJoint
+from std_msgs.msg import Float32,Bool,Int16
+import time
+import transforms3d as tfs
+import tf_transformations as tf
+import yaml
+import math
+from rclpy.node import Node
+import rclpy
+from message_filters import Subscriber, TimeSynchronizer,ApproximateTimeSynchronizer
+from sensor_msgs.msg import Image
+from geometry_msgs.msg import Twist
+from ament_index_python.packages import get_package_share_directory
+import threading
+from M3Pro_demo.compute_joint5 import *
+</code></pre>
+<p>Программа инициализируется и создаёт публикаторов и подписчиков:</p>
+<pre><code class="language-python">def __init__(self, name):
+    super().__init__(name)
+    self.init_joints = [90, 100, 0, 0, 90, 0]
+    self.down_joint = [155, 35, 70, 5, 60,120]
+    self.rgb_bridge = CvBridge()
+    self.depth_bridge = CvBridge()
+    #Определяем флаг публикации информации о цветном блоке. Значение True означает публикацию, False — отсутствие публикации.
+    self.pub_pos_flag = False
+    #Определяем массив, хранящий текущие координаты положения оконечного звена манипулятора
+    self.CurEndPos = [0.1279009179959246, 0.00023254956548456117,
+0.1484898062979958, 0.00036263794618046863, 1.3962632350758744,
+0.0003332603981328959]
+    #Внутренние параметры камеры Dabai_DCW2
+    self.camera_info_K = [477.57421875, 0.0, 319.3820495605469, 0.0,
+477.55718994140625, 238.64108276367188, 0.0, 0.0, 1.0]
+    #Матрица поворота от оконечного звена к камере
+    self.EndToCamMat = np.array([[ 0 ,0 ,1 ,-1.00e-01],
+                                    [-1    ,0 ,0   ,0],
+                                    [0    ,-1   ,0 ,4.82000000e-02],
+                                    [ 0.00000000e+00 , 0.00000000e+00 ,
+0.00000000e+00 , 1.00000000e+00]])
+
+    self.rgb_image_sub = Subscriber(self, Image, '/camera/color/image_raw')
+    self.sub_grasp_status = self.create_subscription(Bool,&quot;grasp_done&quot;,self.get_graspStatusCallBack,100)
+    self.depth_image_sub = Subscriber(self, Image, '/camera/depth/image_raw')
+    self.CmdVel_pub = self.create_publisher(Twist,&quot;cmd_vel&quot;,1)
+    self.pub_cur_joints = self.create_publisher(CurJoints,&quot;Curjoints&quot;,1)
+    self.pub_SingleTargetAngle = self.create_publisher(ArmJoint, &quot;arm_joint&quot;, 10)
+    self.pos_info_pub = self.create_publisher(AprilTagInfo,&quot;PosInfo&quot;,1)
+    self.pub_SixTargetAngle = self.create_publisher(ArmJoints, &quot;arm6_joints&quot;, 10)
+    self.client = self.create_client(ArmKinemarics, 'get_kinemarics')
+    while not self.client.wait_for_service(timeout_sec=1.0):
+       self.get_logger().info('Service not available, waiting again...')
+    self.get_current_end_pos()
+
+    while not self.pub_SixTargetAngle.get_subscription_count():
+       self.pubSixArm(self.init_joints)
+       time.sleep(0.1)
+    self.pubSixArm(self.init_joints)
+
+    while not self.pub_cur_joints.get_subscription_count():
+       self.pubCurrentJoints()
+       time.sleep(0.1)
+    self.pubCurrentJoints()
+    self.pub_beep = self.create_publisher(Bool, &quot;beep&quot;, 10)
+    #Создаём публикатора; публикуемый топик — /back_orin, данные топика True публикуют запрос на возврат к исходной точке
+    self.send_back2orin = self.create_publisher(Bool, &quot;/back_orin&quot;, 10)
+    #Создаём подписчика на топик /start_transport; функция обратного вызова определяет, равно ли значение self.grasp_done True. Если да, значит цветной блок в данный момент захвачен. При достижении цели необходимо опустить захват, чтобы положить цветной блок.
+    self.sub_start_transport = self.create_subscription(Bool,&quot;/start_transport&quot;,self.get_StartTransportCallBack,100)
+    #Создаём публикатора; публикуемый топик — /next_status, данные топика представляют значение следующего статуса: 0 — возврат к исходной точке, 1 — обнаружение цветного блока, 2 — транспортировка цветного блока
+    self.pub_status = self.create_publisher(Int16, &quot;/next_status&quot;, 10)
+    #Создаём подписчика на топик /transport_done; функция обратного вызова изменяет значения некоторых переменных, чтобы шасси могло скорректироваться и захватить цветные блоки в следующий раз
+    self.sub_start_back2orin = self.create_subscription(Bool,&quot;/transport_done&quot;,self.get_TransbotStatusCallBack,100)
+    #Создаём публикатора; публикуемый топик — /unload_done, данные топика True означают, что разгрузка завершена
+    self.pub_unload_done = self.create_publisher(Bool, &quot;/unload_done&quot;, 10)
+    self.TargetJoint5_pub = self.create_publisher(Int16, &quot;set_joint5&quot;, 10)
+    #self.PID_init()
+    self.pubCurrentJoints()
+    self.get_current_end_pos()
+    self.ts = ApproximateTimeSynchronizer([self.rgb_image_sub, self.depth_image_sub], 1, 0.5)
+    self.ts.registerCallback(self.callback)
+    self.pubSixArm(self.init_joints)
+    #Получаем значения компенсации по осям x, y, z из таблицы смещений
+    self.x_offset = offset_config.get('x_offset')
+    self.y_offset = offset_config.get('y_offset')
+    self.z_offset = offset_config.get('z_offset')
+    self.adjust_dist = True
+    self.linearx_PID = (0.5, 0.0, 0.2)
+    self.linearx_pid = simplePID(self.linearx_PID[0] / 1000.0, self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
+    self.target_color = 0
+    #Считываем значения HSV для четырёх цветов
+    self.red_hsv_text = os.path.join(package_pwd, 'red_colorHSV.text')
+    self.green_hsv_text = os.path.join(package_pwd, 'green_colorHSV.text')
+    self.blue_hsv_text = os.path.join(package_pwd, 'blue_colorHSV.text')
+    self.yellow_hsv_text = os.path.join(package_pwd, 'yellow_colorHSV.text')
+    #Определяем переменную для хранения HSV, которая в итоге будет передана в функцию распознавания цвета
+    self.hsv_range = ()
+    #Флаг выбора области цветного блока. Значение True означает, что мышью выбрана область на цветном блоке.
+    self.select_flags = False
+    self.gTracker_state = False
+    self.windows_name = 'frame'
+    self.Track_state = 'init'
+    #Определяем хранение координат мыши
+    self.Mouse_XY = (0, 0)
+    self.cols, self.rows = 0, 0
+    #Определяем область интереса (ROI) — здесь это область на выбранном цветном блоке
+    self.Roi_init = ()
+    #Создаём объект распознавания цвета
+    self.color = color_detect()
+    #Определяем переменную для хранения текущего цвета
+    self.cur_color = None
+    #Определяем значение RGB текущего выбранного цвета
+    self.text_color = (0,0,0)
+    #Координата x центра целевого цветного блока
+    self.cx = 0
+    #Координата y центра целевого цветного блока
+    self.cy = 0
+    #Радиус минимальной описанной окружности целевого цветного блока
+    self.circle_r = 0
+    #Флаг допустимого расстояния; значение True означает, что текущее расстояние допустимо
+    self.valid_dist = True
+    self.grasp_done = False
+    self.joint5 = Int16()
+    self.corners = np.empty((4, 2), dtype=np.int32)
+</code></pre>
+<p>Функция обратного вызова <code>callback</code> для топика изображения:</p>
+<pre><code class="language-python">def callback(self,color_frame,depth_frame):
+    #Получаем данные топика цветного изображения и с помощью CvBridge преобразуем данные сообщения в данные изображения
+    rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_frame,'rgb8')
+    rgb_image = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2BGR)
+    result_image = np.copy(rgb_image)
+    #Получаем данные топика изображения глубины и с помощью CvBridge преобразуем данные сообщения в данные изображения
+    depth_image = self.depth_bridge.imgmsg_to_cv2(depth_frame, encoding[1])
+    frame = cv.resize(depth_image, (640, 480))
+    depth_to_color_image = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=1.0), cv2.COLORMAP_JET)
+    depth_image_info = frame.astype(np.float32)
+    key = cv2.waitKey(10)&amp; 0xFF
+    #Вызываем определённую функцию process для обработки нажатий клавиш и обработки изображения
+    result_frame, binary = self.process(rgb_image,key)
+    #Вызываем функцию потока для отображения изображения
+    show_frame = threading.Thread(target=self.img_out, args=(result_frame,binary,))
+    show_frame.start()
+    show_frame.join()
+    #При нажатии пробела изменяем значение self.pub_pos_flag
+    if key == 32:
+        self.pub_pos_flag = True
+    if self.pub_pos_flag:
+        #Если self.cx и self.cy не равны 0, значит цветной блок целевого цвета обнаружен. При этом радиус минимальной описанной окружности текущего цветного блока должен быть больше 30 — это отфильтровывает небольшие ошибочно распознанные области.
+        if self.cx!=0 and self.cy!=0 and self.circle_r&gt;30:
+           #print(&quot;self.cx: &quot;,self.cx)
+           #print(&quot;self.cx: &quot;,self.cy)
+           cx = int(self.cx)
+           cy = int(self.cy)
+           dist = depth_image_info[int(cy),int(cx)]/1000
+            #Вычисляем положение цветного блока в мировой системе координат
+           pose = self.compute_heigh(cx,cy,dist)
+            #Вычисляем расстояние между центром цветного блока и базовой системой координат base_link
+           dist_detect = math.sqrt(pose[1] ** 2 + pose[0]** 2)
+           dist_detect = dist_detect*1000
+            #Если расстояние меньше 130 мм, оно считается недопустимым
+           if dist_detect&lt;130:
+               print(&quot;Invalid dist.&quot;)
+               self.valid_dist = False
+           dist = 'dist: ' + str(dist_detect) + ' mm'
+           print(&quot;dist: &quot;,dist)
+            #Если расстояние допустимо и выходит за пределы диапазона [215, 225], управляем шасси для корректировки расстояния
+           if abs(dist_detect - 220.0)&gt;10 and self.adjust_dist==True and self.valid_dist == True:
+               self.move_dist(dist_detect)
+           else:
+               self.pubVel(0,0,0)
+               self.adjust_dist = False
+               cx = int(self.cx)
+               cy = int(self.cy)
+                #Вычисляем информацию о глубине для центральной точки цветного блока
+               dist = depth_image_info[int(cy),int(cx)]/1000
+           #print(&quot;dist: &quot;,dist)
+               if dist!=0:
+                    #Вычисляем угол поворота цветного блока на основе координат угловых точек
+                   vx = self.corners[0][0][0] - self.corners[1][0][0]
+                   vy = self.corners[0][0][1] - self.corners[1][0][1]
+                   target_joint5 = compute_joint5(vx,vy)
+                   self.joint5.data = int(target_joint5)
+                   pos = AprilTagInfo()
+                   pos.id = self.target_color
+                   pos.x = float(cx)
+                   pos.y = float(cy)
+                   pos.z = float(dist)
+                   self.pub_pos_flag = False
+                    #Публикуем сообщение топика с положением цветного блока
+                   self.pos_info_pub.publish(pos)
+                   self.TargetJoint5_pub.publish(self.joint5)
+        else:
+           self.pubVel(0,0,0)
+</code></pre><div class="pager"><a href="15-machine-code-handling.html">&larr; Транспортировка по машинному коду (AprilTag)</a><a href="17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>

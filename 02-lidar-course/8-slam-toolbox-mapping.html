@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Построение карты с помощью slam_toolbox — Курс по лидару</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details open>
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="active" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по лидару</a> / Построение карты с помощью slam_toolbox</div>
+<h1>Построение карты с помощью slam_toolbox</h1>
+<h2>1. Содержание урока</h2>
+<p>Изучение алгоритма SLAM-картографирования для робота с использованием slam-toolbox.</p>
+<p>После запуска примера программы управляйте роботом с клавиатуры или геймпада для завершения построения карты и сохранения результата.</p>
+<h2>2. Введение в slam-toolbox</h2>
+<p>slam-toolbox — это открытый пакет алгоритмов 2D SLAM (одновременная локализация и построение карты) на базе ROS, применяемый преимущественно для построения карты и локализации мобильных роботов в неизвестной среде. На основе подхода оптимизации графа (Graph Optimization) он объединяет данные лазерного лидара (например, 2D LiDAR) и инерциального измерительного блока (IMU) для построения 2D-карты занятости (grid map) окружающего пространства и обновления положения робота в реальном времени.</p>
+<h3>2.1 Основные технические принципы</h3>
+<h4>2.1.1 Обработка на переднем плане (сопоставление сканов лидара)</h4>
+<ul>
+<li><strong>Алгоритм GICP</strong>: оценивает относительное положение робота, итеративно вычисляя оптимальное совпадение между текущим сканом лидара и картой. По сравнению с классическим ICP, GICP вводит вероятностную модель, что делает его более устойчивым к выбросам (outliers).</li>
+<li><strong>Компенсация движения</strong>: использует данные IMU для компенсации искажений сканирования лидара, возникающих во время движения робота, повышая точность сопоставления в динамических условиях.</li>
+</ul>
+<h4>2.1.2 Оптимизация на backend (оптимизация графа)</h4>
+<ul>
+<li><strong>Построение графа положений (pose graph)</strong>: строит графовую структуру, объединяя узлы положений робота и ограничения относительных положений, получаемые из сопоставления сканов.</li>
+<li><strong>Глобальная оптимизация</strong>: использует алгоритм нелинейной оптимизации (например, Ceres Solver) для оптимизации графа положений, устраняя накопленную ошибку и обеспечивая глобальную согласованность карты.</li>
+</ul>
+<p><img alt="" src="img-001-000.png" /></p>
+<p>Адрес проекта на GitHub: https://github.com/SteveMacenski/slam_toolbox</p>
+<h2>3. Подготовка</h2>
+<h3>3.1 Описание содержания</h3>
+<p>В этом уроке в качестве примера используется Jetson Orin NX. Для плат Raspberry Pi и Jetson Nano необходимо открыть терминал и ввести команду для входа в Docker-контейнер. После входа в контейнер вводите команды этого урока уже внутри него. Инструкции по входу в Docker-контейнер см. в руководстве к изделию [Configuration and Operation Guide] — [Entering the Docker] (для пользователей Jetson Nano и Raspberry Pi 5, см. соответствующий раздел). Для плат Orin и NX достаточно просто открыть терминал и ввести команды этого урока.</p>
+<h3>3.2 Запуск агента</h3>
+<p>Примечание: перед тестированием всех примеров необходимо сначала запустить агента в Docker. Если он уже запущен, повторно запускать его не нужно.</p>
+<p>Введите команду в терминале робота:</p>
+<pre><code>sh start_agent.sh
+</code></pre>
+<p>Терминал выведет следующее сообщение, означающее успешное подключение.</p>
+<p><img alt="" src="img-002-001.png" /></p>
+<h2>4. Запуск примера</h2>
+<h3>4.1 Процесс построения карты</h3>
+<p>Обратите внимание:</p>
+<ul>
+<li>При построении карты, чем медленнее скорость (в первую очередь скорость поворота), тем лучше результат. Если двигаться слишком быстро, результат будет очень плохим.</li>
+<li>Для контроллеров серии Jetson Nano и Raspberry Pi необходимо сначала войти в Docker-контейнер (порядок действий см. в разделе [Docker course chapter — Entering the Robot's Docker Container]).</li>
+</ul>
+<p>Команда запуска построения карты в терминале робота:</p>
+<pre><code>ros2 launch slam_mapping slam_toolbox.launch.py
+</code></pre>
+<p>В качестве примера рассмотрим настройку на виртуальной машине: откройте терминал и запустите интерфейс визуализации RVIZ:</p>
+<pre><code>ros2 launch slam_view slam_view.launch.py
+</code></pre>
+<p>Команда запуска интерфейса визуализации RVIZ в терминале робота:</p>
+<pre><code>ros2 launch slam_mapping slam_view.launch.py
+</code></pre>
+<p><img alt="" src="img-003-002.png" /></p>
+<p>Откройте на виртуальной машине ещё один терминал и запустите узел управления с клавиатуры (также можно использовать управление с геймпада; чтобы предварительно запустить узел управления с геймпада, см. [5. Chassis Control — 2. Controller Control]):</p>
+<pre><code>ros2 run yahboomcar_ctrl yahboom_keyboard
+</code></pre>
+<p>Кликните мышью по окну терминала и нажмите <code>z</code>, чтобы снизить скорость.</p>
+<p><img alt="" src="img-003-003.png" /></p>
+<p>Кликните мышью по окну терминала и нажмите <code>z</code>, чтобы снизить скорость. Нажимайте <code>I</code>, <code>&lt;</code>, <code>J</code> и <code>L</code> для управления движением робота вперёд, назад, поворотом влево и поворотом вправо соответственно. Перемещайте робота для завершения построения карты.</p>
+<h3>4.2 Сохранение карты</h3>
+<p>Откройте на роботе новый терминал и сохраните карту.</p>
+<pre><code>ros2 launch slam_mapping save_map.launch.py
+</code></pre>
+<p>Сообщение в терминале «Map saved successful» означает, что карта успешно сохранена.</p>
+<p><img alt="" src="img-004-004.png" /></p>
+<p>Путь сохранения карты следующий:</p>
+<p>Jetson Orin Nano, Jetson Orin NX:</p>
+<pre><code>/home/jetson/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map
+</code></pre>
+<p>Jetson Orin Nano, Raspberry Pi:</p>
+<p><img alt="" src="img-004-005.png" /></p>
+<p>Сначала необходимо войти в Docker.</p>
+<pre><code>/root/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map/
+</code></pre>
+<p>Одно изображение в формате PGM, один YAML-файл <code>yahboom_map.yaml</code>:</p>
+<pre><code class="language-yaml">image: yahboom_map.pgm
+mode: trinary
+resolution: 0.05
+origin: [-10, -10, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25
+</code></pre>
+<p><img alt="" src="img-005-006.png" /></p>
+<p>Разбор параметров:</p>
+<ul>
+<li><code>image</code>: путь к файлу карты, абсолютный или относительный.</li>
+<li><code>mode</code>: этот атрибут может принимать одно из значений <code>trinary</code>, <code>scale</code> или <code>raw</code>, в зависимости от выбранного режима. По умолчанию используется <code>trinary</code>.</li>
+<li><code>resolution</code>: разрешение карты, метры/пиксель.</li>
+<li><code>origin</code>: 2D-положение (x, y, yaw) нижнего левого угла карты. <code>yaw</code> — поворот против часовой стрелки (<code>yaw=0</code> означает отсутствие поворота). В настоящее время многие части системы значение <code>yaw</code> игнорируют.</li>
+<li><code>negate</code>: инвертировать ли смысл белого/чёрного и свободного/занятого (на интерпретацию порогов не влияет).</li>
+<li><code>occupied_thresh</code>: пиксели с вероятностью занятости выше этого порога считаются полностью занятыми.</li>
+<li><code>free_thresh</code>: пиксели с вероятностью занятости ниже этого порога считаются полностью свободными.</li>
+</ul>
+<h2>5. Разбор узлов</h2>
+<h3>5.1 Отображение вычислительного графа узлов</h3>
+<pre><code>ros2 run rqt_graph rqt_graph
+</code></pre>
+<h3>5.2 Преобразования TF</h3>
+<p>Выполните в терминале виртуальной машины:</p>
+<pre><code>ros2 run rqt_tf_tree rqt_tf_tree
+</code></pre>
+<p>Размер изображения слишком большой; оригинальное изображение можно посмотреть в папке этого урока.</p>
+<p><img alt="" src="img-006-007.png" /></p>
+<h3>5.3 Подробности узла slam-toolbox</h3>
+<pre><code>ros2 node info /slam_toolbox
+</code></pre>
+<p>Введите указанную выше команду в терминале, чтобы посмотреть топики подписки и публикации, связанные с узлом gmapping.</p>
+<pre><code>/slam_toolbox
+  Subscribers:
+     /map: nav_msgs/msg/OccupancyGrid
+     /parameter_events: rcl_interfaces/msg/ParameterEvent
+     /scan: sensor_msgs/msg/LaserScan
+     /slam_toolbox/feedback: visualization_msgs/msg/InteractiveMarkerFeedback
+  Publishers:
+     /map: nav_msgs/msg/OccupancyGrid
+     /map_metadata: nav_msgs/msg/MapMetaData
+     /parameter_events: rcl_interfaces/msg/ParameterEvent
+     /pose: geometry_msgs/msg/PoseWithCovarianceStamped
+     /rosout: rcl_interfaces/msg/Log
+     /slam_toolbox/graph_visualization: visualization_msgs/msg/MarkerArray
+     /slam_toolbox/scan_visualization: sensor_msgs/msg/LaserScan
+     /slam_toolbox/update: visualization_msgs/msg/InteractiveMarkerUpdate
+     /tf: tf2_msgs/msg/TFMessage
+  Service Servers:
+     /slam_toolbox/clear_changes: slam_toolbox/srv/Clear
+     /slam_toolbox/describe_parameters: rcl_interfaces/srv/DescribeParameters
+     /slam_toolbox/deserialize_map: slam_toolbox/srv/DeserializePoseGraph
+     /slam_toolbox/dynamic_map: nav_msgs/srv/GetMap
+     /slam_toolbox/get_interactive_markers: visualization_msgs/srv/GetInteractiveMarkers
+     /slam_toolbox/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+     /slam_toolbox/get_parameters: rcl_interfaces/srv/GetParameters
+     /slam_toolbox/list_parameters: rcl_interfaces/srv/ListParameters
+     /slam_toolbox/manual_loop_closure: slam_toolbox/srv/LoopClosure
+     /slam_toolbox/pause_new_measurements: slam_toolbox/srv/Pause
+     /slam_toolbox/save_map: slam_toolbox/srv/SaveMap
+     /slam_toolbox/serialize_map: slam_toolbox/srv/SerializePoseGraph
+     /slam_toolbox/set_parameters: rcl_interfaces/srv/SetParameters
+     /slam_toolbox/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+     /slam_toolbox/toggle_interactive_mode: slam_toolbox/srv/ToggleInteractive
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+</code></pre>
+<p><img alt="" src="img-006-008.png" /></p><div class="pager"><a href="7-cartographer-slam-mapping.html">&larr; Алгоритм построения карты Cartographer-SLAM</a><a href="9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2 &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>

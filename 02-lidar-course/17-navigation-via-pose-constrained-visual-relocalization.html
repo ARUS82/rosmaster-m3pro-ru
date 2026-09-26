@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Навигация с визуальной повторной локализацией с ограничением по положению — Курс по лидару</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details open>
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="active" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по лидару</a> / Навигация с визуальной повторной локализацией с ограничением по положению</div>
+<h1>Навигация с визуальной повторной локализацией с ограничением по положению</h1>
+<h2>1. Содержание урока</h2>
+<p>Реализация навигации с визуальной повторной локализацией (relocalization) с использованием ArUco-меток в сочетании с ограничением по положению (pose constraint).</p>
+<p>За счёт размещения ArUco-меток в качестве пространственных якорей, когда локализация робота теряется или накопленная ошибка становится слишком большой, визуальное обнаружение автоматически запускает повторную локализацию для коррекции глобального положения робота на карте, повышая устойчивость и надёжность системы навигации.</p>
+<p><strong>Цели обучения</strong></p>
+<ul>
+<li>Освоить подготовку, размещение и методы записи положения ArUco-меток.</li>
+<li>Понять принцип работы и область применения визуальной повторной локализации.</li>
+<li>Научиться использовать режим навигации с ограничением по положению в сочетании с визуальной повторной локализацией.</li>
+</ul>
+<h2>2. Предварительные условия</h2>
+<p>Используйте следующую команду, чтобы запустить агента microROS и подключиться к шасси:</p>
+<pre><code>sh start_agent.sh
+</code></pre>
+<p>Запустите базовые узлы — камеру, вспомогательный узел манипулятора, слияние данных лидара и т.д.:</p>
+<pre><code>ros2 launch m3pro_bringup car_base.launch.py
+</code></pre>
+<p><img alt="" src="img-002-000.png" /></p>
+<h2>3. Построение карты занятости и карты положений</h2>
+<p>Запустите узел SLAM-картографирования:</p>
+<pre><code>ros2 launch slam_mapping slam_toolbox.launch.py
+</code></pre>
+<p>Управляйте роботом с клавиатуры или геймпада для завершения построения карты.</p>
+<p>Сохраните карту занятости (grid map):</p>
+<pre><code>ros2 launch slam_mapping save_slamtoolbox_map.launch.py
+</code></pre>
+<p><img alt="" src="img-003-001.png" /></p>
+<p>Примечание: карта будет сохранена в директории <code>$HOME/map</code>.</p>
+<p><img alt="" src="img-003-002.png" />
+<img alt="" src="img-003-003.png" /></p>
+<p><strong>Проверка точек положения (pose points)</strong></p>
+<p>Нажмите на опцию MarkerArray на панели Display в Rviz, чтобы посмотреть точки положения карты положений (pose map). Убедитесь, что в области карты точек положения достаточно и они равномерно распределены — это необходимо для локализации при последующей навигации.</p>
+<p><img alt="" src="img-004-004.png" />
+<img alt="" src="img-004-005.png" />
+<img alt="" src="img-004-006.png" /></p>
+<p>Сохраните карту положений:</p>
+<pre><code>ros2 launch slam_mapping save_slamtoolbox_map.launch.py map_type:=posegraph
+</code></pre>
+<p><img alt="" src="img-004-007.png" /></p>
+<p>После сохранения и карты занятости, и карты положений нажмите <code>Ctrl+C</code> в терминале узла построения карты, чтобы остановить построение карты.</p>
+<p><img alt="" src="img-005-008.png" />
+<img alt="" src="img-005-009.png" /></p>
+<h2>4. Запись координат ArUco-меток на карте</h2>
+<h3>4.1 Подготовка ArUco-меток</h3>
+<p>Их можно получить следующими способами:</p>
+<ul>
+<li>метки из комплекта карты песочного стола (sand table map package);</li>
+<li>скачать и распечатать метки из приложенных материалов.</li>
+</ul>
+<p><strong>Определение размера метки</strong></p>
+<p>Измерьте фактическую длину стороны метки с помощью измерительного инструмента. Длина стороны меток из комплекта карты песочного стола составляет 0.048 м.</p>
+<p><strong>Изменение файла конфигурации обнаружения ArUco</strong></p>
+<pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/config/common.yaml
+</code></pre>
+<p>Измените размер на фактически измеренное значение. Если вы используете метки из комплекта карты песочного стола, заводское значение по умолчанию — 0.048, и изменять его не нужно.</p>
+<p><img alt="" src="img-006-010.png" />
+<img alt="" src="img-006-011.png" /></p>
+<pre><code class="language-yaml">...
+apriltag:                        # имя узла
+  ros__parameters:
+       image_transport: raw      # формат изображения: &quot;raw&quot; или &quot;compressed&quot;
+       family: 36h11             # семейство меток: 16h5, 25h9, 36h11
+       size: 0.048                 # размер стороны метки по умолчанию, в метрах
+...
+</code></pre>
+<h3>4.2 Размещение ArUco-меток</h3>
+<p>Разместите ArUco-метки в нужных местах на карте. Их можно размещать в любом месте, видимом камере — на полу, стене или в любом другом месте.</p>
+<p><strong>Важно. Советы по размещению</strong></p>
+<ul>
+<li>Рекомендуется размещать метки рядом с начальными или конечными точками часто используемых маршрутов навигации, чтобы запускать повторную локализацию перед отправлением робота или после достижения цели.</li>
+<li>Не рекомендуется размещать метки в местах, где робот движется, поскольку во время движения манипулятор может вызывать механическую вибрацию, что приводит к частому дрожанию кадра камеры и неточному расчёту положения робота.</li>
+</ul>
+<h3>4.3 Запуск узла записи меток</h3>
+<pre><code>ros2 launch m3pro_bringup record_tag.launch.py
+</code></pre>
+<p>С помощью клавиатуры или геймпада подведите робота к метке, которую нужно записать, чтобы метка попала в поле зрения камеры.</p>
+<p>В поле ArUco ID панели <code>aritag_recorder_panel</code> введите ID метки, которую нужно записать, затем нажмите Save (перед записью убедитесь, что локализация робота точна).</p>
+<p><img alt="" src="img-007-012.png" /></p>
+<p>Перед записью положения метки, если вы заметили, что контур лидара значительно отклоняется от особенностей краёв окружающего пространства, как показано на рисунке ниже, это означает ошибку локализации. В этом случае перед записью положения необходимо сначала выполнить ручную повторную локализацию с помощью инструмента 2D Estimate.</p>
+<p><img alt="" src="img-007-013.png" />
+<img alt="" src="img-007-014.png" /></p>
+<p>На рисунке ниже показана точная локализация — высокое совпадение контура лидара с особенностями краёв окружающего пространства.</p>
+<p><img alt="" src="img-007-015.png" /></p>
+<p>Повторите указанные выше шаги, чтобы завершить запись положений всех меток. Путь к файлу записи:</p>
+<pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/config/aritag_relocation.yaml
+</code></pre>
+<p><img alt="" src="img-008-016.png" />
+<img alt="" src="img-008-017.png" /></p>
+<p>После записи положений меток нажмите <code>Ctrl+C</code>, чтобы закрыть узел записи.</p>
+<p><img alt="" src="img-008-018.png" /></p>
+<h2>5. Запуск режима навигации с визуальной повторной локализацией</h2>
+<pre><code>ros2 launch M3Pro_navigation toolbox_location_nav.launch.py relocation:=True detection_enabled:=True
+</code></pre>
+<p>После запуска интерфейс совпадает с обычной навигацией.</p>
+<p><img alt="" src="img-009-019.png" /></p>
+<h3>5.1 Проверка функции повторной локализации</h3>
+<p>Можно вручную сдвинуть положение робота (моделируя серьёзную ошибку одометрии или потерю локализации, как показано на рисунке выше).</p>
+<p><img alt="" src="img-010-020.png" /></p>
+<p>Когда метка с карты попадает в поле зрения камеры, автоматически запускается повторная локализация, корректирующая глобальную локализацию робота на карте.</p>
+<h3>5.2 Управление обнаружением меток через сервис</h3>
+<p>Поскольку узел обнаружения aritag с высокой частотой занимает процессор, можно отключать состояние обнаружения, когда оно не требуется. Узел предоставляет сервис <code>control_detection</code> для управления тем, выполняется ли обнаружение меток.</p>
+<p><strong>Запрос состояния</strong></p>
+<pre><code>ros2 service call /control_detection apriltag_localization/srv/ControlDetection &quot;{command: 0}&quot;
+</code></pre>
+<p><img alt="" src="img-011-021.png" /></p>
+<p><strong>Включение обнаружения</strong></p>
+<pre><code>ros2 service call /control_detection apriltag_localization/srv/ControlDetection &quot;{command: 1}&quot;
+</code></pre>
+<p><img alt="" src="img-011-022.png" /></p>
+<p><strong>Отключение обнаружения (снижает загрузку процессора)</strong></p>
+<pre><code>ros2 service call /control_detection apriltag_localization/srv/ControlDetection &quot;{command: 2}&quot;
+</code></pre>
+<p><img alt="" src="img-011-023.png" /></p>
+<h2>6. Анализ исходного кода</h2>
+<h3>6.1 Launch-файл узла записи меток</h3>
+<pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/launch/record_tag.launch.py
+</code></pre>
+<pre><code class="language-python">import os
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument,IncludeLaunchDescription, TimerAction, ExecuteProcess
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+
+def generate_launch_description():
+
+    # Шаг 1: объявляем параметр пути к выходному файлу
+    output_file_path_arg = DeclareLaunchArgument(
+        'output_file_path',
+        default_value=os.path.join(get_package_share_directory(&quot;m3pro_bringup&quot;),&quot;config&quot;,&quot;aritag_relocation.yaml&quot;),
+        description='Path to the output YAML file for saving AprilTag poses'
+    )
+
+    # Шаг 2: объявляем параметр целевой системы координат
+    target_frame_arg = DeclareLaunchArgument(
+        'target_frame',
+        default_value='map',
+        description='Target coordinate frame for recording AprilTag poses'
+    )
+
+    # Шаг 3: создаём узел записи ArUco
+    apriltag_recorder_node = Node(
+        package='apriltag_localization',
+        executable='apriltag_recorder',
+        name='apriltag_recorder',
+        output='screen',
+        parameters=[{
+               'output_file_path': LaunchConfiguration('output_file_path'),
+               'target_frame': LaunchConfiguration('target_frame'),
+        }]
+    )
+
+    # Шаг 4: запускаем навигацию и slam toolbox
+    navigation_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+               get_package_share_directory('M3Pro_navigation'),
+               'launch',
+               'toolbox_location_nav.launch.py'
+        )]),
+        launch_arguments={
+               &quot;rviz_config&quot;: os.path.join(
+                   get_package_share_directory('m3pro_bringup'),
+                   'rviz',
+                   'aritag_record.rviz'
+             ),
+               &quot;log_level&quot;: &quot;info&quot;,
+        }.items()
+    )
+
+    # Шаг 5: включаем сервис обнаружения ArUco с задержкой 8 секунд
+    call_detection_service = TimerAction(
+        period=8.0,
+        actions=[
+               ExecuteProcess(
+                   cmd=['ros2', 'service', 'call', '/control_detection',
+                        'apriltag_localization/srv/ControlDetection',
+                        '{command: 1}'],
+                   output='screen'
+                   )
+            ]
+       )
+
+       return LaunchDescription([
+            output_file_path_arg,
+            target_frame_arg,
+            apriltag_recorder_node,
+            navigation_launch,
+            call_detection_service
+       ])
+</code></pre>
+<p><strong>Пояснение к коду:</strong></p>
+<ol>
+<li><strong>Объявление параметров:</strong></li>
+<li><code>output_file_path</code>: указывает путь к YAML-файлу для сохранения положений ArUco-меток, по умолчанию — <code>aritag_relocation.yaml</code>.</li>
+<li>
+<p><code>target_frame</code>: целевая система координат, по умолчанию — <code>map</code> (система координат карты).</p>
+</li>
+<li>
+<p><strong>Узел apriltag_recorder:</strong></p>
+</li>
+<li>Функция: отслеживает ArUco-метки в поле зрения камеры и сохраняет их положения в системе координат карты в YAML-файл.</li>
+<li>Вход: топик изображения камеры, преобразования координат tf.</li>
+<li>
+<p>Выход: файл конфигурации <code>aritag_relocation.yaml</code>.</p>
+</li>
+<li>
+<p><strong>navigation_launch:</strong></p>
+</li>
+<li>Запускает систему навигации slam toolbox для получения точного положения робота.</li>
+<li>
+<p>Загружает выделенный файл конфигурации RViz <code>aritag_record.rviz</code>, включающий панель <code>aritag_recorder_panel</code>.</p>
+</li>
+<li>
+<p><strong>call_detection_service:</strong></p>
+</li>
+<li>Использует <code>TimerAction</code>, чтобы вызвать сервис <code>/control_detection</code> с задержкой 8 секунд.</li>
+<li>Включает обнаружение ArUco (<code>command: 1</code> означает включение).</li>
+<li>Задержка нужна, чтобы дождаться полного запуска системы перед включением обнаружения, избегая конфликтов ресурсов.</li>
+</ol>
+<h3>6.2 Launch-файл навигации в режиме повторной локализации</h3>
+<pre><code>$HOME/M3Pro_ws/src/M3Pro_navigation/launch/toolbox_location_nav.launch.py
+</code></pre>
+<p>Этот launch-файл является основной точкой входа для навигации с визуальной повторной локализацией, координирующей запуск шасси, локализации, навигации и других модулей. Ниже приведено подробное объяснение:</p>
+<pre><code class="language-python">def generate_launch_description():
+    #Определение папки с картами и файлов
+    map_folder_dir = os.path.join(os.path.expanduser('~'), 'map')
+
+    # Declare arguments
+    declared_arguments = []
+    m3pronav_dir=os.path.join(get_package_share_directory('M3Pro_navigation'))
+
+    #Файл карты
+    declared_arguments.append(
+        DeclareLaunchArgument(
+              &quot;map&quot;,
+              default_value=&quot;map.yaml&quot;,
+              description=&quot;map name&quot;,
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+              &quot;gui&quot;,
+              default_value='True',
+              description=&quot;if rviz is used, set to True. If False, rviz will not be launched.&quot;,
+        )
+    )
+    #Файл карты положений slam_toolbox
+    declared_arguments.append(
+        DeclareLaunchArgument(
+              &quot;pose_map&quot;,
+              default_value=&quot;map&quot;,
+              description=&quot;&quot;,
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+              'relocation',
+              default_value='false'
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+              'detection_enabled',
+              default_value='false'
+        )
+    )
+
+    #Файл параметров навигации
+    declared_arguments.append(
+        DeclareLaunchArgument(
+        &quot;params_file&quot;,
+        default_value= os.path.join(get_package_share_directory(&quot;M3Pro_navigation&quot;),
+&quot;param&quot;, &quot;yahboom_M3Pro.yaml&quot;),
+              description=&quot;Full path to param file to load&quot;,
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            &quot;use_sim_time&quot;,
+            default_value=&quot;False&quot;,
+            description=&quot;Use simulation (Gazebo) clock if true&quot;,
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            &quot;rviz_config&quot;,
+            default_value=os.path.join(m3pronav_dir,'rviz','nav2.rviz')
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            &quot;log_level&quot;,
+            default_value=&quot;info&quot;,
+            description=&quot;log level&quot;
+        )
+    )
+
+    # Initialize Arguments
+    map = LaunchConfiguration(&quot;map&quot;)
+    map_dir=PathJoinSubstitution([map_folder_dir, map])
+    pose_map=PathJoinSubstitution([map_folder_dir, LaunchConfiguration(&quot;pose_map&quot;)])
+
+    params_file=LaunchConfiguration(&quot;params_file&quot;)
+    use_sim_time=LaunchConfiguration(&quot;use_sim_time&quot;,default=&quot;false&quot;)
+    rviz_config=LaunchConfiguration(&quot;rviz_config&quot;)
+    log_level=LaunchConfiguration(&quot;log_level&quot;)
+
+    carbase_launch=IncludeLaunchDescription(
+ PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('m3pro_bringup'),'launch','car_base.launch.py')),
+                launch_arguments={'log_level': log_level,
+                                    'relocation': LaunchConfiguration('relocation'),
+                                    'detection_enabled': LaunchConfiguration('detection_enabled'),
+                                    }.items())
+
+    #Изменённый launch-файл navigation2, блокирующий функцию локализации AMCL
+    nav2_launch_mod = os.path.join(m3pronav_dir,
+                                      'launch',
+                                      'bringup_mod.launch.py'
+                                      )
+
+    # Файл запуска алгоритма локализации slamtoolbox
+ slamtoolbox_localization_launch_file=os.path.join(get_package_share_directory('slam_mapping'),'launch','localization_launch.py')
+
+    #Навигация с локализацией slamtoolbox
+    slamtoolbox_localization_nav = GroupAction(
+          actions=[
+                # Запуск файла навигации navigation2 (без глобальной локализации)
+                IncludeLaunchDescription(
+                     PythonLaunchDescriptionSource(nav2_launch_mod),
+                     launch_arguments={
+                                        &quot;map&quot;: map_dir,
+                                        &quot;params_file&quot;: params_file,
+                                        &quot;use_sim_time&quot;:use_sim_time,
+                                        &quot;log_level&quot;: log_level,
+                                        }.items()),
+                #Запуск узла локализации slamtoolbox
+                IncludeLaunchDescription(
+                     PythonLaunchDescriptionSource(slamtoolbox_localization_launch_file),
+                     launch_arguments={
+                          &quot;pose_map&quot;: pose_map,
+                          &quot;use_sim_time&quot;:use_sim_time,
+                     }.items(),
+                ),
+                #Вывод в лог
+                LogInfo(msg=['====================Robot-M3Pro Navigation Start with SlamToolbox localization===================='])
+          ]
+      )
+
+      #Узел rviz
+      rviz_node = Node(
+          package = 'rviz2',
+          executable = 'rviz2',
+          name='rviz2',
+          arguments=['-d', rviz_config],
+          parameters=[{'use_sim_time': use_sim_time}],
+          output='screen',
+          condition=IfCondition(LaunchConfiguration('gui'))
+      )
+
+      return LaunchDescription(
+          [
+                *declared_arguments,                       #Объявленные аргументы
+                rviz_node,                                 #узел rviz
+                carbase_launch,
+                slamtoolbox_localization_nav              #навигация с локализацией slamtoolbox
+          ]
+      )
+</code></pre>
+<p><strong>Пояснение к коду:</strong></p>
+<ol>
+<li><strong>carbase_launch:</strong></li>
+<li>Запускает базовые узлы шасси, включая камеру, вспомогательный узел манипулятора, слияние данных лидара и т.д.</li>
+<li>
+<p>Передаёт параметры <code>relocation</code> и <code>detection_enabled</code> для управления тем, включена ли визуальная повторная локализация.</p>
+</li>
+<li>
+<p><strong>nav2_launch_mod:</strong></p>
+</li>
+<li>Использует изменённый launch-файл Nav2 (<code>bringup_mod.launch.py</code>).</li>
+<li>
+<p>Эта версия блокирует функцию локализации AMCL, поскольку система использует для локализации SlamToolbox.</p>
+</li>
+<li>
+<p><strong>slamtoolbox_localization_nav:</strong></p>
+</li>
+<li>
+<p>Это <code>GroupAction</code>, содержащий несколько взаимодействующих компонентов:</p>
+<ul>
+<li>запускает изменённый стек навигации Nav2 (планирование пути, карта стоимости, контроллер и т.д.);</li>
+<li>запускает узел локализации SlamToolbox и загружает карту положений для реализации локализации с ограничением по положению;</li>
+<li>печатает информацию о запуске в лог.</li>
+</ul>
+</li>
+<li>
+<p><strong>rviz_node:</strong></p>
+</li>
+<li>Запускает инструмент визуализации RViz2.</li>
+<li>Использует <code>IfCondition</code>, чтобы запускаться только при <code>gui=True</code>.</li>
+<li>Загружает указанный файл конфигурации RViz, содержащий панели отображения, связанные с навигацией.</li>
+</ol>
+<h3>6.3 Структура файла aritag_relocation.yaml</h3>
+<p>Структура сформированного после записи файла <code>aritag_relocation.yaml</code> приведена ниже:</p>
+<pre><code class="language-yaml">tags:
+  - id: 0                           # ID ArUco-метки
+    position:                       # координаты положения (относительно системы координат карты)
+        x: 1.234                    # координата X (метры)
+        y: 0.567                    # координата Y (метры)
+        z: 0.0                      # координата Z (метры, обычно 0 для высоты пола)
+    orientation:                    # ориентация (кватернион)
+        x: 0.0
+        y: 0.0
+        z: 0.123
+        w: 0.987
+  - id: 1
+    position:
+        x: 2.345
+        y: 1.234
+        z: 0.0
+    orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.456
+        w: 0.890
+</code></pre>
+<p><strong>Описание полей:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>int</td>
+<td>Уникальный идентификатор ArUco-метки</td>
+</tr>
+<tr>
+<td><code>position.x</code></td>
+<td>float</td>
+<td>Координата X метки в координатах карты (метры)</td>
+</tr>
+<tr>
+<td><code>position.y</code></td>
+<td>float</td>
+<td>Координата Y метки в координатах карты (метры)</td>
+</tr>
+<tr>
+<td><code>position.z</code></td>
+<td>float</td>
+<td>Координата Z метки в координатах карты (метры)</td>
+</tr>
+<tr>
+<td><code>orientation.x/y/z/w</code></td>
+<td>float</td>
+<td>Кватернион ориентации метки, представляющий её направление</td>
+</tr>
+</tbody>
+</table>
+<h3>6.4 Принцип работы визуальной повторной локализации</h3>
+<ol>
+<li><strong>Обнаружение ArUco-меток</strong>: камера непрерывно обнаруживает ArUco-метки в поле зрения.</li>
+<li><strong>Сопоставление с глобальными координатами</strong>: если метка обнаружена, её глобальные координаты считываются из <code>aritag_relocation.yaml</code>.</li>
+<li><strong>Вычисление отклонения</strong>: текущее оценённое по одометрии положение сравнивается с фактическим положением, предоставленным ArUco.</li>
+<li><strong>Коррекция положения</strong>: положение ArUco используется для коррекции глобального положения робота.</li>
+</ol>
+<p><strong>Преимущества повторной локализации:</strong></p>
+<ul>
+<li>✅ Устраняет накопленную ошибку: одометрия накапливает ошибку со временем, а ArUco предоставляет абсолютную опорную точку положения.</li>
+<li>✅ Решает проблему вырожденных сценариев: в длинных коридорах или областях с похожими особенностями лазерный SLAM может терять локализацию, а ArUco предоставляет надёжные якоря.</li>
+</ul>
+<p><strong>Меры предосторожности:</strong></p>
+<ul>
+<li>⚠️ Перед записью положений меток убедитесь, что лазерная локализация точна (контур лидара совпадает с краями окружающего пространства).</li>
+<li>⚠️ Если положения меток изменились, необходимо заново записать их глобальные координаты.</li>
+</ul>
+<h3>6.5 Параметры конфигурации меток</h3>
+<p>Путь к файлу параметров конфигурации узла меток:</p>
+<pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/config/common.yaml
+</code></pre>
+<p><strong>Описание параметров:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+<th>Значение по умолчанию</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image_transport</code></td>
+<td>Формат передачи изображения: <code>raw</code> — необработанное изображение, <code>compressed</code> — сжатое изображение</td>
+<td><code>raw</code></td>
+</tr>
+<tr>
+<td><code>family</code></td>
+<td>Тип семейства ArUco-меток; разные семейства используют разные методы кодирования</td>
+<td><code>36h11</code></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Физическая длина стороны метки (в метрах), должна соответствовать фактическому размеру</td>
+<td><code>0.048</code></td>
+</tr>
+<tr>
+<td><code>profile</code></td>
+<td>Выводить ли информацию для анализа производительности</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>max_hamming</code></td>
+<td>Максимально допустимое расстояние Хэмминга (число исправляемых бит ошибки), 0 означает без коррекции</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>detector.threads</code></td>
+<td>Число потоков обнаружения</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>detector.decimate</code></td>
+<td>Коэффициент понижения разрешения пирамиды; большее значение означает более быстрое обнаружение, но меньшую точность</td>
+<td><code>2.0</code></td>
+</tr>
+<tr>
+<td><code>detector.blur</code></td>
+<td>Значение сигма гауссова размытия для обнаружения четырёхугольников</td>
+<td><code>0.0</code></td>
+</tr>
+<tr>
+<td><code>detector.refine</code></td>
+<td>Включить ли уточнение краёв для точной локализации</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>detector.sharpening</code></td>
+<td>Интенсивность повышения резкости декодированного изображения</td>
+<td><code>0.25</code></td>
+</tr>
+<tr>
+<td><code>detector.debug</code></td>
+<td>Выводить ли отладочные изображения в текущую рабочую директорию</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>pose_estimation_method</code></td>
+<td>Метод оценки положения; <code>pnp</code> означает использование алгоритма PnP</td>
+<td><code>pnp</code></td>
+</tr>
+<tr>
+<td><code>tag.ids</code></td>
+<td>Список ID меток для обнаружения; обнаруживаются только метки из этого списка</td>
+<td><code>[1-20]</code></td>
+</tr>
+<tr>
+<td><code>tag.frames</code></td>
+<td>Список соответствующих имён систем координат TF для этих ID</td>
+<td><code>[tag1-tag20]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Рекомендации по настройке ключевых параметров:</strong></p>
+<ul>
+<li><code>size</code>: должен быть точно измерен и задан. Ошибки приведут к ошибкам вычисления положения.</li>
+<li><code>family</code>: должен соответствовать используемому семейству меток, иначе обнаружение не сработает.</li>
+<li><code>tag.ids</code>: указывайте только реально используемые ID меток, чтобы уменьшить лишнюю публикацию TF.</li>
+</ul>
+<pre><code class="language-yaml">...
+apriltag:                      # имя узла
+  ros__parameters:
+      image_transport: raw     # формат изображения: &quot;raw&quot; или &quot;compressed&quot;
+      family: 36h11            # семейство меток: 16h5, 25h9, 36h11
+      size: 0.048                 # размер стороны метки по умолчанию, в метрах
+      profile: false           # выводить информацию профилирования в stdout
+      # настройка обнаружения (значения по умолчанию)
+      max_hamming: 0           # максимально допустимое расстояние Хэмминга (исправляемые биты)
+      detector:
+        threads: 1              # число потоков
+        decimate: 2.0           # понижение разрешения для обнаружения четырёхугольников
+        blur: 0.0               # сигма гауссова размытия для обнаружения четырёхугольников
+        refine: true            # притягивание к сильным градиентам
+        sharpening: 0.25        # повышение резкости декодированных изображений
+        debug: false                 # записывать дополнительные отладочные изображения в текущую рабочую директорию
+      pose_estimation_method: &quot;pnp&quot; # метод оценки положения метки
+      tag:
+        ids:      [1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]                    # ID меток, для которых публикуется преобразование
+        frames: [tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9, tag10, tag11, tag12, tag13, tag14, tag15, tag16, tag17, tag18, tag19, tag20]
+...
+</code></pre>
+<p><img alt="" src="img-020-024.png" /></p>
+<h3>6.6 Схема взаимодействия узлов</h3>
+<p>Запустите во время работы навигации с повторной локализацией:</p>
+<pre><code>ros2 run rqt_graph rqt_graph
+</code></pre>
+<p>Узел apriltag подписывается на топик камеры для обнаружения меток и публикует топик <code>/detections</code>. Узел повторной локализации <code>apriltag_relocation</code> подписывается на <code>/detections</code>. Когда метка обнаружена, он вычисляет положение <code>base_link</code> робота в системе координат карты на основе записанных координат якоря метки на карте и публикует результат в <code>/initialpose</code>, запуская функцию локализации узла <code>slam_toolbox</code> для вычисления точных координат робота на карте на основе графа ограничений по положению.</p><div class="pager"><a href="16-color-block-transport.html">&larr; Транспортировка цветных блоков</a></div>
+</main>
+</div>
+</body>
+</html>

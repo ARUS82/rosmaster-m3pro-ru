@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Одноточечная навигация и избегание препятствий Navigation2 — Курс по лидару</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details open>
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="active" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details >
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по лидару</a> / Одноточечная навигация и избегание препятствий Navigation2</div>
+<h1>Одноточечная навигация и избегание препятствий Navigation2</h1>
+<h2>1. Содержание урока</h2>
+<ol>
+<li>Изучение функции одноточечной навигации и избегания препятствий Navigation2 на роботе.</li>
+<li>Запустите программу. В rviz загрузится карта. В интерфейсе rviz с помощью инструмента [2D Pose Estimate] задайте начальное положение робота, затем с помощью инструмента [2D Goal Pose] задайте целевую точку для робота. Робот построит путь с учётом окружающего пространства и переместится к цели. При встрече с препятствиями он автоматически их объедет и остановится по достижении цели.</li>
+<li>Изучите понятия глобальной и локальной карты стоимости (costmap), настройку параметров навигации и принципы алгоритма локализации AMCL.</li>
+</ol>
+<h2>2. Введение в Navigation2</h2>
+<h3>2.1 Введение</h3>
+<p>Общая архитектурная схема Navigation2</p>
+<p><img alt="" src="img-001-000.png" /></p>
+<p>Navigation2 предоставляет следующие инструменты:</p>
+<ul>
+<li>инструменты загрузки, обслуживания и хранения карт (Map Server);</li>
+<li>инструменты локализации робота на карте (AMCL);</li>
+<li>инструменты планирования пути из точки A в точку B с объездом препятствий (Nav2 Planner);</li>
+<li>инструменты управления роботом при следовании по пути (Nav2 Controller);</li>
+<li>инструменты преобразования данных датчиков в представление карты стоимости окружающего пространства робота (Nav2 Costmap 2D);</li>
+<li>инструменты построения сложного поведения робота с помощью деревьев поведения (Nav2 Behavior Trees и BT Navigator);</li>
+<li>инструменты вычисления восстанавливающего поведения (recovery behaviors) в случае сбоя (Nav2 Recoveries);</li>
+<li>инструмент следования по последовательности путевых точек (Nav2 Waypoint Follower);</li>
+<li>инструмент и "сторожевой таймер" для управления жизненным циклом серверов (Nav2 Lifecycle Manager);</li>
+<li>плагин для подключения пользовательских алгоритмов и поведений (Nav2 Core).</li>
+</ul>
+<p>Navigation2 (Nav2) — это встроенный фреймворк навигации в ROS 2. Его назначение — безопасно перемещать мобильных роботов из точки A в точку B. Nav2 реализует такие функции, как динамическое планирование пути, расчёт скорости приводов, избегание препятствий и восстановление после сбоев.</p>
+<p>Nav2 использует деревья поведения (Behavior Trees, BT) для вызова модульных серверов при выполнении действия. Действия могут включать расчёт пути, управляющие воздействия, восстановление после сбоя или другие связанные с навигацией действия. Эти действия представляют собой независимые узлы, которые взаимодействуют с деревом поведения через сервер действий (action server).</p>
+<p><img alt="" src="img-002-001.png" /></p>
+<h3>2.2 Дополнительные материалы</h3>
+<ul>
+<li>Документация Navigation2: https://navigation.ros.org/index.html</li>
+<li>Navigation2 на GitHub: https://github.com/ros-planning/navigation2</li>
+<li>Статья по Navigation2: https://arxiv.org/pdf/2003.00368.pdf</li>
+</ul>
+<h2>3. Подготовка</h2>
+<h3>3.1 Описание содержания</h3>
+<p>В этом уроке в качестве примера используется Jetson Orin NX. Для плат Raspberry Pi и Jetson Nano необходимо открыть терминал и ввести команду для входа в Docker-контейнер. После входа в контейнер вводите команды этого урока уже внутри него. Инструкции по входу в Docker-контейнер см. в руководстве к изделию [Configuration and Operation Guide] — [Entering the Docker] (для пользователей Jetson Nano и Raspberry Pi 5, см. соответствующий раздел). Для плат Orin и NX достаточно просто открыть терминал и ввести команды этого урока.</p>
+<h3>3.2 Запуск агента</h3>
+<p>Примечание: перед тестированием всех примеров необходимо сначала запустить агента в Docker. Если он уже запущен, повторно запускать его не нужно.</p>
+<p>Введите следующую команду в терминале робота:</p>
+<pre><code>sh start_agent.sh
+</code></pre>
+<p>Терминал выведет следующее сообщение, означающее успешное подключение.</p>
+<h2>4. Запуск примера</h2>
+<h3>4.1 Навигация одним щелчком</h3>
+<p>Обратите внимание:</p>
+<ul>
+<li>Для контроллеров серии Jetson Nano и Raspberry Pi необходимо сначала войти в Docker-контейнер (порядок действий см. в разделе [Docker Course Section — Entering the Robot's Docker Container]).</li>
+<li>Для этого раздела требуется как минимум одна готовая карта. Обратитесь к любому из уроков SLAM-картографирования, например Gmapping-SLAM Mapping, Cartographer Mapping или Slam-Toolbox Mapping.</li>
+</ul>
+<p>Чтобы запустить нижнеуровневые датчики в терминале робота:</p>
+<pre><code>ros2 launch M3Pro_navigation base_bringup.launch.py
+</code></pre>
+<p>Чтобы снова запустить навигацию:</p>
+<pre><code>ros2 launch M3Pro_navigation navigation2.launch.py
+</code></pre>
+<p>Функцию визуализации rviz можно запустить как в терминале робота, так и на виртуальной машине. Выберите один из способов. Не запускайте её одновременно на виртуальной машине и в терминале робота:</p>
+<p>Например, на виртуальной машине откройте терминал и запустите интерфейс визуализации rviz:</p>
+<pre><code>ros2 launch slam_view nav_rviz.launch.py
+</code></pre>
+<p>Команда запуска интерфейса визуализации Rviz на роботе:</p>
+<pre><code>ros2 launch M3Pro_navigation nav_rviz.launch.py
+</code></pre>
+<p><img alt="" src="img-003-002.png" /></p>
+<p>Теперь вы увидите загрузку карты. Нажмите [2D Pose Estimate], чтобы задать начальное положение робота. Исходя из фактического положения робота в пространстве, щёлкните и перетащите мышью в Rviz, чтобы переместить модель робота в заданное положение. Как показано на рисунке ниже, если область сканирования лидара примерно совпадает с реальным препятствием, положение задано верно.</p>
+<p><img alt="" src="img-004-003.png" /></p>
+<p>После завершения инициализации положения в интерфейсе rviz появятся модель робота и красное 2D-облако точек лидара.</p>
+<p><img alt="" src="img-004-004.png" /></p>
+<p>Для одноточечной навигации нажмите инструмент [2D Goal Pose], затем с помощью мыши выберите в rviz целевую точку и ориентацию, после чего отпустите кнопку мыши.</p>
+<p><img alt="" src="img-005-005.png" /></p>
+<p>Робот строит путь с учётом окружающего пространства и движется по нему к целевой точке.</p>
+<p><img alt="" src="img-005-006.png" /></p>
+<p>После того как робот успешно достигнет целевой точки, в терминале робота появится сообщение «Goal succeeded», означающее успешное завершение навигации.</p>
+<p><img alt="" src="img-006-007.png" /></p>
+<h3>4.2 Просмотр карты стоимости (costmap)</h3>
+<p>Чтобы посмотреть глобальную и локальную карты стоимости, найдите пункт Global Costmap в группе Global Planner в левой панели настроек и включите его отображение — так отобразится глобальная карта стоимости. Аналогично найдите пункт Local Costmap в группе Controller и включите его. Нажмите опцию Costmap, чтобы отобразить карту стоимости (понятие карты стоимости будет объяснено в теоретическом разделе ниже).</p>
+<p><img alt="" src="img-006-008.png" /></p>
+<h3>4.3 Просмотр графа взаимодействия узлов</h3>
+<p>В терминале виртуальной машины введите:</p>
+<pre><code>ros2 run rqt_graph rqt_graph
+</code></pre>
+<p>Если граф не отображается сразу, выберите [Nodes/Topics (all)] и нажмите кнопку обновления в левом верхнем углу. Оригинальный граф слишком велик; его можно посмотреть в папке этого урока.</p>
+<p><img alt="" src="img-007-009.png" />
+<img alt="" src="img-007-010.png" /></p>
+<h3>4.4 Просмотр дерева TF</h3>
+<p>В терминале виртуальной машины введите:</p>
+<pre><code>ros2 run rqt_tf_tree rqt_tf_tree
+</code></pre>
+<p><img alt="" src="img-007-011.png" /></p>
+<p>Если страница не отображается сразу, нажмите значок обновления в левом верхнем углу, чтобы обновить её. Оригинальное изображение слишком велико; его можно посмотреть в папке урока.</p>
+<p><img alt="" src="img-008-012.png" />
+<img alt="" src="img-008-013.png" /></p>
+<h2>5. Разбор навигации</h2>
+<h3>5.1 Основные этапы процесса навигации</h3>
+<h4>5.1.1 Этап 1: инициализация системы и загрузка карты</h4>
+<p><strong>Получение карты</strong></p>
+<ul>
+<li>Загрузка заранее построенной растровой карты из <code>map_server</code>.</li>
+<li>Карта содержит информацию о статических препятствиях и служит базовой моделью окружения для навигации.</li>
+</ul>
+<p><strong>Инициализация карты стоимости</strong></p>
+<ul>
+<li><strong>Global Costmap (глобальная карта стоимости)</strong>: строится на основе статической карты, используется для глобального планирования пути.</li>
+<li><strong>Local Costmap (локальная карта стоимости)</strong>: объединяет данные топика реального времени лидара для динамического избегания препятствий.</li>
+</ul>
+<h4>5.1.2 Этап 2: обработка данных датчиков и восприятие окружения</h4>
+<p><strong>Доступ к данным датчиков</strong></p>
+<ul>
+<li>Данные лидара (<code>/scan</code>), IMU (<code>/imu/data</code>) и одометрии (<code>/odom</code>) поступают через топики ROS.</li>
+</ul>
+<p><strong>Обновление карты стоимости</strong></p>
+<ul>
+<li>Локальная карта стоимости обновляет информацию о динамических препятствиях в реальном времени. Для каждой ячейки сетки рассчитывается вероятность занятости и стоимость на основе данных датчиков (например, чем ближе к препятствию, тем выше стоимость).</li>
+<li><strong>Расширение (Inflation)</strong>: расширяет границы препятствий, чтобы не дать роботу подойти к ним слишком близко.</li>
+</ul>
+<h4>5.1.3 Этап 3: планирование пути (глобальное и локальное)</h4>
+<p><strong>Глобальное планирование пути</strong></p>
+<ul>
+<li>Вход: начальная точка (текущее положение робота), конечная точка (целевое положение) и глобальная карта стоимости.</li>
+<li>Алгоритм планировщика Dijkstra строит оптимальный путь (последовательность дискретных координатных точек) от начальной до конечной точки.</li>
+</ul>
+<p><strong>Локальное планирование пути и его отслеживание</strong></p>
+<p>Локальный планировщик <code>DWBLocalPlanner</code> формирует краткосрочные управляющие команды, которые робот может выполнить, основываясь на глобальном пути и локальной карте стоимости.</p>
+<h4>5.1.4 Этап 4: выполнение управления и принятие решений о поведении</h4>
+<p><strong>Вывод контроллера</strong></p>
+<ul>
+<li>Контроллер преобразует локальный путь в линейную скорость робота (<code>linear.x</code>) и угловую скорость (<code>angular.z</code>), которые публикуются через топик <code>/cmd_vel</code>.</li>
+<li><strong>Сглаживание скорости</strong>: предотвращает резкие изменения движения робота и повышает устойчивость.</li>
+</ul>
+<p><strong>Процесс принятия решений деревом поведения</strong></p>
+<p>Дерево поведения определяет приоритеты и логику переходов между состояниями задач навигации. Типичный процесс выглядит так:</p>
+<ol>
+<li><strong>Проверка достижимости цели</strong>: если глобальное планирование не удалось, запускается «восстанавливающее поведение» (recovery behavior) (например, повторное планирование).</li>
+<li><strong>Выполнение локального избегания препятствий</strong>: при обнаружении препятствия на локальной карте стоимости робот временно отклоняется от глобального пути.</li>
+<li><strong>Достижение цели</strong>: когда ошибка между положением робота и целевым положением становится меньше порогового значения, задача считается выполненной.</li>
+</ol>
+<p><strong>Механизм восстанавливающего поведения</strong></p>
+<p>Когда во время навигации возникает аномалия (например, путь полностью заблокирован), запускается заранее заданная стратегия восстановления (например, поворот для поиска нового пути или отход назад с последующим повторным планированием).</p>
+<h3>5.2 Ключевые технические принципы</h3>
+<h4>5.2.1 Карта стоимости (Costmap)</h4>
+<ul>
+<li><strong>Вероятностное представление сетки</strong>: каждая ячейка сетки хранит вероятность занятости (0–1) и обновляется на основе данных датчиков (например, трассировки луча лидаром — raycast).</li>
+<li><strong>Многослойное объединение стоимости</strong>: статическая стоимость (для препятствий на карте) + динамическая стоимость (для препятствий, обнаруженных датчиками в реальном времени) + стоимость расширения (для безопасной дистанции).</li>
+</ul>
+<p>Карта стоимости — это 2D- или 3D-карта, создаваемая и обновляемая роботом на основе данных датчиков. Ниже приведён краткий обзор.</p>
+<p><img alt="" src="img-010-014.png" /></p>
+<p>На рисунке выше красная область представляет препятствия на карте стоимости, синяя область — препятствия, расширенные на радиус вписанной окружности робота, а красный многоугольник — контур робота (footprint, вертикальная проекция контура робота). Чтобы избежать столкновений, контур робота не должен пересекать красную область, а центр робота не должен пересекать синюю область. Карта стоимости ROS использует формат сетки, где значение каждой ячейки (cell cost) находится в диапазоне от 0 до 255. Оно делится на три состояния: занято (есть препятствие), свободная область (нет препятствий) и неизвестная область.</p>
+<p>Конкретные состояния и значения показаны на следующем рисунке:</p>
+<p>Рисунок выше можно разделить на пять частей, где красный многоугольник представляет контур робота:</p>
+<ul>
+<li><strong>Lethal</strong>: центр робота совпадает с центром ячейки сетки; в этом случае робот определённо столкнётся с препятствием.</li>
+<li><strong>Inscribed</strong>: описанная окружность ячейки вписана в контур робота; в этом случае робот определённо столкнётся с препятствием.</li>
+<li><strong>Possibly circumscribed</strong>: описанная окружность ячейки вписана в контур робота лишь частично; в этом случае робот находится в непосредственной близости от препятствия, но столкновение не гарантировано.</li>
+<li><strong>Freespace</strong>: пространство без препятствий.</li>
+<li><strong>Unknown</strong>: пространство с неизвестным состоянием.</li>
+</ul>
+<p>Глобальная карта стоимости (Global Costmap):</p>
+<p><img alt="" src="img-010-015.png" /></p>
+<p><img alt="" src="img-011-016.png" /></p>
+<p>Локальная карта стоимости (Local Costmap):</p>
+<p><img alt="" src="img-011-017.png" /></p>
+<p><img alt="" src="img-012-018.png" /></p>
+<h4>5.2.2 Алгоритм локализации AMCL</h4>
+<p>AMCL (Adaptive Monte Carlo Localization) — это вероятностная система локализации для 2D мобильных роботов. Она реализует адаптивный метод (или метод с KLD-выборкой) Монте-Карло локализации, использующий фильтр частиц для оценки положения робота на основе заданной карты.</p>
+<p>Как показано на рисунке ниже, если одометрия безошибочна, в идеальном мире можно напрямую использовать данные одометрии (верхняя часть) для вывода положения робота (<code>base_frame</code>) относительно системы координат одометрии. Однако на практике существуют дрейф одометрии и заметная накопленная ошибка. Поэтому AMCL использует метод, показанный в нижней части. Этот метод сначала использует данные одометрии для предварительной локализации <code>base_frame</code>. Затем, с помощью модели измерений, определяется положение <code>base_frame</code> относительно <code>map_frame</code> (системы координат глобальной карты), и тем самым определяется положение робота на карте. (Обратите внимание: хотя здесь оценивается преобразование от <code>base</code> к <code>map</code>, в итоге публикуется преобразование от <code>map</code> к <code>odom</code>, что можно понимать как дрейф одометрии.)</p>
+<p><img alt="" src="img-012-018.png" /></p>
+<p>В дереве TF во время навигации робота преобразование координат между <code>map</code> (система координат карты) и <code>odom</code> (система координат одометрии) публикуется алгоритмом локализации AMCL, а преобразование координат между <code>odom</code> (система координат одометрии) и <code>base_footprint</code> (система координат проекции центра шасси робота) публикуется узлом <code>ekf_filter_node</code> из пакета <code>robot_localization</code>. Его функция — публиковать данные одометрии после объединения данных IMU-датчика и «сырой» одометрии от энкодеров.</p>
+<p><img alt="" src="img-013-019.png" /></p>
+<p>На приведённой выше схеме взаимодействия узлов видно поток данных для <code>ekf_filter_node</code>.</p>
+<p>Узел <code>/YB_Node</code> — это узел шасси робота, публикующий <code>/imu/data_raw</code> («сырые» данные IMU-датчика) и <code>/odom_raw</code> («сырые» данные одометрии от энкодеров).</p>
+<p>Узел <code>imu_filter</code> подписывается на <code>/imu/data_raw</code>, публикуемый узлом шасси робота («сырые» данные IMU-датчика). Узел <code>imu_filter</code> фильтрует «сырые» данные IMU-датчика и публикует их в топик <code>/imu/data</code>.</p>
+<p>Узел <code>ekf_filter_node</code> подписывается на топики <code>/odom</code> и <code>/imu/data</code>, объединяет данные нескольких датчиков и публикует результат в топик <code>/odom</code>.</p>
+<h2>5.3 Планирование пути</h2>
+<h3>5.3.1 Глобальное планирование пути</h3>
+<p>Глобальное планирование пути вычисляет оптимальный или допустимый глобальный путь от начальной точки до цели в пределах известной карты окружения, без учёта препятствий в реальном времени. Путь от начальной точки до цели рассчитывается с целью достижения глобального оптимума. Как показано на рисунке ниже, путь, соединённый стрелками, — это глобальный путь.</p>
+<p><img alt="" src="img-014-020.png" /></p>
+<h3>5.3.2 Локальное планирование пути</h3>
+<p>Локальное планирование пути динамически подстраивает путь робота на основе данных лидара в реальном времени во время движения, чтобы объезжать препятствия (препятствия отображаются на карте стоимости). Как показано на рисунке ниже, синий путь — это локальный путь.</p>
+<p><img alt="" src="img-014-021.png" /></p>
+<p><img alt="" src="img-015-022.png" /></p>
+<h2>5.4 Настройка параметров навигации</h2>
+<p>Путь к файлу конфигурации:</p>
+<p>Для Jetson Nano и Raspberry Pi сначала необходимо войти в Docker:</p>
+<pre><code>/root/M3Pro_ws/src/M3Pro_navigation/param/yahboom_M3Pro.yaml
+</code></pre>
+<p>Для Jetson Orin Nano и NX:</p>
+<pre><code>/home/jetson/M3Pro_ws/src/M3Pro_navigation/param/yahboom_M3Pro.yaml
+</code></pre>
+<p>Параметры конфигурации навигации по умолчанию:</p>
+<pre><code class="language-yaml"># Настройка AMCL (Adaptive Monte Carlo Localization)
+amcl :
+  ros__parameters :
+     # Использовать ли время симуляции; False — использовать реальное время
+     use_sim_time : False
+     # Параметр шума модели одометрии при повороте робота
+     alpha1 : 0.2
+     # Параметр шума модели одометрии при повороте и перемещении робота
+     alpha2 : 0.2
+     # Параметр шума модели одометрии при перемещении робота
+     alpha3 : 0.2
+     # Параметр шума модели одометрии при повороте, вызванном перемещением
+     alpha4 : 0.2
+     # Параметр шума модели одометрии при повороте (другой аспект)
+     alpha5 : 0.2
+     # Имя базовой системы координат робота
+     base_frame_id : &quot;base_footprint&quot;
+     # Порог расстояния для пропуска лучей, используется при обработке данных лазерного сканирования
+     beam_skip_distance : 0.5
+     # Порог ошибки для пропуска лучей, используется для решения о пропуске отдельных лучей
+     beam_skip_error_threshold : 0.9
+     # Порог пропуска лучей, используется для решения о пропуске отдельных лучей
+     beam_skip_threshold : 0.3
+     # Включена ли функция пропуска лучей
+     do_beamskip : false
+     # Имя глобальной системы координат
+     global_frame_id : &quot;map&quot;
+     # Коэффициент затухания для короткого лазерного отражения
+     lambda_short : 0.1
+     # Максимальная дистанция правдоподобия для лазерного сканирования
+     laser_likelihood_max_dist : 2.0
+     # Максимальная дальность лазерного сканирования
+     laser_max_range : 100.0
+     # Минимальная дальность лазерного сканирования
+     laser_min_range : -1.0
+     # Тип модели лазера
+     laser_model_type : &quot;likelihood_field&quot;
+     # Максимальное число лучей лазера, используемых при одном обновлении
+     max_beams : 60
+     # Максимально допустимое число частиц в фильтре частиц
+     max_particles : 2000
+     # Минимально допустимое число частиц в фильтре частиц
+     min_particles : 500
+     # Имя системы координат одометрии
+     odom_frame_id : &quot;odom&quot;
+     # Порог ошибки фильтра частиц
+     pf_err : 0.05
+     # Порог доверия фильтра частиц
+     pf_z : 0.99
+     # Коэффициент быстрого восстановления, используется механизмом восстановления фильтра частиц
+     recovery_alpha_fast : 0.0
+     # Коэффициент медленного восстановления, используется механизмом восстановления фильтра частиц
+     recovery_alpha_slow : 0.0
+     # Интервал повторной выборки
+     resample_interval : 1
+     # Тип модели движения робота
+     robot_model_type : &quot;nav2_amcl::DifferentialMotionModel&quot;
+     # Частота сохранения положения робота
+     save_pose_rate : 0.5
+     # Стандартное отклонение попаданий лазера
+     sigma_hit : 0.2
+     # Публиковать ли преобразование TF
+     tf_broadcast : true
+     # Частота публикации преобразования TF
+     tf_publish_rate : 10.0
+     # Допуск по времени преобразования
+     transform_tolerance : 0.2
+     # Минимальный порог обновления по углу
+     update_min_a : 0.2
+     # Минимальный порог обновления по расстоянию
+     update_min_d : 0.25
+     # Вес попадания лазера
+     z_hit : 0.5
+     # Вес максимальной дальности лазера
+     z_max : 0.05
+     # Вес случайных лазерных измерений
+     z_rand : 0.5
+     # Вес короткого отражения лазера
+     z_short : 0.05
+     # Имя топика данных лазерного сканирования
+     scan_topic : scan
+
+# Настройка клиента карты AMCL
+amcl_map_client :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+
+# Настройка узла AMCL RCLCPP
+amcl_rclcpp_node :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+
+# Настройка BT Navigator
+bt_navigator :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+   # Имя глобальной системы координат
+    global_frame : map
+   # Имя базовой системы координат робота
+    robot_base_frame : base_link
+   # Имя топика данных одометрии
+    odom_topic : /odom
+   # Имя файла XML дерева поведения по умолчанию
+    default_bt_xml_filename : &quot;navigate_w_replanning_and_recovery.xml&quot;
+   # Период цикла дерева поведения
+    bt_loop_duration : 10
+   # Таймаут сервера по умолчанию
+    default_server_timeout : 20
+   # Включён ли мониторинг Groot
+    enable_groot_monitoring : True
+   # Порт ZMQ-публикатора Groot
+    groot_zmq_publisher_port : 1666
+   # Порт ZMQ-сервера Groot
+    groot_zmq_server_port : 1667
+   # Список имён плагинов-библиотек дерева поведения
+    plugin_lib_names :
+    - nav2_compute_path_to_pose_action_bt_node
+    - nav2_compute_path_through_poses_action_bt_node
+    - nav2_follow_path_action_bt_node
+    - nav2_back_up_action_bt_node
+    - nav2_spin_action_bt_node
+    - nav2_wait_action_bt_node
+    - nav2_clear_costmap_service_bt_node
+    - nav2_is_stuck_condition_bt_node
+    - nav2_goal_reached_condition_bt_node
+    - nav2_goal_updated_condition_bt_node
+    - nav2_initial_pose_received_condition_bt_node
+    - nav2_reinitialize_global_localization_service_bt_node
+    - nav2_rate_controller_bt_node
+    - nav2_distance_controller_bt_node
+    - nav2_speed_controller_bt_node
+    - nav2_truncate_path_action_bt_node
+    - nav2_goal_updater_node_bt_node
+    - nav2_recovery_node_bt_node
+    - nav2_pipeline_sequence_bt_node
+    - nav2_round_robin_node_bt_node
+    - nav2_transform_available_condition_bt_node
+    - nav2_time_expired_condition_bt_node
+    - nav2_distance_traveled_condition_bt_node
+    - nav2_single_trigger_bt_node
+    - nav2_is_battery_low_condition_bt_node
+    - nav2_navigate_through_poses_action_bt_node
+    - nav2_navigate_to_pose_action_bt_node
+    - nav2_remove_passed_goals_action_bt_node
+    - nav2_planner_selector_bt_node
+    - nav2_controller_selector_bt_node
+    - nav2_goal_checker_selector_bt_node
+
+# Настройка узла BT Navigator RCLCPP
+bt_navigator_rclcpp_node :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+
+# Настройка Controller Server
+controller_server :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+   # Частота работы контроллера
+    controller_frequency : 5.0
+   # Минимальный порог скорости по X
+    min_x_velocity_threshold : 0.001
+   # Минимальный порог скорости по Y
+    min_y_velocity_threshold : 0.5
+   # Минимальный порог скорости поворота
+    min_theta_velocity_threshold : 0.001
+   # Максимально допустимая толерантность к сбоям
+    failure_tolerance : 0.3
+   # Имя плагина проверки прогресса
+    progress_checker_plugin : &quot;progress_checker&quot;
+   # Список имён плагинов проверки цели
+    goal_checker_plugins : [ &quot;general_goal_checker&quot; ]
+   # Список имён плагинов контроллера
+    controller_plugins : [ &quot;FollowPath&quot; ]
+
+   # Параметры проверки прогресса
+    progress_checker :
+      # Тип плагина проверки прогресса
+      plugin : &quot;nav2_controller::SimpleProgressChecker&quot;
+      # Минимальный радиус, на который должен сдвинуться робот
+      required_movement_radius : 0.5
+      # Максимально допустимое время движения
+      movement_time_allowance : 10.0
+
+general_goal_checker :
+  # Является ли это проверкой цели с сохранением состояния
+  stateful : True
+  # Тип плагина проверки цели
+  plugin : &quot;nav2_controller::SimpleGoalChecker&quot;
+  # Допуск по цели в направлениях X и Y
+  xy_goal_tolerance : 0.15
+  # Допуск по цели для направления поворота
+  yaw_goal_tolerance : 0.15
+
+# Параметры локального планировщика DWB
+FollowPath :
+  # Тип плагина локального планировщика
+  plugin : &quot;dwb_core::DWBLocalPlanner&quot;
+  # Отображать ли подробности траектории для отладки
+  debug_trajectory_details : True
+  # Минимальная скорость по X
+  min_vel_x : 0.0
+  # Минимальная скорость по Y
+  min_vel_y : 0.0
+  # Максимальная скорость по X
+  max_vel_x : 0.35
+  # Максимальная скорость по Y
+  max_vel_y : 0.0
+  # Максимальная скорость поворота
+  max_vel_theta : 1.0
+  # Минимальная скорость в плоскости XY
+  min_speed_xy : 0.0
+  # Максимальная скорость в плоскости XY
+  max_speed_xy : 0.22
+  # Минимальная скорость поворота
+  min_speed_theta : 0.0
+  # Предел ускорения по X
+  acc_lim_x : 2.5
+  # Предел ускорения по Y
+  acc_lim_y : 0.0
+  # Предел ускорения поворота
+  acc_lim_theta : 3.2
+  # Предел замедления по X
+  decel_lim_x : -2.5
+  # Предел замедления по Y
+  decel_lim_y : 0.0
+  # Предел замедления поворота
+  decel_lim_theta : -3.2
+  # Число выборок скорости по X
+  vx_samples : 20
+  # Число выборок скорости по Y
+  vy_samples : 0
+  # Число выборок скорости поворота
+  vtheta_samples : 40
+  # Время симуляции
+  sim_time : 1.5
+  # Линейное разрешение
+  linear_granularity : 0.05
+  # Угловое разрешение
+  angular_granularity : 0.025
+  # Допуск по времени преобразования
+  transform_tolerance : 0.2
+  # Допуск по цели в направлениях X и Y
+  xy_goal_tolerance : 0.05
+  # Порог скорости для остановки при перемещении
+  trans_stopped_velocity : 0.25
+  # Использовать ли сокращённую (short-circuit) оценку траектории
+  short_circuit_trajectory_evaluation : True
+  # Является ли планировщик планировщиком с сохранением состояния
+  stateful : True
+  # Список оценщиков (critics)
+  critics : [ &quot;RotateToGoal&quot; , &quot;Oscillation&quot; , &quot;BaseObstacle&quot; , &quot;GoalAlign&quot; , &quot;PathAlign&quot; , &quot;PathDist&quot; , &quot;GoalDist&quot; ]
+  # Вес базового оценщика препятствий
+  BaseObstacle.scale : 0.02
+  # Вес оценщика выравнивания по пути
+  PathAlign.scale : 32.0
+  # Дистанция опережающей точки оценщика выравнивания по пути
+  PathAlign.forward_point_distance : 0.1
+  # Вес оценщика выравнивания по цели
+  GoalAlign.scale : 24.0
+  # Дистанция опережающей точки оценщика выравнивания по цели
+  GoalAlign.forward_point_distance : 0.1
+  # Вес оценщика дистанции по пути
+  PathDist.scale : 32.0
+  # Вес оценщика дистанции по цели
+  GoalDist.scale : 24.0
+  # Вес оценщика поворота к цели
+  RotateToGoal.scale : 32.0
+  # Коэффициент замедления оценщика поворота к цели
+  RotateToGoal.slowing_factor : 5.0
+  # Время опережающего просмотра оценщика поворота к цели
+  RotateToGoal.lookahead_time : -1.0
+
+# Настройка узла Controller Server RCLCPP
+controller_server_rclcpp_node :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+
+# Настройка локальной карты стоимости
+local_costmap :
+  local_costmap :
+    ros__parameters :
+      # Частота обновления карты стоимости
+      update_frequency : 5.0
+      # Частота публикации карты стоимости
+      publish_frequency : 2.0
+      # Имя глобальной системы координат
+      global_frame : odom
+      # Имя базовой системы координат робота
+      robot_base_frame : base_link
+      # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+      # Использовать ли скользящее окно
+      rolling_window : true
+      # Ширина карты стоимости
+      width : 3
+      # Высота карты стоимости
+      height : 3
+      # Разрешение карты стоимости
+      resolution : 0.05
+      # Радиус робота
+      robot_radius : 0.15
+      # Список плагинов карты стоимости
+      plugins : [ &quot;obstacle_layer&quot; , &quot;voxel_layer&quot; , &quot;inflation_layer&quot; ]
+      inflation_layer :
+       # Тип плагина слоя расширения
+        plugin : &quot;nav2_costmap_2d::InflationLayer&quot;
+       # Радиус расширения
+        inflation_radius : 0.3
+       # Коэффициент масштабирования стоимости
+        cost_scaling_factor : 3.0
+      obstacle_layer :
+       # Тип плагина слоя препятствий
+        plugin : &quot;nav2_costmap_2d::ObstacleLayer&quot;
+       # Включён ли слой препятствий
+        enabled : True
+       # Имя источника наблюдения
+        observation_sources : scan
+        scan :
+         # Имя топика данных лазерного сканирования
+          topic : /scan
+         # Максимальная высота препятствия
+          max_obstacle_height : 2.0
+         # Очищать ли препятствия
+          clearing : True
+         # Отмечать ли препятствия
+          marking : True
+         # Тип данных
+          data_type : &quot;LaserScan&quot;
+      voxel_layer :
+       # Тип плагина воксельного слоя
+        plugin : &quot;nav2_costmap_2d::VoxelLayer&quot;
+       # Включён ли воксельный слой
+        enabled : True
+       # Публиковать ли воксельную карту
+        publish_voxel_map : True
+       # Начало координат по Z
+        origin_z : 0.0
+       # Разрешение по Z
+        z_resolution : 0.05
+       # Число вокселей по оси Z
+        z_voxels : 16
+       # Максимальная высота препятствия
+        max_obstacle_height : 2.0
+       # Порог отметки
+        mark_threshold : 0
+       # Имя источника наблюдения
+        observation_sources : scan
+        scan :
+         # Имя топика данных лазерного сканирования
+          topic : /scan
+         # Максимальная высота препятствия
+          max_obstacle_height : 2.0
+         # Очищать ли препятствия
+          clearing : True
+         # Отмечать ли препятствия
+          marking : True
+         # Тип данных
+          data_type : &quot;LaserScan&quot;
+         # Максимальная дальность трассировки луча
+          raytrace_max_range : 3.0
+         # Минимальная дальность трассировки луча
+          raytrace_min_range : 0.0
+         # Максимальная дальность обнаружения препятствий
+          obstacle_max_range : 2.5
+         # Минимальная дальность обнаружения препятствий
+          obstacle_min_range : 0.0
+      static_layer :
+       # Подписываться ли на transient local карту
+        map_subscribe_transient_local : True
+      # Всегда ли отправлять полную карту стоимости
+      always_send_full_costmap : True
+  local_costmap_client :
+    ros__parameters :
+      # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+  local_costmap_rclcpp_node :
+    ros__parameters :
+      # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+
+# Настройка глобальной карты стоимости
+global_costmap :
+  global_costmap :
+    ros__parameters :
+      # Частота обновления карты стоимости
+      update_frequency : 1.0
+      # Частота публикации карты стоимости
+      publish_frequency : 1.0
+      # Имя глобальной системы координат
+      global_frame : map
+      # Имя базовой системы координат робота
+      robot_base_frame : base_link
+      # Использовать ли время симуляции; True — использовать время симуляции
+      use_sim_time : True
+      # Радиус робота
+      robot_radius : 0.2
+      # Разрешение карты стоимости
+      resolution : 0.05
+      # Отслеживать ли неизвестное пространство
+      track_unknown_space : false
+      # Список плагинов карты стоимости
+      plugins : [ &quot;static_layer&quot; , &quot;obstacle_layer&quot; , &quot;voxel_layer&quot; , &quot;inflation_layer&quot; ]
+      obstacle_layer :
+       # Тип плагина слоя препятствий
+        plugin : &quot;nav2_costmap_2d::ObstacleLayer&quot;
+       # Включён ли слой препятствий
+        enabled : True
+       # Имя источника наблюдения
+        observation_sources : scan
+        scan :
+         # Имя топика данных лазерного сканирования
+          topic : /scan
+         # Максимальная высота препятствия
+          max_obstacle_height : 2.0
+         # Очищать ли препятствия
+          clearing : True
+         # Отмечать ли препятствия
+          marking : True
+         # Тип данных
+          data_type : &quot;LaserScan&quot;
+         # Максимальная дальность трассировки луча
+          raytrace_max_range : 3.0
+         # Минимальная дальность трассировки луча
+          raytrace_min_range : 0.0
+         # Максимальная дальность обнаружения препятствий
+          obstacle_max_range : 2.5
+         # Минимальная дальность обнаружения препятствий
+          obstacle_min_range : 0.0
+      voxel_layer :
+       # Тип плагина воксельного слоя
+        plugin : &quot;nav2_costmap_2d::VoxelLayer&quot;
+       # Включён ли воксельный слой
+        enabled : True
+       # Публиковать ли воксельную карту
+        publish_voxel_map : True
+       # Начало координат по Z
+        origin_z : 0.0
+       # Разрешение по Z
+        z_resolution : 0.05
+       # Число вокселей по оси Z
+        z_voxels : 16
+       # Максимальная высота препятствия
+        max_obstacle_height : 2.0
+       # Порог отметки
+        mark_threshold : 0
+       # Имя источника наблюдения
+        observation_sources : scan
+        scan :
+         # Имя топика данных лазерного сканирования
+          topic : /scan
+         # Максимальная высота препятствия
+          max_obstacle_height : 2.0
+         # Очищать ли препятствия
+          clearing : True
+         # Отмечать ли препятствия
+          marking : True
+         # Тип данных
+          data_type : &quot;LaserScan&quot;
+         # Максимальная дальность трассировки луча
+          raytrace_max_range : 3.0
+         # Минимальная дальность трассировки луча
+          raytrace_min_range : 0.0
+         # Максимальная дальность обнаружения препятствий
+          obstacle_max_range : 2.5
+         # Минимальная дальность обнаружения препятствий
+          obstacle_min_range : 0.0
+      static_layer :
+       # Тип плагина статического слоя
+        plugin : &quot;nav2_costmap_2d::StaticLayer&quot;
+       # Подписываться ли на transient local карту
+        map_subscribe_transient_local : True
+      inflation_layer :
+       # Тип плагина слоя расширения
+        plugin : &quot;nav2_costmap_2d::InflationLayer&quot;
+       # Коэффициент масштабирования стоимости
+        cost_scaling_factor : 3.0
+       # Радиус расширения
+        inflation_radius : 0.3
+      # Всегда ли отправлять полную карту стоимости
+      always_send_full_costmap : True
+  global_costmap_client :
+    ros__parameters :
+      # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+  global_costmap_rclcpp_node :
+    ros__parameters :
+      # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+
+# Настройка Map Server
+map_server :
+    ros__parameters :
+     # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+     # Имя YAML-файла карты
+      yaml_filename : &quot;map.yaml&quot;
+
+# Настройка Map Saver
+map_saver :
+    ros__parameters :
+     # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+     # Таймаут сохранения карты
+      save_map_timeout : 5.0
+     # Порог свободного пространства по умолчанию
+      free_thresh_default : 0.25
+     # Порог занятости по умолчанию
+      occupied_thresh_default : 0.65
+     # Подписываться ли на transient local карту
+      map_subscribe_transient_local : True
+
+# Настройка Planner Server
+planner_server :
+    ros__parameters :
+     # Требуемая частота работы планировщика
+      expected_planner_frequency : 5.0
+     # Использовать ли время симуляции; False — использовать реальное время
+      use_sim_time : False
+     # Список имён плагинов планировщика
+      planner_plugins : [ &quot;GridBased&quot; ]
+      GridBased :
+        # Тип плагина планировщика на основе сетки
+        plugin : &quot;nav2_navfn_planner/NavfnPlanner&quot;
+        # Допуск планирования
+        tolerance : 0.5
+        # Использовать ли алгоритм A*
+        use_astar : false
+      # Разрешать ли неизвестное пространство
+      allow_unknown : true
+
+# Настройка узла Planner Server RCLCPP
+planner_server_rclcpp_node :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+
+# Настройка Recoveries Server
+recoveries_server :
+  ros__parameters :
+   # Имя топика карты стоимости
+    costmap_topic : local_costmap/costmap_raw
+   # Имя топика контура робота
+    footprint_topic : local_costmap/published_footprint
+   # Частота цикла
+    cycle_frequency : 5.0
+   # Список имён плагинов восстановления
+    recovery_plugins : [ &quot;spin&quot; , &quot;backup&quot; , &quot;wait&quot; ]
+    spin :
+      # Тип плагина восстановления через поворот
+      plugin : &quot;nav2_recoveries/Spin&quot;
+    backup :
+      # Тип плагина восстановления через отход назад
+      plugin : &quot;nav2_recoveries/BackUp&quot;
+    wait :
+      # Тип плагина восстановления через ожидание
+      plugin : &quot;nav2_recoveries/Wait&quot;
+   # Имя глобальной системы координат
+    global_frame : odom
+   # Имя базовой системы координат робота
+    robot_base_frame : base_link
+   # Таймаут преобразования
+    transform_timeout : 0.1
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+   # Время опережающей симуляции
+    simulate_ahead_time : 2.0
+   # Максимальная скорость поворота
+    max_rotational_vel : 1.0
+   # Минимальная скорость поворота
+    min_rotational_vel : 0.4
+   # Предел углового ускорения
+    rotational_acc_lim : 3.2
+
+# Настройка Robot State Publisher
+robot_state_publisher :
+  ros__parameters :
+   # Использовать ли время симуляции; False — использовать реальное время
+    use_sim_time : False
+
+# Настройка Waypoint Follower
+waypoint_follower :
+  ros__parameters :
+   # Частота цикла
+    loop_rate : 2000
+   # Останавливаться ли при сбое
+    stop_on_failure : false
+   # Имя плагина исполнителя задач путевых точек
+    waypoint_task_executor_plugin : &quot;wait_at_waypoint&quot;
+    wait_at_waypoint :
+       # Тип плагина ожидания на путевой точке
+       plugin : &quot;nav2_waypoint_follower::WaitAtWaypoint&quot;
+       # Включён ли плагин
+       enabled : True
+       # Длительность паузы на путевой точке
+       waypoint_pause_duration : 200
+</code></pre>
+<p>Выше приведены настраиваемые параметры Navigation2. Если пользователю нужно изменить параметры конфигурации, после внесения изменений необходимо пересобрать функциональный пакет <code>M3Pro_navigation</code> в рабочем пространстве <code>M3Pro_ws</code>, чтобы изменения вступили в силу:</p>
+<pre><code>colcon build --packages-select M3Pro_navigation
+</code></pre><div class="pager"><a href="8-slam-toolbox-mapping.html">&larr; Построение карты с помощью slam_toolbox</a><a href="10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2 &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>
