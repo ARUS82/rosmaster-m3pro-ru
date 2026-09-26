@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Связь по шине CAN</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Связь по шине CAN</div>
 <h1>Связь по шине CAN</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -154,7 +154,7 @@
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, плата управления STM32 имеет встроенный интерфейс FDCAN. Для удобства тестирования в этом уроке используется режим обратной петли (loopback), поэтому интерфейс CAN не нужно подключать к другим устройствам CAN.</p>
 <p>Подключите USB-кабель Type-C к компьютеру и к порту USB Connect на плате управления STM32.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="25-img-001-000.png" /></p>
 <p>Примечание: в тестовом уроке интерфейс CAN можно оставить не подключённым (в подвешенном состоянии).</p>
 <p>Если вам нужно подключить другие устройства CAN, совместите разъём с шелкографией на плате: CAN-H слева и CAN-L справа. После этого измените режим CAN на стандартный (standard mode), пересоберите firmware и прошейте его.</p>
 <h2>3. Анализ основного кода</h2>
@@ -162,12 +162,12 @@
 <pre><code>Board_Samples/STM32_Samples/CAN
 </code></pre>
 <p>В соответствии с назначением выводов, CAN_TX подключён к PD1, а CAN_RX — к PD0.</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="25-img-002-001.png" /></p>
 <p>В соответствии с компонентом CAN, предоставляемым STM32CUBEIDE, настройте формат кадра на традиционный режим, а режим CAN — на режим обратной петли (loopback). Если нужно подключить внешнее устройство CAN, установите режим Mode на стандартный (standard).</p>
-<p><img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="25-img-002-002.png" /></p>
 <p>Установите скорость передачи FDCAN на 1000 кбит/с.</p>
-<p><img alt="" src="img-003-003.png" />
-<img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="25-img-003-003.png" />
+<img alt="" src="25-img-003-004.png" /></p>
 <p>Инициализация конфигурации CAN.</p>
 <pre><code class="language-c">FDCAN_TxFrame_TypeDef TxFrame = {
      .hcan = &amp;hfdcan1,
@@ -287,9 +287,9 @@ FDCAN1_RxFrame.Data);
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Откройте программу для работы с последовательным портом (конкретные параметры показаны на рисунке ниже) — и вы увидите, что в терминале постоянно печатаются данные, отправленные и принятые по CAN.</p>
-<p><img alt="" src="img-006-005.png" />
-<img alt="" src="img-006-006.png" /></p>
-<p><img alt="" src="img-007-007.png" /></p><div class="pager"><a href="17-usb-controller-remote-control.html">&larr; Управление через USB-геймпад</a><a href="1-post-a-topic.html">Публикация топика &rarr;</a></div>
+<p><img alt="" src="25-img-006-005.png" />
+<img alt="" src="25-img-006-006.png" /></p>
+<p><img alt="" src="25-img-007-007.png" /></p><div class="pager"><a href="17-usb-controller-remote-control.html">&larr; Управление через USB-геймпад</a><a href="1-post-a-topic.html">Публикация топика &rarr;</a></div>
 </main>
 </div>
 </body>

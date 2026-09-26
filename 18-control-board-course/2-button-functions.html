@@ -140,46 +140,26 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Функции кнопки</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Функции кнопки</div>
 <h1>Функции кнопки</h1>
 <ul>
-<li>
-<ol>
-<li>Цель эксперимента</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Подключение оборудования</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Анализ основного кода</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Компиляция, загрузка и прошивка firmware</li>
-</ol>
-</li>
-<li>
-<ol>
-<li>Результаты эксперимента</li>
-</ol>
-</li>
+<li>1. Цель эксперимента</li>
+<li>2. Подключение оборудования</li>
+<li>3. Анализ основного кода</li>
+<li>4. Компиляция, загрузка и прошивка firmware</li>
+<li>5. Результаты эксперимента</li>
 </ul>
 <h2>1. Цель эксперимента</h2>
 <p>Считывание состояния кнопки KEY1 на плата управления STM32 и управление включением/выключением светодиодного индикатора.</p>
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, кнопка KEY1 и светодиодный индикатор — встроенные компоненты платы, поэтому дополнительные устройства не требуются. Подключите кабель Type-C к компьютеру и порту USB Connect на плата управления STM32.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="09-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Откройте STM32CubeIDE и импортируйте проект. Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/Key
 </code></pre>
 <p>Инициализируйте периферийные GPIO: LED_ROS_GPIO соответствует выводу PC14 согласно электрической схеме, режим GPIO — выходной; KEY1_GPIO соответствует выводу PC15, режим GPIO — вход с подтяжкой вверх (pull-up).</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="09-img-002-001.png" /></p>
 <pre><code class="language-c">#define LED_MCU_Pin GPIO_PIN_13
 #define LED_MCU_GPIO_Port GPIOC
 #define LED_ROS_Pin GPIO_PIN_14
@@ -196,7 +176,7 @@ void MX_GPIO_Init(void)
     __HAL_RCC_GPIOH_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
 </code></pre>
-<p><img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="09-img-002-002.png" /></p>
 <pre><code class="language-c">    /*Configure GPIO pin Output Level */
     HAL_GPIO_WritePin(GPIOC, LED_MCU_Pin|LED_ROS_Pin, GPIO_PIN_RESET);
 
@@ -281,15 +261,15 @@ void MX_GPIO_Init(void)
 </code></pre>
 <h2>4. Компиляция, загрузка и прошивка firmware</h2>
 <p>Выберите проект для компиляции в панели управления файлами STM32CubeIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать сборку.</p>
-<p><img alt="" src="img-004-003.png" /></p>
+<p><img alt="" src="09-img-004-003.png" /></p>
 <p>Если ошибок и предупреждений нет, компиляция завершена.</p>
 <p>Нажмите и удерживайте кнопку BOOT0, затем нажмите кнопку RESET для сброса, отпустите кнопку BOOT0, чтобы войти в режим прошивки через последовательный порт. Затем используйте инструмент прошивки через последовательный порт, чтобы записать firmware на плату.</p>
 <p>Если у вас есть ST-LINK или J-Link, можно также использовать STM32CubeIDE для прошивки firmware одним нажатием — это более удобно и быстро.</p>
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Как только вы нажмёте KEY1, индикатор LED_ROS включится. Нажмите KEY1 снова — индикатор LED_ROS выключится. При каждом нажатии KEY1 состояние индикатора LED_ROS меняется.</p>
-<p><img alt="" src="img-005-004.png" />
-<img alt="" src="img-005-005.png" /></p><div class="pager"><a href="1-turn-on-the-led-light.html">&larr; Включение светодиода</a><a href="3-drive-the-buzzer.html">Управление буззером &rarr;</a></div>
+<p><img alt="" src="09-img-005-004.png" />
+<img alt="" src="09-img-005-005.png" /></p><div class="pager"><a href="1-turn-on-the-led-light.html">&larr; Включение светодиода</a><a href="3-drive-the-buzzer.html">Управление буззером &rarr;</a></div>
 </main>
 </div>
 </body>

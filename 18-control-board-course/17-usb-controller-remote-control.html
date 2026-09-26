@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Управление через USB-геймпад</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Управление через USB-геймпад</div>
 <h1>Управление через USB-геймпад</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -155,15 +155,15 @@
 <p>Как показано на рисунке ниже, плата управления STM32 имеет встроенный интерфейс USB-хоста. Вставьте USB-приёмник геймпада в интерфейс USB-хоста на плате управления. USB-приёмник геймпада и беспроводной геймпад нужно подготовить самостоятельно.</p>
 <p>Подключите USB-кабель Type-C к компьютеру и к порту USB Connect на плате управления STM32.</p>
 <p>Схема подключения беспроводного геймпада и USB-приёмника геймпада</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="24-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/USB_Host
 </code></pre>
 <p>В соответствии с назначением выводов, USB-DP подключён к PA12, а USB-DM — к PA11.</p>
 <p>В соответствии с компонентом USB_HOST, предоставляемым STM32CUBEIDE, настройте USB в режим HID.</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="24-img-002-001.png" />
+<img alt="" src="24-img-002-002.png" /></p>
 <p>Получение данных геймпада в callback-функции прерывания USB.</p>
 <pre><code class="language-c">void USBH_HID_EventCallback(USBH_HandleTypeDef *phost)
 {
@@ -188,7 +188,7 @@ HID_MOUSE_BOOT_CODE)
      }
 }
 </code></pre>
-<p><img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="24-img-003-003.png" /></p>
 <p>Если данные прочитаны успешно, возвращаются данные структуры joystick_info.</p>
 <pre><code class="language-c">HID_JOYSTICK_Info_TypeDef *USBH_HID_GetJoystickInfo(USBH_HandleTypeDef *phost)
 {
@@ -367,17 +367,17 @@ static void print_joy_info(HID_JOYSTICK_Info_TypeDef joystick_info)
 <p>Поскольку USB_HOST автоматически генерируется компонентом STM32CUBEIDE, при повторной генерации кода нужно добавить импорт заголовочного файла app_joystick.h в файл Middlewares\ST\STM32_USB_Host_Library\Class\HID\Src\usbh_hid.c.</p>
 <h2>4. Компиляция, загрузка и прошивка firmware</h2>
 <p>Выберите проект для компиляции в окне управления файлами STM32CUBEIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать компиляцию.</p>
-<p><img alt="" src="img-007-004.png" /></p>
+<p><img alt="" src="24-img-007-004.png" /></p>
 <p>Если ошибок и предупреждений нет, компиляция завершена успешно.</p>
 <p>Нажмите и удерживайте кнопку BOOT0, затем нажмите кнопку RESET для перезагрузки, отпустите кнопку BOOT0, чтобы войти в режим прошивки через последовательный порт. Затем используйте утилиту прошивки через последовательный порт, чтобы записать firmware на плату.</p>
 <p>Если у вас есть ST-Link или J-Link, вы также можете прошить firmware в один клик прямо из STM32CUBEIDE — это более удобно и быстро.</p>
-<p><img alt="" src="img-007-005.png" />
-<img alt="" src="img-007-006.png" /></p>
+<p><img alt="" src="24-img-007-005.png" />
+<img alt="" src="24-img-007-006.png" /></p>
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Откройте программу для работы с последовательным портом (конкретные параметры показаны на рисунке ниже), и вы увидите, что данные каждого канала USB-геймпада непрерывно печатаются в терминале. Когда вы вручную двигаете стик или нажимаете кнопку на беспроводном USB-геймпаде, данные соответствующим образом изменяются: "X" означает отжатие, "O" означает нажатие. Порядок кнопок см. в параметрах структуры HID_JOYSTICK_Info_TypeDef.</p>
 <p>Примечание: если беспроводной USB-геймпад не используется в течение некоторого времени, он переходит в спящий режим. В этом случае перед работой с геймпадом нужно нажать кнопку START, чтобы активировать геймпад, — иначе изменения значений не будут видны.</p>
-<p><img alt="" src="img-008-007.png" /></p><div class="pager"><a href="16-sbus-model-aircraft-remote-control.html">&larr; Пульт радиоуправления авиамоделью по SBUS</a><a href="18-can-bus-communication.html">Связь по шине CAN &rarr;</a></div>
+<p><img alt="" src="24-img-008-007.png" /></p><div class="pager"><a href="16-sbus-model-aircraft-remote-control.html">&larr; Пульт радиоуправления авиамоделью по SBUS</a><a href="18-can-bus-communication.html">Связь по шине CAN &rarr;</a></div>
 </main>
 </div>
 </body>

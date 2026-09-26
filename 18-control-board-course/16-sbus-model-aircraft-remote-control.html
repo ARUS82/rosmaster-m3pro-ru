@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Пульт радиоуправления авиамоделью по SBUS</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Пульт радиоуправления авиамоделью по SBUS</div>
 <h1>Пульт радиоуправления авиамоделью по SBUS</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -156,15 +156,15 @@
 <p>Подключите USB-кабель Type-C к компьютеру и к порту USB Connect на плате управления STM32.</p>
 <p>Примечание: интерфейс SBUS имеет определённое направление подключения. Подключайте в соответствии с шелкографией на плате управления: GND — к земле, 5V — к питанию (VCC), SBUS — к сигнальной линии.</p>
 <p>Схема подключения пульта радиоуправления авиамоделью и приёмника SBUS</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="23-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/SBus
 </code></pre>
 <p>В соответствии с назначением выводов, сигнальный вывод SBUS подключён к PA3 (USART2_RX). Для соответствия требованиям связи SBUS в аппаратную схему добавлена инвертирующая цепь. Последовательный порт 2 инициализируется со скоростью передачи 100000 бит/с, длиной данных 9, 2 стоп-битами, чётным паритетом (even parity) и аппаратным управлением потоком None. Также необходимо включить прерывание приёма последовательного порта.</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" />
-<img alt="" src="img-002-003.png" /></p>
+<p><img alt="" src="23-img-002-001.png" />
+<img alt="" src="23-img-002-002.png" />
+<img alt="" src="23-img-002-003.png" /></p>
 <pre><code class="language-c">void MX_USART2_UART_Init(void)
 {
     huart2.Instance = USART2;
@@ -187,7 +187,7 @@ HAL_OK)
     {
         Error_Handler();
 </code></pre>
-<p><img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="23-img-003-004.png" /></p>
 <pre><code class="language-c">    }
       if (HAL_UARTEx_SetRxFifoThreshold(&amp;huart2, UART_RXFIFO_THRESHOLD_1_8) !=
   HAL_OK)
@@ -359,9 +359,9 @@ void SBUS_Handle(void)
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Откройте программу для работы с последовательным портом (конкретные параметры показаны на рисунке ниже) — и вы увидите, что в терминале постоянно печатаются данные каждого канала пульта радиоуправления авиамоделью. Когда вы вручную двигаете стик или кнопку на пульте радиоуправления, данные соответствующим образом изменяются.</p>
-<p><img alt="" src="img-007-005.png" />
-<img alt="" src="img-007-006.png" /></p>
-<p><img alt="" src="img-008-007.png" /></p><div class="pager"><a href="15-driving-rgb-light-strip.html">&larr; Управление RGB-светодиодной лентой</a><a href="17-usb-controller-remote-control.html">Управление через USB-геймпад &rarr;</a></div>
+<p><img alt="" src="23-img-007-005.png" />
+<img alt="" src="23-img-007-006.png" /></p>
+<p><img alt="" src="23-img-008-007.png" /></p><div class="pager"><a href="15-driving-rgb-light-strip.html">&larr; Управление RGB-светодиодной лентой</a><a href="17-usb-controller-remote-control.html">Управление через USB-геймпад &rarr;</a></div>
 </main>
 </div>
 </body>
