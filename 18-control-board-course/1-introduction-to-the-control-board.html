@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Знакомство с платой управления — Курс по платам управления</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details open>
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="active" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 1.Development environment setup / Знакомство с платой управления</div>
+<h1>Знакомство с платой управления</h1>
+<ul>
+<li>
+<ol>
+<li>Схема расположения компонентов на передней стороне плата управления</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Схема расположения компонентов на задней стороне плата управления</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Схема назначения выводов плата управления</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Разбор часто задаваемых вопросов</li>
+</ol>
+</li>
+</ul>
+<h2>1. Схема расположения компонентов на передней стороне плата управления</h2>
+<p><img alt="" src="img-001-000.png" /></p>
+<ol>
+<li>Кнопка KEY1: пользовательская функциональная кнопка, назначение которой можно задать программно.</li>
+<li>Кнопка RESET: сброс микроконтроллера STM32.</li>
+<li>Кнопка BOOT0: используется для входа в режим прошивки при загрузке firmware STM32.</li>
+<li>Активный буззер: звуковой сигнал и сигнализация о низком заряде батареи.</li>
+<li>Разъём левого радара: последовательный порт 4, подключается к заднему левому радару.</li>
+<li>Отладочный интерфейс (Debug): последовательный порт 7, к нему можно подключить TTL-модуль для просмотра лог-сообщений.</li>
+<li>Разъём правого радара: последовательный порт 5, подключается к переднему правому радару.</li>
+<li>Управляющий интерфейс (Control): последовательный порт 6, к нему можно подключить TTL-модуль и отправлять протокол управления роботом.</li>
+<li>Интерфейс CAN: позволяет подключать устройства шины CAN и отправлять протокол управления роботом.</li>
+<li>Интерфейс OLED-экрана: позволяет отображать состояние платы.</li>
+<li>Интерфейс RGB-светодиодной ленты: отображает цветовые статусы через ленту.</li>
+<li>Интерфейс SBUS: подключение приёмника SBUS от пульта авиамодели.</li>
+<li>Интерфейс ШИМ-сервопривода (PWM servo): подключение ШИМ-сервопривода.</li>
+<li>Переключатель напряжения ШИМ-сервопривода: напряжение можно выбрать 5В или 6,8В.</li>
+<li>Интерфейс шинного сервопривода 6,8В: подключение шинного сервопривода на 6,8В.</li>
+<li>Интерфейс шинного сервопривода 12В: подключение шинного сервопривода на 12В.</li>
+<li>Интерфейс шинного сервопривода 12В: подключение шинного сервопривода на 12В.</li>
+<li>Интерфейс прошивки и связи: последовательный порт TYPE-C для прошивки MCU и передачи данных.</li>
+<li>Интерфейс геймпада: подключение USB-геймпада.</li>
+<li>Мотор M3: подключается к переднему правому мотору робота.</li>
+<li>Мотор M4: подключается к заднему правому мотору робота.</li>
+<li>Мотор M1: подключается к переднему левому мотору робота.</li>
+<li>Мотор M2: подключается к заднему левому мотору робота.</li>
+<li>Выходной интерфейс Type-C 5В: выход 5,1В/5А, с проприетарным протоколом Raspberry Pi.</li>
+<li>Выходной интерфейс DC 5В: обеспечивает выходное напряжение 5В.</li>
+<li>Входной интерфейс питания T-типа DC 12В: подключение источника питания 12В для питания материнской платы.</li>
+<li>Светодиодный индикатор: отображает напряжение и функциональное состояние.</li>
+<li>Выход DC12В: обеспечивает выходное напряжение 12В.</li>
+<li>Выход DC12В: обеспечивает выходное напряжение 12В.</li>
+<li>Выключатель питания: управляет питанием всей платы. Переведите переключатель в положение OFF для выключения платы и в положение ON для включения.</li>
+<li>Разъём зарядки: порт зарядки на 12,6В.</li>
+<li>Девятиосевой датчик ориентации: включает трёхосевой акселерометр, трёхосевой гироскоп и трёхосевой магнитометр.</li>
+<li>Интерфейс отладки SWD: пользователи могут использовать ST-LINK для отладки.</li>
+</ol>
+<h2>2. Схема расположения компонентов на задней стороне плата управления</h2>
+<p><img alt="" src="img-002-001.png" /></p>
+<ol>
+<li>Микроконтроллер STM32: основная микросхема, управляющая работой всех функций платы.</li>
+<li>Разъём зарядки: порт зарядки на 12,6В.</li>
+<li>Интерфейс самофиксирующегося выключателя: позволяет подключить внешний самофиксирующийся выключатель для управления включением/выключением всей платы.</li>
+</ol>
+<h2>3. Схема назначения выводов плата управления</h2>
+<p><img alt="" src="img-003-002.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Периферийное устройство</th>
+<th>Выводы</th>
+<th>Примечание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Активный буззер</td>
+<td>PE5</td>
+<td>Обычный GPIO</td>
+</tr>
+<tr>
+<td>RGB-светодиодная лента</td>
+<td>PE6</td>
+<td>SPI4_MOSI (SPI4_SCK — тактовый сигнал SPI4, не требуется и оставлен неподключённым)</td>
+</tr>
+<tr>
+<td>Индикатор LED_MCU</td>
+<td>PC13</td>
+<td>Обычный GPIO, индикатор состояния</td>
+</tr>
+<tr>
+<td>Индикатор LED_ROS</td>
+<td>PC14</td>
+<td>Обычный GPIO, индикатор состояния ROS</td>
+</tr>
+<tr>
+<td>Кнопка KEY1</td>
+<td>PC15</td>
+<td>Обычный GPIO, вход с подтяжкой вверх (pull-up)</td>
+</tr>
+<tr>
+<td>Кварцевый резонатор 25 МГц</td>
+<td>PH0/PH1</td>
+<td></td>
+</tr>
+<tr>
+<td>Детектор напряжения батареи BAT</td>
+<td>PC0</td>
+<td>Измерение через АЦП</td>
+</tr>
+<tr>
+<td>Индикатор LED_SW</td>
+<td>PC1</td>
+<td>Обычный GPIO, индикатор переключателя</td>
+</tr>
+<tr>
+<td>Датчик ориентации IMU</td>
+<td>PC2/PC3/PB13/PB12/PD10</td>
+<td>SPI2 — MISO/MOSI/SCK/NSS/INT</td>
+</tr>
+<tr>
+<td>Энкодер мотора M3</td>
+<td>PA0/PA1</td>
+<td>Режим энкодера, таймер 5, каналы 1 и 2</td>
+</tr>
+<tr>
+<td>Интерфейс SBUS</td>
+<td>PA3</td>
+<td>Вывод приёма последовательного порта 2 (PA2 — вывод передачи порта 2, не требуется и оставлен неподключённым)</td>
+</tr>
+<tr>
+<td>Драйвер мотора M3</td>
+<td>PA5/PB0</td>
+<td>Режим ШИМ, таймер 8, каналы 1N и 2N</td>
+</tr>
+<tr>
+<td>Отладочный интерфейс</td>
+<td>PE7/PE8</td>
+<td>Последовательный порт 7, вывод лог-сообщений</td>
+</tr>
+<tr>
+<td>Драйвер мотора M2</td>
+<td>PE9/PE11</td>
+<td>Режим ШИМ, таймер 1, каналы 1 и 2</td>
+</tr>
+<tr>
+<td>Драйвер мотора M1</td>
+<td>PE13/PE14</td>
+<td>Режим ШИМ, таймер 1, каналы 3 и 4</td>
+</tr>
+<tr>
+<td>OLED-дисплей</td>
+<td>PB10/PB11</td>
+<td>Интерфейс I2C</td>
+</tr>
+<tr>
+<td>ШИМ-сервопривод S1</td>
+<td>PB15</td>
+<td>Таймер 12, канал 2</td>
+</tr>
+<tr>
+<td>ШИМ-сервопривод S2</td>
+<td>PB14</td>
+<td>Таймер 12, канал 1</td>
+</tr>
+<tr>
+<td>Шинный сервопривод</td>
+<td>PD8/PD9</td>
+<td>Последовательный порт 3</td>
+</tr>
+<tr>
+<td>Энкодер мотора M4</td>
+<td>PD12/PD13</td>
+<td>Режим энкодера, таймер 4, каналы 1 и 2</td>
+</tr>
+<tr>
+<td>Управляющий интерфейс</td>
+<td>PC6/PC7</td>
+<td>Последовательный порт 6</td>
+</tr>
+<tr>
+<td>Драйвер мотора M4</td>
+<td>PC8/PC9</td>
+<td>Режим ШИМ, таймер 8, каналы 3 и 4</td>
+</tr>
+<tr>
+<td>Интерфейс прошивки и связи</td>
+<td>PA9/PA10</td>
+<td>Последовательный порт 1</td>
+</tr>
+<tr>
+<td>Интерфейс USB-геймпада</td>
+<td>PA11/PA12</td>
+<td>USB Host</td>
+</tr>
+<tr>
+<td>Интерфейс SWD</td>
+<td>PA13/PA14</td>
+<td>SWDIO/SWCLK</td>
+</tr>
+<tr>
+<td>Энкодер мотора M2</td>
+<td>PA15/PB3</td>
+<td>Режим энкодера, таймер 2, каналы 1 и 2</td>
+</tr>
+<tr>
+<td>Интерфейс левого радара</td>
+<td>PC10/PC11</td>
+<td>Последовательный порт 4</td>
+</tr>
+<tr>
+<td>Интерфейс правого радара</td>
+<td>PC12/PD2</td>
+<td>Последовательный порт 5</td>
+</tr>
+<tr>
+<td>Интерфейс CAN</td>
+<td>PD0/PD1</td>
+<td></td>
+</tr>
+<tr>
+<td>Энкодер мотора M1</td>
+<td>PB4/PB5</td>
+<td>Режим энкодера, таймер 3, каналы 1 и 2</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Разбор часто задаваемых вопросов</h2>
+<p><strong>1. Как основная вычислительная платформа (например, Jetson Nano) управляет платой управления? Как происходит обмен данными с платой управления?</strong></p>
+<p>Ответ: заводская прошивка плата управления включает в себя программу на базе фреймворка micro-ROS. Jetson Nano подключается к плата управления через интерфейс USB Connect, запускает агент micro-ROS и отправляет соответствующие команды-топики. Микроконтроллер, встроенный в плата управления, принимает и разбирает данные, а затем выполняет конкретные команды.</p>
+<p><strong>2. Как питается робот? Нужен ли основной вычислительной платформе отдельный источник питания?</strong></p>
+<p>Ответ: в комплекте с роботом идёт аккумуляторный блок. Подключите аккумуляторный блок к разъёму питания DC 12В T-типа на плата управления и включите основной выключатель питания. На плата управления встроена микросхема преобразования напряжения. Для материнской платы Jetson Nano питание подаётся через кабель DC 5В. Для Raspberry Pi 5 питание подаётся через кабель Type-C 5В с проприетарным протоколом. Для серии Jetson Orin питание подаётся через кабель выхода DC 12В.</p>
+<p><strong>3. Как обновить прошивку MCU? Зачем нужно обновлять прошивку MCU?</strong></p>
+<p>Ответ: MCU, встроенный в плата управления, поставляется с предустановленной заводской прошивкой. Обновлять прошивку не требуется, если в этом нет необходимости. Если обновление прошивки всё же нужно, обратитесь к руководству по обновлению прошивки MCU. Если на плата управления уже загружен отдельный hex-файл, перед запуском примеров ROS необходимо сначала перезаписать заводскую прошивку.</p><div class="pager"><span></span><a href="2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>

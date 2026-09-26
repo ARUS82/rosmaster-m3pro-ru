@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Управление мотором — Курс по платам управления</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details open>
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="active" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Управление мотором</div>
+<h1>Управление мотором</h1>
+<ul>
+<li>
+<ol>
+<li>Цель эксперимента</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Подключение оборудования</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Анализ основного кода</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Компиляция, загрузка и прошивка firmware</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Результаты эксперимента</li>
+</ol>
+</li>
+</ul>
+<h2>1. Цель эксперимента</h2>
+<p>Изучение управления моторами с использованием ШИМ-выхода плата управления STM32.</p>
+<p>Примечание: поскольку мотор начинает двигаться сразу после загрузки программы, сначала подвесьте робота или мотор в воздухе, чтобы он не начал ездить самопроизвольно.</p>
+<h2>2. Подключение оборудования</h2>
+<p>Как показано на рисунке ниже, плата управления STM32 имеет четыре встроенных интерфейса управления моторами с энкодером. Для этого требуется дополнительно подключить моторы с энкодером. Интерфейс управления моторами поддерживает моторы с энкодером типа 520. Поскольку энкодер требует высокого напряжения и тока, необходимо подключить батарею для питания.</p>
+<p>Соответствие названий четырёх интерфейсов моторов: переднее левое колесо → M1, заднее левое колесо → M2, переднее правое колесо → M3, заднее правое колесо → M4.</p>
+<p>Рядом с интерфейсом мотора нанесена подробная маркировка порядка проводов. В качестве примера рассмотрим мотор M1. M1+ и M1- — интерфейсы управления вращением мотора, GND и +3,3В — цепи питания энкодера, H1A и H1B — выводы обнаружения импульсов энкодера.</p>
+<p><img alt="" src="img-002-000.png" /></p>
+<p>Соответствие между выводами GPIO драйвера ШИМ мотора показано в таблице ниже:</p>
+<p><img alt="" src="img-003-001.png" />
+<img alt="" src="img-003-002.png" />
+<img alt="" src="img-003-003.png" />
+<img alt="" src="img-003-004.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Сигнал ШИМ интерфейса мотора</th>
+<th>Номер GPIO STM32</th>
+<th>Канал таймера STM32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1+(M1A)</td>
+<td>PE13</td>
+<td>TIM1_CH3</td>
+</tr>
+<tr>
+<td>M1-(M1B)</td>
+<td>PE14</td>
+<td>TIM1_CH4</td>
+</tr>
+<tr>
+<td>M2+(M2A)</td>
+<td>PE9</td>
+<td>TIM1_CH1</td>
+</tr>
+<tr>
+<td>M2-(M2B)</td>
+<td>PE11</td>
+<td>TIM1_CH2</td>
+</tr>
+<tr>
+<td>M3+(M3A)</td>
+<td>PA5</td>
+<td>TIM8_CH1N</td>
+</tr>
+<tr>
+<td>M3-(M3B)</td>
+<td>PB0</td>
+<td>TIM8_CH2N</td>
+</tr>
+<tr>
+<td>M4+(M4A)</td>
+<td>PC8</td>
+<td>TIM8_CH3</td>
+</tr>
+<tr>
+<td>M4-(M4B)</td>
+<td>PC9</td>
+<td>TIM8_CH4</td>
+</tr>
+</tbody>
+</table>
+<p>Схема подключения интерфейсов моторов:</p>
+<h2>3. Анализ основного кода</h2>
+<p>Путь к исходному коду программы:</p>
+<pre><code>Board_Samples/STM32_Samples/Motor
+</code></pre>
+<p>Сначала инициализируйте параметры настройки таймера TIM1: установите коэффициент деления частоты на 4, диапазон счёта — от 0 до 1999. Поскольку тактовая частота таймера TIM1 составляет 240 МГц, частота ШИМ рассчитывается как 240000000/(4+1)/(1999+1) = 24 кГц.</p>
+<p><img alt="" src="img-004-005.png" /></p>
+<pre><code class="language-c">void MX_TIM1_Init(void)
+{
+    TIM_MasterConfigTypeDef sMasterConfig = {0};
+    TIM_OC_InitTypeDef sConfigOC = {0};
+    TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+
+    /* USER CODE BEGIN TIM1_Init 1 */
+
+    /* USER CODE END TIM1_Init 1 */
+    htim1.Instance = TIM1;
+    htim1.Init.Prescaler = 4;
+    htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim1.Init.Period = 1999;
+    htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    htim1.Init.RepetitionCounter = 0;
+    htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+    if (HAL_TIM_PWM_Init(&amp;htim1) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+</code></pre>
+<p><img alt="" src="img-005-006.png" /></p>
+<pre><code class="language-c">    sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+     sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+     if (HAL_TIMEx_MasterConfigSynchronization(&amp;htim1, &amp;sMasterConfig) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     sConfigOC.OCMode = TIM_OCMODE_PWM1;
+     sConfigOC.Pulse = 0;
+     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+     sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+     sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim1, &amp;sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim1, &amp;sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim1, &amp;sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim1, &amp;sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+     sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+     sBreakDeadTimeConfig.DeadTime = 0;
+     sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+     sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+     sBreakDeadTimeConfig.BreakFilter = 0;
+     sBreakDeadTimeConfig.Break2State = TIM_BREAK2_DISABLE;
+     sBreakDeadTimeConfig.Break2Polarity = TIM_BREAK2POLARITY_HIGH;
+     sBreakDeadTimeConfig.Break2Filter = 0;
+     sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+     if (HAL_TIMEx_ConfigBreakDeadTime(&amp;htim1, &amp;sBreakDeadTimeConfig) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     HAL_TIM_MspPostInit(&amp;htim1);
+ }
+</code></pre>
+<p>Параметры инициализации таймера TIM8 совпадают с параметрами таймера TIM1.</p>
+<pre><code class="language-c">void MX_TIM8_Init(void)
+{
+    TIM_MasterConfigTypeDef sMasterConfig = {0};
+    TIM_OC_InitTypeDef sConfigOC = {0};
+    TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+
+    /* USER CODE BEGIN TIM8_Init 1 */
+
+    /* USER CODE END TIM8_Init 1 */
+    htim8.Instance = TIM8;
+    htim8.Init.Prescaler = 4;
+    htim8.Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim8.Init.Period = 1999;
+    htim8.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    htim8.Init.RepetitionCounter = 0;
+    htim8.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+    if (HAL_TIM_PWM_Init(&amp;htim8) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+    sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+</code></pre>
+<p><img alt="" src="img-007-007.png" /></p>
+<pre><code class="language-c">    sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+     if (HAL_TIMEx_MasterConfigSynchronization(&amp;htim8, &amp;sMasterConfig) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     sConfigOC.OCMode = TIM_OCMODE_PWM1;
+     sConfigOC.Pulse = 0;
+     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+     sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+     sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim8, &amp;sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim8, &amp;sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim8, &amp;sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     if (HAL_TIM_PWM_ConfigChannel(&amp;htim8, &amp;sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+     sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+     sBreakDeadTimeConfig.DeadTime = 0;
+     sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+     sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+     sBreakDeadTimeConfig.BreakFilter = 0;
+     sBreakDeadTimeConfig.Break2State = TIM_BREAK2_DISABLE;
+     sBreakDeadTimeConfig.Break2Polarity = TIM_BREAK2POLARITY_HIGH;
+     sBreakDeadTimeConfig.Break2Filter = 0;
+     sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+     if (HAL_TIMEx_ConfigBreakDeadTime(&amp;htim8, &amp;sBreakDeadTimeConfig) != HAL_OK)
+     {
+         Error_Handler();
+     }
+     /* USER CODE BEGIN TIM8_Init 2 */
+
+     /* USER CODE END TIM8_Init 2 */
+     HAL_TIM_MspPostInit(&amp;htim8);
+ }
+</code></pre>
+<p>Инициализация мотора запускает вывод ШИМ.</p>
+<pre><code class="language-c">void Motor_Init(void)
+ {
+     HAL_TIM_PWM_Start(&amp;htim1, TIM_CHANNEL_1);
+     HAL_TIM_PWM_Start(&amp;htim1, TIM_CHANNEL_2);
+     HAL_TIM_PWM_Start(&amp;htim1, TIM_CHANNEL_3);
+     HAL_TIM_PWM_Start(&amp;htim1, TIM_CHANNEL_4);
+
+     HAL_TIMEx_PWMN_Start(&amp;htim8, TIM_CHANNEL_1);
+     HAL_TIMEx_PWMN_Start(&amp;htim8, TIM_CHANNEL_2);
+     HAL_TIM_PWM_Start(&amp;htim8, TIM_CHANNEL_3);
+     HAL_TIM_PWM_Start(&amp;htim8, TIM_CHANNEL_4);
+ }
+</code></pre>
+<p>Соответствие между каналами ШИМ мотора и таймером связывается через макроопределения.</p>
+<pre><code class="language-c">#define PWM_M1_A    TIM1-&gt;CCR3
+#define PWM_M1_B    TIM1-&gt;CCR4
+
+#define PWM_M2_A    TIM1-&gt;CCR1
+#define PWM_M2_B    TIM1-&gt;CCR2
+
+#define PWM_M3_A    TIM8-&gt;CCR1
+#define PWM_M3_B    TIM8-&gt;CCR2
+
+#define PWM_M4_A    TIM8-&gt;CCR3
+#define PWM_M4_B    TIM8-&gt;CCR4
+</code></pre>
+<p>Поскольку при слишком низком напряжении запуска мотор не может вращаться, необходимо добавить фильтрацию мёртвой зоны (dead zone), чтобы управление мотором было более отзывчивым.</p>
+<pre><code class="language-c">#define MOTOR_IGNORE_PULSE       (999)
+
+static int16_t Motor_Ignore_Dead_Zone(int16_t pulse)
+{
+    if (pulse &gt; 0) return pulse + MOTOR_IGNORE_PULSE;
+    if (pulse &lt; 0) return pulse - MOTOR_IGNORE_PULSE;
+    return 0;
+}
+</code></pre>
+<p>Необходимо ограничить входное значение ШИМ.</p>
+<pre><code class="language-c">#define MOTOR_MAX_PULSE      (1999)
+
+static int16_t Motor_Limit_Pulse(int16_t pulse)
+{
+    if (pulse &gt;= MOTOR_MAX_PULSE) return MOTOR_MAX_PULSE;
+    if (pulse &lt;= -MOTOR_MAX_PULSE) return -MOTOR_MAX_PULSE;
+    return pulse;
+}
+</code></pre>
+<p>Установка скорости мотора: передаётся значение ID мотора для его идентификации, speed используется для управления скоростью мотора, диапазон значений — ±MOTOR_MAX_SPEED.</p>
+<pre><code class="language-c">#define MOTOR_MAX_SPEED      (1000)
+
+typedef enum {
+    MOTOR_ID_M1 = 0,
+    MOTOR_ID_M2,
+    MOTOR_ID_M3,
+    MOTOR_ID_M4,
+    MOTOR_ID_MAX
+} Motor_ID;
+
+void Motor_Set_Pwm(uint8_t id, int16_t speed)
+{
+    int16_t pulse = Motor_Ignore_Dead_Zone(speed);
+    // Ограничить входное значение
+    pulse = Motor_Limit_Pulse(pulse);
+
+    switch (id)
+    {
+    case MOTOR_ID_M1:
+    {
+        pulse = -pulse;
+        if (pulse &gt;= 0)
+        {
+              PWM_M1_A = pulse;
+              PWM_M1_B = 0;
+        }
+        else
+        {
+              PWM_M1_A = 0;
+              PWM_M1_B = -pulse;
+        }
+        break;
+    }
+    case MOTOR_ID_M2:
+    {
+        pulse = -pulse;
+        if (pulse &gt;= 0)
+        {
+              PWM_M2_A = pulse;
+              PWM_M2_B = 0;
+        }
+        else
+        {
+              PWM_M2_A = 0;
+              PWM_M2_B = -pulse;
+        }
+        break;
+    }
+    case MOTOR_ID_M3:
+    {
+        if (pulse &gt;= 0)
+        {
+              PWM_M3_A = pulse;
+              PWM_M3_B = 0;
+        }
+        else
+        {
+              PWM_M3_A = 0;
+              PWM_M3_B = -pulse;
+        }
+</code></pre>
+<pre><code class="language-c">        break;
+     }
+     case MOTOR_ID_M4:
+     {
+         if (pulse &gt;= 0)
+         {
+             PWM_M4_A = pulse;
+             PWM_M4_B = 0;
+         }
+         else
+         {
+             PWM_M4_A = 0;
+             PWM_M4_B = -pulse;
+         }
+         break;
+     }
+     case MOTOR_ID_MAX:
+     {
+         if (pulse &gt;= 0)
+         {
+             PWM_M1_A = 0;
+             PWM_M1_B = Motor_ABS(pulse);
+             PWM_M2_A = 0;
+             PWM_M2_B = Motor_ABS(pulse);
+             PWM_M3_A = Motor_ABS(pulse);
+             PWM_M3_B = 0;
+             PWM_M4_A = Motor_ABS(pulse);
+             PWM_M4_B = 0;
+         }
+         else
+         {
+             PWM_M1_A = Motor_ABS(pulse);
+             PWM_M1_B = 0;
+             PWM_M2_A = Motor_ABS(pulse);
+             PWM_M2_B = 0;
+             PWM_M3_A = 0;
+             PWM_M3_B = Motor_ABS(pulse);
+             PWM_M4_A = 0;
+             PWM_M4_B = Motor_ABS(pulse);
+         }
+         break;
+     }
+
+     default:
+         break;
+     }
+ }
+</code></pre>
+<p>Функция остановки мотора: параметр brake определяет режим остановки; brake=MOTOR_STOP означает свободную остановку (накат), brake=MOTOR_BRAKE означает остановку с торможением.</p>
+<pre><code class="language-c">typedef enum {
+     MOTOR_STOP = 0,
+     MOTOR_BRAKE=1,
+ } Motor_Stop_Mode;
+</code></pre>
+<pre><code class="language-c">void Motor_Stop(uint8_t brake)
+  {
+      if (brake != 0) brake = 1;
+      PWM_M1_A = brake * MOTOR_MAX_PULSE;
+      PWM_M1_B = brake * MOTOR_MAX_PULSE;
+      PWM_M2_A = brake * MOTOR_MAX_PULSE;
+      PWM_M2_B = brake * MOTOR_MAX_PULSE;
+      PWM_M3_A = brake * MOTOR_MAX_PULSE;
+      PWM_M3_B = brake * MOTOR_MAX_PULSE;
+      PWM_M4_A = brake * MOTOR_MAX_PULSE;
+      PWM_M4_B = brake * MOTOR_MAX_PULSE;
+  }
+</code></pre>
+<p>В функции App_Handle мотор циклически выполняет: движение вперёд 1 секунду, остановка 1 секунду, движение назад 1 секунду, остановка 1 секунду.</p>
+<pre><code class="language-c">void App_Handle(void)
+  {
+      Motor_Init();
+      HAL_Delay(1000);
+
+      while (1)
+      {
+           Motor_Set_Pwm(MOTOR_ID_M1, MOTOR_MAX_PULSE/3);
+           Motor_Set_Pwm(MOTOR_ID_M2, MOTOR_MAX_PULSE/3);
+           Motor_Set_Pwm(MOTOR_ID_M3, MOTOR_MAX_PULSE/3);
+           Motor_Set_Pwm(MOTOR_ID_M4, MOTOR_MAX_PULSE/3);
+           HAL_Delay(1000);
+           Motor_Stop(MOTOR_STOP);
+           HAL_Delay(1000);
+
+           Motor_Set_Pwm(MOTOR_ID_M1, -MOTOR_MAX_PULSE/3);
+           Motor_Set_Pwm(MOTOR_ID_M2, -MOTOR_MAX_PULSE/3);
+           Motor_Set_Pwm(MOTOR_ID_M3, -MOTOR_MAX_PULSE/3);
+           Motor_Set_Pwm(MOTOR_ID_M4, -MOTOR_MAX_PULSE/3);
+           HAL_Delay(1000);
+           Motor_Stop(MOTOR_BRAKE);
+           HAL_Delay(1000);
+      }
+  }
+</code></pre>
+<h2>4. Компиляция, загрузка и прошивка firmware</h2>
+<p>Выберите проект для компиляции в панели управления файлами STM32CubeIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать сборку.</p>
+<p><img alt="" src="img-012-008.png" /></p>
+<p>Если ошибок и предупреждений нет, компиляция завершена.</p>
+<p>Нажмите и удерживайте кнопку BOOT0, затем нажмите кнопку RESET для сброса, отпустите кнопку BOOT0, чтобы войти в режим прошивки через последовательный порт. Затем используйте инструмент прошивки через последовательный порт, чтобы записать firmware на плату.</p>
+<p>Если у вас есть ST-LINK или J-Link, можно также использовать STM32CubeIDE для прошивки firmware одним нажатием — это более удобно и быстро.</p>
+<h2>5. Результаты эксперимента</h2>
+<p>Примечание: поскольку мотор начинает двигаться сразу после загрузки программы, сначала подвесьте робота или мотор в воздухе, чтобы он не начал ездить самопроизвольно.</p>
+<p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
+<p>Мотор робота движется вперёд 1 секунду, останавливается на 1 секунду, движется назад 1 секунду и снова останавливается на 1 секунду.</p>
+<p><img alt="" src="img-013-009.png" /></p><div class="pager"><a href="6-driving-pwm-servo.html">&larr; Управление ШИМ-сервоприводом</a><a href="8-read-motor-encoder-data.html">Считывание данных энкодера мотора &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подписка на топик — Курс по платам управления</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details open>
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="active" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 3.Control board micro_ros basic routine / Подписка на топик</div>
+<h1>Подписка на топик</h1>
+<ol>
+<li>Цель эксперимента</li>
+<li>Подключение оборудования</li>
+<li>Анализ основного кода</li>
+<li>Компиляция, загрузка и прошивка firmware</li>
+<li>Результаты эксперимента</li>
+</ol>
+<h2>1. Цель эксперимента</h2>
+<p>Изучить компонент STM32-microROS, подключиться к окружению ROS2 и подписаться на топик int32.</p>
+<h2>2. Подключение оборудования</h2>
+<p>Как показано на рисунке ниже, плата управления STM32 построена на чипе STM32H743 и может работать с программой на базе фреймворка micro-ROS.</p>
+<p>Подключите USB-кабель Type-C к USB-порту главной вычислительной платы и к порту USB Connect на плате управления STM32.</p>
+<p>Если у вас есть модуль USB-UART, например CH340, вы можете подключить его к программе для работы с последовательным портом, чтобы просматривать отладочную информацию.</p>
+<p>Поскольку ROS2 требует окружения Ubuntu, рекомендуется установить на главную вычислительную плату Ubuntu 22.04 и окружение ROS2.</p>
+<p><img alt="" src="img-001-000.png" /></p>
+<p>Примечание: существует много типов главных вычислительных плат. Здесь в качестве примера рассматривается плата серии Jetson Orin с заводским образом, прошитым по умолчанию.</p>
+<h2>3. Анализ основного кода</h2>
+<p>Путь к исходному коду программы в виртуальной машине:</p>
+<pre><code>Board_Samples/Microros_Samples/Subscriber
+</code></pre>
+<p>Поскольку micro-ROS должен обрабатывать более сложные задачи, рекомендуется включить функцию FREERTOS в STM32 и создать новую задачу обработки micro-ROS.</p>
+<p>Поскольку используется компонент FreeRTOS, чтобы избежать предупреждений, источник базового тактового сигнала системы нужно заменить на таймер — в данном случае на таймер 7.</p>
+<p>Поскольку micro-ROS должен передавать большой объём данных, скорость передачи изменена на 2 Мбит/с, а также включены каналы DMA для TX и RX.</p>
+<p><img alt="" src="img-002-001.png" />
+<img alt="" src="img-002-002.png" /></p>
+<p>Поскольку последовательный порт 1 используется для связи по micro-ROS, вывод отладочной информации перенесён на последовательный порт 7. Установите скорость передачи 115200, длину данных 8 бит, без бита паритета и 1 стоп-бит.</p>
+<p>Для удобства просмотра отладочный последовательный порт последующих уроков по micro-ROS переопределён на последовательный порт 7.</p>
+<p><img alt="" src="img-003-003.png" />
+<img alt="" src="img-003-004.png" />
+<img alt="" src="img-003-005.png" /></p>
+<pre><code class="language-c">int _write(int file, char*p, int len)
+{
+    HAL_UART_Transmit(&amp;huart7, (uint8_t *)p, len, 0xFF);
+    return len;
+}
+</code></pre>
+<p>Откройте свойства проекта правой кнопкой мыши, затем перейдите в [Settings] -&gt; [MCU/MPU GCC Compiler] -&gt; [Include paths], чтобы добавить путь к директории заголовочных файлов microros, и нажмите [Apply], чтобы применить изменения.</p>
+<p>Добавьте папку microros как путь к исходному коду проекта.</p>
+<p>Импортируйте путь к библиотеке microros.</p>
+<p><img alt="" src="img-004-006.png" />
+<img alt="" src="img-004-007.png" /></p>
+<p>Подключите файл библиотеки microros к проекту. Убедитесь, что имя совпадает с именем файла статической библиотеки libmicroros.a (без учёта префикса "lib" и суффикса ".a").</p>
+<p>Инициализация конфигурации micro-ROS. Значение ros2_domain_id по умолчанию равно 30, что соответствует настройке заводского образа. Если DOMAINID окружения ROS2 изменён на другое значение, переменную ros2_domain_id также необходимо изменить на то же значение для нормальной связи.</p>
+<pre><code class="language-c">     allocator = rcl_get_default_allocator();
+     rcl_init_options_t init_options = rcl_get_zero_initialized_init_options();
+     RCCHECK(rcl_init_options_init(&amp;init_options, allocator));
+     RCCHECK(rcl_init_options_set_domain_id(&amp;init_options, ros2_domain_id));
+     rmw_init_options_t *rmw_options =
+rcl_init_options_get_rmw_init_options(&amp;init_options);
+</code></pre>
+<p><img alt="" src="img-005-008.png" />
+<img alt="" src="img-005-009.png" /></p>
+<p>Настройка последовательного порта связи micro-ROS — указывается последовательный порт 1.</p>
+<pre><code class="language-c">int32_t set_microros_serial_transports_with_options(rmw_init_options_t *
+rmw_options)
+{
+     int32_t ret = 0;
+     ret = rmw_uros_options_set_custom_transport(
+          true,
+          (void *) &amp;huart1,
+          cubemx_transport_open,
+          cubemx_transport_close,
+          cubemx_transport_write,
+          cubemx_transport_read,
+          rmw_options
+     );
+     return ret;
+}
+</code></pre>
+<p>Настройка метода запроса памяти в системе micro-ROS.</p>
+<pre><code class="language-c">int set_microros_freeRTOS_allocator(void)
+{
+     rcl_allocator_t freeRTOS_allocator =
+rcutils_get_zero_initialized_allocator();
+     freeRTOS_allocator.allocate = microros_allocate;
+     freeRTOS_allocator.deallocate = microros_deallocate;
+     freeRTOS_allocator.reallocate = microros_reallocate;
+     freeRTOS_allocator.zero_allocate = microros_zero_allocate;
+     if (!rcutils_set_default_allocator(&amp;freeRTOS_allocator)) {
+          printf(&quot;Error on default allocators (line %d)\n&quot;, __LINE__);
+          return -1;
+     }
+     return 0;
+}
+</code></pre>
+<p>Попытка подключения к proxy (агенту). Переход к следующему шагу происходит только при успешном подключении. Если подключение к proxy не удалось, система остаётся в состоянии подключения. В этом случае нужно запустить скрипт proxy на главной вычислительной плате, чтобы установить соединение.</p>
+<pre><code class="language-c">while (1)
+     {
+          osDelay(500);
+          state = rclc_support_init_with_options(&amp;support, 0, NULL, &amp;init_options,
+&amp;allocator);
+          if (state == RCL_RET_OK) break;
+          printf(&quot;Reconnecting agent...\n&quot;);
+     }
+</code></pre>
+<p>После подключения к proxy создаётся узел (node) "YB_Example_Node", где ros2_namespace по умолчанию пуст, что означает пространство имён узла.</p>
+<pre><code class="language-c">printf(&quot;Start YB_Example_Node\n&quot;);
+
+     node = rcl_get_zero_initialized_node();
+     RCCHECK(rclc_node_init_default(&amp;node, &quot;YB_Example_Node&quot;,
+(char*)ros2_namespace, &amp;support));
+</code></pre>
+<p>Для создания подписчика "int32_subscriber" нужно указать, что информация подписчика имеет тип std_msgs/msg/Int32.</p>
+<pre><code class="language-c">RCCHECK(rclc_subscription_init_default(
+          &amp;subscriber,
+          &amp;node,
+          ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+          &quot;int32_subscriber&quot;));
+</code></pre>
+<p>Создание исполнителя (executor), где параметр executor_count — это количество сущностей, контролируемых исполнителем; оно должно быть не меньше суммы количества подписчиков и издателей, добавленных в исполнитель.</p>
+<pre><code class="language-c">printf(&quot;executor_count:%d\n&quot;, executor_count);
+     executor = rclc_executor_get_zero_initialized_executor();
+     RCCHECK(rclc_executor_init(&amp;executor, &amp;support.context, executor_count,
+&amp;allocator));
+</code></pre>
+<p>Добавление подписчика в исполнитель — при поступлении данных вызывается callback-функция подписчика.</p>
+<pre><code class="language-c">RCCHECK(rclc_executor_add_subscription(
+          &amp;executor,
+          &amp;subscriber,
+          &amp;msg,
+          &amp;subscriber_callback,
+          ON_NEW_DATA));
+</code></pre>
+<p>Если данные получены, они выводятся в callback-функции.</p>
+<pre><code class="language-c">void subscriber_callback(const void *msgin)
+{
+     const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
+     int32_t msg_data = msg-&gt;data;
+     printf(&quot;data:%ld\n&quot;, msg_data);
+}
+</code></pre>
+<p>Узел и топик обработаны, индикатор питания LED_MCU включён. Вызов rclc_executor_spin_some в цикле обеспечивает нормальную работу micro-ROS.</p>
+<pre><code class="language-c">LED_ROS_ON();
+     uint32_t lastWakeTime = xTaskGetTickCount();
+     while (ros_error &lt; 3)
+     {
+          rclc_executor_spin_some(&amp;executor, RCL_MS_TO_NS(ROS2_SPIN_TIMEOUT_MS));
+          if (ping_microros_agent() != RMW_RET_OK) break;
+          vTaskDelayUntil(&amp;lastWakeTime, 10);
+          // vTaskDelay(pdMS_TO_TICKS(100));
+     }
+</code></pre>
+<p>Функция ping_microros_agent проверяет, подключён ли агент, и завершает цикл при потере соединения.</p>
+<pre><code class="language-c">int32_t ping_microros_agent(void)
+{
+     static int ping_count = 0;
+     ping_count++;
+     if(ping_count &gt; 100)
+     {
+          ping_count = 0;
+          return rmw_uros_ping_agent(100, 1);
+     }
+     return RMW_RET_OK;
+}
+</code></pre>
+<p>Если agent отключился или возникла ошибка в топике, система автоматически перезапускает микроконтроллер.</p>
+<pre><code class="language-c">printf(&quot;ROS Task End\n&quot;);
+     printf(&quot;Restart System!!!\n&quot;);
+     vTaskDelay(pdMS_TO_TICKS(10));
+     HAL_NVIC_SystemReset();
+</code></pre>
+<h2>4. Компиляция, загрузка и прошивка firmware</h2>
+<p>Выберите проект для компиляции в окне управления файлами STM32CUBEIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать компиляцию.</p>
+<p>Если ошибок и предупреждений нет, компиляция завершена успешно.</p>
+<p>Поскольку последовательный порт связи Type-C, используемый агентом (agent) micro-ROS, совмещён с портом прошивки, рекомендуется использовать для прошивки инструмент ST-Link.</p>
+<p>Если вы прошиваете через последовательный порт, сначала подключите кабель Type-C к USB-порту компьютера, войдите в режим загрузки через последовательный порт, прошейте firmware, а затем снова подключите кабель к USB-порту главной вычислительной платы.</p>
+<p><img alt="" src="img-008-010.png" />
+<img alt="" src="img-008-011.png" /></p>
+<h2>5. Результаты эксперимента</h2>
+<p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
+<p>Если proxy (агент) не запущен в терминале главной вычислительной платы, введите следующую команду, чтобы запустить его. Если proxy уже запущен, остановите его и запустите повторно.</p>
+<pre><code>sh ~/start_agent.sh
+</code></pre>
+<p>После успешного подключения создаются узел (node) и подписчик (subscriber).</p>
+<p>Теперь вы можете открыть другой терминал на виртуальной машине/компьютере, чтобы просмотреть узел /YB_Example_Node.</p>
+<pre><code>ros2 node list
+ros2 node info /YB_Example_Node
+</code></pre>
+<p>Отправьте данные в топик /int32_subscriber.</p>
+<pre><code>ros2 topic pub --once /int32_subscriber std_msgs/msg/Int32 &quot;data: 100&quot;
+</code></pre>
+<p>Откройте программу для работы с последовательным портом и посмотрите отладочную информацию последовательного порта 7. Вы увидите вывод принятых данных.</p>
+<p><img alt="" src="img-009-012.png" />
+<img alt="" src="img-009-013.png" /></p><div class="pager"><a href="1-post-a-topic.html">&larr; Публикация топика</a><a href="3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>

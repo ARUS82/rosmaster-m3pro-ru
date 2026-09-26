@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PID-регулирование скорости мотора — Курс по платам управления</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><a class="site-title" href="../index.html">ROSMASTER M3 PRO · RU</a>
+<details >
+<summary><a href="../00-configuration-and-operation-guide/index.html" style="color:inherit">Настройка и запуск</a></summary>
+<ul>
+<li><a class="" href="../00-configuration-and-operation-guide/1-quick-start-handle-to-control-the-car.html">Быстрый запуск управления машиной с джойстика</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/2-log-in-to-the-car-and-view-the-code.html">Подключение к машине и просмотр кода</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/3-robotic-arm-calibration.html">Калибровка манипулятора</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/4-enter-the-docker-jetson-nano-and-raspberry-pi-5-users-see-here.html">Вход в Docker-контейнер машины</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/6-modify-the-firmware-parameters-of-the-car-control-board.html">Изменение параметров прошивки платы управления машиной</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/7-frequently-asked-questions-and-precautions.html">Часто задаваемые вопросы и меры предосторожности</a></li>
+<li><a class="" href="../00-configuration-and-operation-guide/precautions-for-diy-robotic-arm.html">Меры предосторожности для манипулятора DIY</a></li>
+</ul></details>
+<details >
+<summary><a href="../02-lidar-course/index.html" style="color:inherit">Курс по лидару</a></summary>
+<ul>
+<li><a class="" href="../02-lidar-course/1-lidar-introduction-and-use.html">Введение в лидар и его использование</a></li>
+<li><a class="" href="../02-lidar-course/2-dual-lidar-fusion.html">Слияние данных двух лидаров и фильтрация</a></li>
+<li><a class="" href="../02-lidar-course/3-lidar-obstacle-avoidance.html">Избегание препятствий с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/4-lidar-tracking.html">Отслеживание объекта с помощью лидара</a></li>
+<li><a class="" href="../02-lidar-course/5-lidar-guard.html">Лидар-охрана (Lidar Guard)</a></li>
+<li><a class="" href="../02-lidar-course/6-gmapping-slam-mapping.html">Построение карты Gmapping-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/7-cartographer-slam-mapping.html">Алгоритм построения карты Cartographer-SLAM</a></li>
+<li><a class="" href="../02-lidar-course/8-slam-toolbox-mapping.html">Построение карты с помощью slam_toolbox</a></li>
+<li><a class="" href="../02-lidar-course/9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/10-navigation2-multi-point-navigation-avoid.html">Многоточечная навигация и избегание препятствий Navigation2</a></li>
+<li><a class="" href="../02-lidar-course/11-repositioning-navigation.html">Быстрая повторная локализация и навигация</a></li>
+<li><a class="" href="../02-lidar-course/12-rtab-map-mapping.html">Построение карты RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/13-rtab-map-navigation.html">Навигация RTAB-Map</a></li>
+<li><a class="" href="../02-lidar-course/14-app-mapping-navigation.html">Построение карты и навигация через приложение</a></li>
+<li><a class="" href="../02-lidar-course/15-machine-code-handling.html">Транспортировка по машинному коду (AprilTag)</a></li>
+<li><a class="" href="../02-lidar-course/16-color-block-transport.html">Транспортировка цветных блоков</a></li>
+<li><a class="" href="../02-lidar-course/17-navigation-via-pose-constrained-visual-relocalization.html">Навигация с визуальной повторной локализацией с ограничением по положению</a></li>
+</ul></details>
+<details open>
+<summary><a href="../18-control-board-course/index.html" style="color:inherit">Курс по платам управления</a></summary>
+<ul>
+<li><a class="" href="../18-control-board-course/1-introduction-to-the-control-board.html">Знакомство с платой управления</a></li>
+<li><a class="" href="../18-control-board-course/2-set-up-the-stm32cubeide-development-environment.html">Настройка среды разработки STM32CubeIDE</a></li>
+<li><a class="" href="../18-control-board-course/3-burning-stm32-firmware-using-swd.html">Прошивка STM32 через SWD</a></li>
+<li><a class="" href="../18-control-board-course/4-burning-stm32-firmware-using-serial-port.html">Прошивка STM32 через последовательный порт</a></li>
+<li><a class="" href="../18-control-board-course/5-compile-the-microros-driver-library.html">Компиляция библиотеки драйвера micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/6-install-and-start-the-microros-agent.html">Установка и запуск агента micro-ROS</a></li>
+<li><a class="" href="../18-control-board-course/7-import-project.html">Импорт проекта</a></li>
+<li><a class="" href="../18-control-board-course/1-turn-on-the-led-light.html">Включение светодиода</a></li>
+<li><a class="" href="../18-control-board-course/2-button-functions.html">Функции кнопки</a></li>
+<li><a class="" href="../18-control-board-course/3-drive-the-buzzer.html">Управление буззером</a></li>
+<li><a class="" href="../18-control-board-course/4-serial-communication.html">Обмен данными по последовательному порту</a></li>
+<li><a class="" href="../18-control-board-course/5-battery-voltage-detection.html">Определение напряжения батареи</a></li>
+<li><a class="" href="../18-control-board-course/6-driving-pwm-servo.html">Управление ШИМ-сервоприводом</a></li>
+<li><a class="" href="../18-control-board-course/7-drive-motor.html">Управление мотором</a></li>
+<li><a class="" href="../18-control-board-course/8-read-motor-encoder-data.html">Считывание данных энкодера мотора</a></li>
+<li><a class="active" href="../18-control-board-course/9-pid-control-of-motor-speed.html">PID-регулирование скорости мотора</a></li>
+<li><a class="" href="../18-control-board-course/10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота</a></li>
+<li><a class="" href="../18-control-board-course/11-read-imu-data.html">Чтение данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/12-read-lidar-data.html">Чтение данных лидара</a></li>
+<li><a class="" href="../18-control-board-course/13-flash-access-data.html">Доступ к данным во Flash-памяти</a></li>
+<li><a class="" href="../18-control-board-course/14-driving-oled-displays.html">Управление OLED-дисплеями</a></li>
+<li><a class="" href="../18-control-board-course/15-driving-rgb-light-strip.html">Управление RGB-светодиодной лентой</a></li>
+<li><a class="" href="../18-control-board-course/16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS</a></li>
+<li><a class="" href="../18-control-board-course/17-usb-controller-remote-control.html">Управление через USB-геймпад</a></li>
+<li><a class="" href="../18-control-board-course/18-can-bus-communication.html">Связь по шине CAN</a></li>
+<li><a class="" href="../18-control-board-course/1-post-a-topic.html">Публикация топика</a></li>
+<li><a class="" href="../18-control-board-course/2-subscribe-to-a-topic.html">Подписка на топик</a></li>
+<li><a class="" href="../18-control-board-course/3-multi-topic-subscription-and-publishing.html">Подписка и публикация нескольких топиков</a></li>
+<li><a class="" href="../18-control-board-course/4-subscribe-to-the-buzzer-topic.html">Подписка на топик управления зуммером</a></li>
+<li><a class="" href="../18-control-board-course/5-subscribe-to-the-bus-servo-topic.html">Подписка на топик шинного сервопривода</a></li>
+<li><a class="" href="../18-control-board-course/6-subscribe-to-the-rate-control-topic.html">Подписка на топик управления скоростью</a></li>
+<li><a class="" href="../18-control-board-course/7-release-speed-topic.html">Публикация топика скорости (odom)</a></li>
+<li><a class="" href="../18-control-board-course/8-publish-imu-data-topic.html">Публикация топика данных IMU</a></li>
+<li><a class="" href="../18-control-board-course/9-publish-radar-data-topic.html">Публикация топика данных лидара</a></li>
+</ul></details>
+<details >
+<summary><a href="../21-jetson-orin-nano-nx/index.html" style="color:inherit">Jetson Orin Nano/NX</a></summary>
+<ul>
+<li><a class="" href="../21-jetson-orin-nano-nx/1-jetson-orin-board-introduction.html">Введение в плату Jetson Orin</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/2-restore-the-factory-image-system.html">Восстановление заводского образа системы</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/3-backup-ssd-system.html">Резервное копирование системы SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/4-ssd-expansion.html">Расширение SSD</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/5-network-configuration.html">Настройка сети</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/6-ssh-remote-login.html">Удалённый вход по SSH</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/7-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/8-remote-file-transfer.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/9-jtop-tool.html">Инструмент Jtop</a></li>
+<li><a class="" href="../21-jetson-orin-nano-nx/10-exchange-space-expansion.html">Расширение файла подкачки</a></li>
+</ul></details>
+<details >
+<summary><a href="../22-linux-system-course/index.html" style="color:inherit">Курс по Linux</a></summary>
+<ul>
+<li><a class="" href="../22-linux-system-course/1-introduction-to-linux-system.html">Введение в операционную систему Linux</a></li>
+<li><a class="" href="../22-linux-system-course/2-ubuntu-file-system.html">Файловая система Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/3-ubuntu-common-commands.html">Часто используемые команды Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/4-ubuntu-common-editors.html">Часто используемые редакторы Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/5-ubuntu-software-operation-commands.html">Команды управления программным обеспечением Ubuntu</a></li>
+<li><a class="" href="../22-linux-system-course/6-virtual-machine-installation.html">Установка виртуальной машины</a></li>
+<li><a class="" href="../22-linux-system-course/7-ssh-remote-control.html">Удалённое управление по SSH</a></li>
+<li><a class="" href="../22-linux-system-course/8-vnc-remote-control.html">Удалённое управление по VNC</a></li>
+<li><a class="" href="../22-linux-system-course/9-transfer-files-remotely.html">Удалённая передача файлов</a></li>
+<li><a class="" href="../22-linux-system-course/10-driver-library-and-communication.html">Библиотека драйверов и коммуникация</a></li>
+<li><a class="" href="../22-linux-system-course/11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа</a></li>
+<li><a class="" href="../22-linux-system-course/12-bind-device-id.html">Привязка идентификатора устройства</a></li>
+<li><a class="" href="../22-linux-system-course/13-capacity-expansion-and-resource-allocation.html">Расширение ресурсов и распределение памяти</a></li>
+<li><a class="" href="../22-linux-system-course/16-sudo-free-password.html">Беспарольный sudo</a></li>
+</ul></details>
+<details >
+<summary><a href="../23-ros-basic-course/index.html" style="color:inherit">Базовый курс ROS2</a></summary>
+<ul>
+<li><a class="" href="../23-ros-basic-course/1-introduction-to-ros2.html">Введение в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/2-ros2-install-humble.html">Установка ROS2 Humble</a></li>
+<li><a class="" href="../23-ros-basic-course/3-ros2-development-environment.html">Среда разработки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/4-ros2-workspace.html">Рабочее пространство ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/5-ros2-function-package.html">Пакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/6-ros2-node.html">Узлы ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/7-ros2-topic-communication.html">Топик-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/8-ros2-service-communication.html">Сервис-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/9-ros2-action-communication.html">Экшн-взаимодействие в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/12-ros2-meta-function-package.html">Метапакеты ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/13-ros2-distributed-communication.html">13. Распределённая коммуникация ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/14-ros2-dds.html">14. DDS в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/15-ros2-time-related-api.html">15. API для работы со временем в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/17-ros2-rviz2-use.html">17. Использование rviz2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/18-ros2-rqt-toolbox.html">18. Набор инструментов rqt в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/19-ros2-launch-startup-file-configuration.html">19. Настройка файла запуска (launch) в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/21-ros2-urdf-model.html">21. Модель URDF в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/22-ros2-gazebo-simulation-platform.html">22. Платформа симуляции Gazebo в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/23-ros2-tf2-coordinate-transformation.html">23. Преобразование координат TF2 в ROS2</a></li>
+<li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
+</ul></details></nav>
+<main>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / PID-регулирование скорости мотора</div>
+<h1>PID-регулирование скорости мотора</h1>
+<ul>
+<li>
+<ol>
+<li>Цель эксперимента</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Подключение оборудования</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Анализ основного кода</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Компиляция, загрузка и прошивка firmware</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Результаты эксперимента</li>
+</ol>
+</li>
+</ul>
+<h2>1. Цель эксперимента</h2>
+<p>Использование интерфейса мотора с энкодером на плата управления STM32 и изучение управления скоростью мотора на основе количества импульсов энкодера в сочетании с PID-алгоритмом.</p>
+<h2>2. Подключение оборудования</h2>
+<p>Как показано на рисунке ниже, плата управления STM32 имеет четыре встроенных интерфейса управления моторами с энкодером. Для этого требуется дополнительно подключить мотор с энкодером. Интерфейс управления моторами поддерживает моторы с энкодером типа 520. Поскольку моторы с энкодером требуют высокого напряжения и тока, их необходимо питать от батареи.</p>
+<p>Подключите кабель Type-C к USB-порту компьютера и порту USB Connect на плата управления STM32.</p>
+<p>Соответствие названий четырёх интерфейсов моторов: переднее левое колесо → M1, заднее левое колесо → M2, переднее правое колесо → M3, заднее правое колесо → M4.</p>
+<h2>3. Анализ основного кода</h2>
+<p>Путь к исходному коду программы:</p>
+<pre><code>Board_Samples/STM32_Samples/Motor_PID
+</code></pre>
+<p>Аппаратная конфигурация мотора с энкодером представляет собой сочетание настроек мотора и энкодера.</p>
+<p><img alt="" src="img-002-000.png" /></p>
+<p>В этом примере для управления мотором используется инкрементальный PID-алгоритм. Определена структура motor_pid_t для хранения параметров, связанных с PID, и структура motor_data_t для хранения параметров, связанных со скоростью мотора.</p>
+<pre><code class="language-c">typedef struct _pid_t
+{
+    float target_val; // целевое значение
+    float pwm_output;              // выходное значение ШИМ
+    float Kp,Ki,Kd;                // пропорциональный, интегральный и дифференциальный коэффициенты
+    float err;                   // значение отклонения (ошибки)
+    float err_last;                // предыдущее значение отклонения
+
+    float err_next; // следующее значение отклонения (для инкрементальной формы)
+    float integral;                // значение интеграла (для позиционной формы)
+} motor_pid_t;
+
+typedef struct _motor_data_t
+{
+    float speed_mm_s[4]; // входное значение — скорость, рассчитанная по энкодеру
+    float speed_pwm[4]; // выходное значение — значение ШИМ, рассчитанное PID-регулятором
+    int16_t speed_set[4]; // заданное значение скорости
+} motor_data_t;
+</code></pre>
+<p><img alt="" src="img-003-001.png" /></p>
+<p>При инициализации моторов PID-параметры всех четырёх моторов устанавливаются в значения по умолчанию.</p>
+<pre><code class="language-c">void PID_Param_Init(void)
+{
+     for (int i = 0; i &lt; MOTOR_ID_MAX; i++)
+     {
+         pid_motor[i].target_val = 0.0;
+         pid_motor[i].pwm_output = 0.0;
+         pid_motor[i].err = 0.0;
+         pid_motor[i].err_last = 0.0;
+         pid_motor[i].err_next = 0.0;
+         pid_motor[i].integral = 0.0;
+
+         pid_motor[i].Kp = PID_DEF_KP;
+         pid_motor[i].Ki = PID_DEF_KI;
+         pid_motor[i].Kd = PID_DEF_KD;
+     }
+}
+</code></pre>
+<p>Реализация функции инкрементального PID-алгоритма.</p>
+<pre><code class="language-c">float PID_Incre_Calc(motor_pid_t *pid, float actual_val)
+{
+     pid-&gt;err = pid-&gt;target_val - actual_val;
+     pid-&gt;pwm_output += pid-&gt;Kp * (pid-&gt;err - pid-&gt;err_next)
+                          + pid-&gt;Ki * pid-&gt;err
+                          + pid-&gt;Kd * (pid-&gt;err - 2 * pid-&gt;err_next + pid-&gt;err_last);
+     pid-&gt;err_last = pid-&gt;err_next;
+     pid-&gt;err_next = pid-&gt;err;
+     if (pid-&gt;pwm_output &gt; MOTOR_MAX_SPEED) pid-&gt;pwm_output = MOTOR_MAX_SPEED;
+     if (pid-&gt;pwm_output &lt; -MOTOR_MAX_SPEED) pid-&gt;pwm_output = -MOTOR_MAX_SPEED;
+     return pid-&gt;pwm_output;
+}
+</code></pre>
+<p>Передаётся параметр скорости, полученный от энкодера мотора, и с помощью инкрементального PID-алгоритма рассчитывается значение ШИМ для мотора.</p>
+<pre><code class="language-c">void PID_Calc_Motor(motor_data_t* motor)
+{
+     for (int i = 0; i &lt; MOTOR_ID_MAX; i++)
+     {
+         motor-&gt;speed_pwm[i] = PID_Incre_Calc(&amp;pid_motor[i], motor-&gt;speed_mm_s[i]);
+     }
+}
+</code></pre>
+<p>Установка целевого значения PID.</p>
+<pre><code class="language-c">void PID_Set_Motor_Target(uint8_t motor_id, float target)
+{
+     if (motor_id &gt; MOTOR_ID_MAX) return;
+
+     if (motor_id == MOTOR_ID_MAX)
+</code></pre>
+<pre><code class="language-c">     {
+           for (int i = 0; i &lt; MOTOR_ID_MAX; i++)
+           {
+               pid_motor[i].target_val = target;
+           }
+      }
+      else
+      {
+           pid_motor[motor_id].target_val = target;
+      }
+  }
+</code></pre>
+<p>Сброс PID-параметров.</p>
+<pre><code class="language-c">void PID_Clear_Motor(uint8_t motor_id)
+{
+    if (motor_id &gt; MOTOR_ID_MAX) return;
+
+    if (motor_id == MOTOR_ID_MAX)
+    {
+         for (int i = 0; i &lt; MOTOR_ID_MAX; i++)
+         {
+             pid_motor[i].pwm_output = 0.0;
+             pid_motor[i].err = 0.0;
+             pid_motor[i].err_last = 0.0;
+             pid_motor[i].err_next = 0.0;
+             pid_motor[i].integral = 0.0;
+         }
+    }
+    else
+    {
+         pid_motor[motor_id].pwm_output = 0.0;
+         pid_motor[motor_id].err = 0.0;
+         pid_motor[motor_id].err_last = 0.0;
+         pid_motor[motor_id].err_next = 0.0;
+         pid_motor[motor_id].integral = 0.0;
+    }
+}
+</code></pre>
+<p>Установка скорости работы мотора с энкодером с преобразованием параметра скорости мотора в целевое значение PID. Диапазон параметра скорости мотора связан с самим мотором с энкодером и колёсами; например, диапазон значений speed_m — [-700, 700].</p>
+<pre><code class="language-c">void Motion_Set_Speed(int16_t speed_m1, int16_t speed_m2, int16_t speed_m3, int16_t speed_m4)
+{
+    g_start_ctrl = 1;
+    motor_data.speed_set[0] = speed_m1;
+    motor_data.speed_set[1] = speed_m2;
+    motor_data.speed_set[2] = speed_m3;
+    motor_data.speed_set[3] = speed_m4;
+    for (uint8_t i = 0; i &lt; MOTOR_ID_MAX; i++)
+    {
+         PID_Set_Motor_Target(i, motor_data.speed_set[i]*1.0);
+    }
+}
+</code></pre>
+<p>Считывание скорости мотора: скорость мотора рассчитывается на основе данных, полученных энкодером, и длины окружности колеса; значение скорости сохраняется в переменную speed_motors.</p>
+<pre><code class="language-c">void Motion_Get_Speed(int16_t* speed_motors)
+{
+    Motion_Get_Encoder();
+
+    float circle_m = Motion_Get_Circle_M();
+
+    float speed_m1 = (g_Encoder_All_Offset[0]) * 100 * circle_m / ENCODER_CIRCLE;
+    float speed_m2 = (g_Encoder_All_Offset[1]) * 100 * circle_m / ENCODER_CIRCLE;
+    float speed_m3 = (g_Encoder_All_Offset[2]) * 100 * circle_m / ENCODER_CIRCLE;
+    float speed_m4 = (g_Encoder_All_Offset[3]) * 100 * circle_m / ENCODER_CIRCLE;
+
+    speed_motors[0] = speed_m1 * 1000;
+    speed_motors[1] = speed_m2 * 1000;
+    speed_motors[2] = speed_m3 * 1000;
+    speed_motors[3] = speed_m4 * 1000;
+
+    if (g_start_ctrl)
+    {
+         motor_data.speed_mm_s[0] = speed_m1*1000;
+         motor_data.speed_mm_s[1] = speed_m2*1000;
+         motor_data.speed_mm_s[2] = speed_m3*1000;
+         motor_data.speed_mm_s[3] = speed_m4*1000;
+
+         PID_Calc_Motor(&amp;motor_data);
+    }
+}
+</code></pre>
+<p>Функция Motion_Handle вызывается каждые 10 миллисекунд в цикле для считывания, расчёта и регулирования скорости мотора. Для наглядности добавлена функция вывода значения скорости мотора через последовательный порт.</p>
+<pre><code class="language-c">void Motion_Handle(void)
+{
+    Motion_Get_Speed(speed_data);
+    debug_count++;
+    if (debug_count &gt;= 30)
+    {
+         debug_count = 0;
+         printf(&quot;motor speed:%d, %d, %d, %d\n&quot;, speed_data[0], speed_data[1],
+ speed_data[2], speed_data[3]);
+    }
+
+
+    if (g_start_ctrl)
+    {
+         Motion_Set_Pwm(motor_data.speed_pwm[0], motor_data.speed_pwm[1],
+                   motor_data.speed_pwm[2], motor_data.speed_pwm[3]);
+    }
+}
+</code></pre>
+<p>Инициализируйте мотор с энкодером и PID-параметры в App_Handle, а затем установите скорость всех четырёх моторов равной 300, что соответствует скорости движения вперёд 0,3 м/с.</p>
+<pre><code class="language-c">void App_Handle(void)
+{
+    Motor_Init();
+    Encoder_Init();
+    PID_Param_Init();
+
+    HAL_Delay(1000);
+    Motion_Set_Speed(300, 300, 300, 300);
+
+    while (1)
+    {
+         App_Led_Mcu_Handle();
+         Motion_Handle();
+         HAL_Delay(10);
+    }
+}
+</code></pre>
+<h2>4. Компиляция, загрузка и прошивка firmware</h2>
+<p>Выберите проект для компиляции в панели управления файлами STM32CubeIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать сборку.</p>
+<p>Если ошибок и предупреждений нет, компиляция завершена.</p>
+<p>Нажмите и удерживайте кнопку BOOT0, затем нажмите кнопку RESET для сброса, отпустите кнопку BOOT0, чтобы войти в режим прошивки через последовательный порт. Затем используйте инструмент прошивки через последовательный порт, чтобы записать firmware на плату.</p>
+<p>Если у вас есть ST-LINK или J-Link, можно также использовать STM32CubeIDE для прошивки firmware одним нажатием — это более удобно и быстро.</p>
+<p><img alt="" src="img-007-002.png" />
+<img alt="" src="img-007-003.png" /></p>
+<h2>5. Результаты эксперимента</h2>
+<p>Примечание: поскольку мотор начинает двигаться сразу после загрузки программы, сначала подвесьте робота или мотор в воздухе, чтобы он не начал ездить самопроизвольно.</p>
+<p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
+<p>Робот движется вперёд со скоростью 0,3 м/с.</p>
+<p>Откройте программу-терминал последовательного порта и убедитесь, что все четыре мотора работают со значением около 300 — это нормально.</p>
+<p><img alt="" src="img-008-004.png" /></p>
+<p>Об отклонении скорости: из-за различий между отдельными моторами и аппаратными факторами, такими как точность захвата импульсов энкодера, работа PID-алгоритма — это динамический процесс регулирования ШИМ мотора, поэтому нормальным считается положение, при котором скорость близка к заданному значению.</p>
+<p>При этом можно приложить некоторое сопротивление к колёсам, чтобы проверить, способен ли PID-алгоритм удерживать скорость робота на нужном уровне. Если после добавления сопротивления скорость по-прежнему удерживается около заданного значения — это нормально.</p><div class="pager"><a href="8-read-motor-encoder-data.html">&larr; Считывание данных энкодера мотора</a><a href="10-robot-kinematics-analysis-theory.html">Теория кинематического анализа робота &rarr;</a></div>
+</main>
+</div>
+</body>
+</html>
