@@ -152,7 +152,7 @@ sudo mkswap /var/8GB.swap
 sudo swapon /var/8GB.swap
 echo &quot;/var/8GB.swap none swap sw 0 0&quot; | sudo tee -a /etc/fstab
 </code></pre>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="10-img-001-000.png" /></p>
 <h3>2.1. Отключение конфигурации ZRAM swap</h3>
 <p>Отключите конфигурацию ZRAM swap на устройствах Jetson: ZRAM сжимает и хранит страницы памяти в оперативной памяти, чтобы снизить зависимость от диска.</p>
 <pre><code>sudo systemctl disable nvzramconfig
@@ -172,7 +172,7 @@ echo &quot;/var/8GB.swap none swap sw 0 0&quot; | sudo tee -a /etc/fstab
 </code></pre>
 <h2>3. Проверка результата расширения</h2>
 <p>После перезапуска системы объём файла подкачки увеличится до 8 ГБ:</p>
-<p><img alt="" src="img-002-001.png" /></p><div class="pager"><a href="9-jtop-tool.html">&larr; Инструмент Jtop</a></div>
+<p><img alt="" src="10-img-002-001.png" /></p><div class="pager"><a href="9-jtop-tool.html">&larr; Инструмент Jtop</a></div>
 </main>
 </div>
 </body>
