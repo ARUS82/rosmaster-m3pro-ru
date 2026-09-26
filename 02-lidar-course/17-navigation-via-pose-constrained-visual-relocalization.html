@@ -158,7 +158,7 @@
 <p>Запустите базовые узлы — камеру, вспомогательный узел манипулятора, слияние данных лидара и т.д.:</p>
 <pre><code>ros2 launch m3pro_bringup car_base.launch.py
 </code></pre>
-<p><img alt="" src="img-002-000.png" /></p>
+<p><img alt="" src="17-img-002-000.png" /></p>
 <h2>3. Построение карты занятости и карты положений</h2>
 <p>Запустите узел SLAM-картографирования:</p>
 <pre><code>ros2 launch slam_mapping slam_toolbox.launch.py
@@ -167,22 +167,22 @@
 <p>Сохраните карту занятости (grid map):</p>
 <pre><code>ros2 launch slam_mapping save_slamtoolbox_map.launch.py
 </code></pre>
-<p><img alt="" src="img-003-001.png" /></p>
+<p><img alt="" src="17-img-003-001.png" /></p>
 <p>Примечание: карта будет сохранена в директории <code>$HOME/map</code>.</p>
-<p><img alt="" src="img-003-002.png" />
-<img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="17-img-003-002.png" />
+<img alt="" src="17-img-003-003.png" /></p>
 <p><strong>Проверка точек положения (pose points)</strong></p>
 <p>Нажмите на опцию MarkerArray на панели Display в Rviz, чтобы посмотреть точки положения карты положений (pose map). Убедитесь, что в области карты точек положения достаточно и они равномерно распределены — это необходимо для локализации при последующей навигации.</p>
-<p><img alt="" src="img-004-004.png" />
-<img alt="" src="img-004-005.png" />
-<img alt="" src="img-004-006.png" /></p>
+<p><img alt="" src="17-img-004-004.png" />
+<img alt="" src="17-img-004-005.png" />
+<img alt="" src="17-img-004-006.png" /></p>
 <p>Сохраните карту положений:</p>
 <pre><code>ros2 launch slam_mapping save_slamtoolbox_map.launch.py map_type:=posegraph
 </code></pre>
-<p><img alt="" src="img-004-007.png" /></p>
+<p><img alt="" src="17-img-004-007.png" /></p>
 <p>После сохранения и карты занятости, и карты положений нажмите <code>Ctrl+C</code> в терминале узла построения карты, чтобы остановить построение карты.</p>
-<p><img alt="" src="img-005-008.png" />
-<img alt="" src="img-005-009.png" /></p>
+<p><img alt="" src="17-img-005-008.png" />
+<img alt="" src="17-img-005-009.png" /></p>
 <h2>4. Запись координат ArUco-меток на карте</h2>
 <h3>4.1 Подготовка ArUco-меток</h3>
 <p>Их можно получить следующими способами:</p>
@@ -196,8 +196,8 @@
 <pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/config/common.yaml
 </code></pre>
 <p>Измените размер на фактически измеренное значение. Если вы используете метки из комплекта карты песочного стола, заводское значение по умолчанию — 0.048, и изменять его не нужно.</p>
-<p><img alt="" src="img-006-010.png" />
-<img alt="" src="img-006-011.png" /></p>
+<p><img alt="" src="17-img-006-010.png" />
+<img alt="" src="17-img-006-011.png" /></p>
 <pre><code class="language-yaml">...
 apriltag:                        # имя узла
   ros__parameters:
@@ -218,42 +218,42 @@ apriltag:                        # имя узла
 </code></pre>
 <p>С помощью клавиатуры или геймпада подведите робота к метке, которую нужно записать, чтобы метка попала в поле зрения камеры.</p>
 <p>В поле ArUco ID панели <code>aritag_recorder_panel</code> введите ID метки, которую нужно записать, затем нажмите Save (перед записью убедитесь, что локализация робота точна).</p>
-<p><img alt="" src="img-007-012.png" /></p>
+<p><img alt="" src="17-img-007-012.png" /></p>
 <p>Перед записью положения метки, если вы заметили, что контур лидара значительно отклоняется от особенностей краёв окружающего пространства, как показано на рисунке ниже, это означает ошибку локализации. В этом случае перед записью положения необходимо сначала выполнить ручную повторную локализацию с помощью инструмента 2D Estimate.</p>
-<p><img alt="" src="img-007-013.png" />
-<img alt="" src="img-007-014.png" /></p>
+<p><img alt="" src="17-img-007-013.png" />
+<img alt="" src="17-img-007-014.png" /></p>
 <p>На рисунке ниже показана точная локализация — высокое совпадение контура лидара с особенностями краёв окружающего пространства.</p>
-<p><img alt="" src="img-007-015.png" /></p>
+<p><img alt="" src="17-img-007-015.png" /></p>
 <p>Повторите указанные выше шаги, чтобы завершить запись положений всех меток. Путь к файлу записи:</p>
 <pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/config/aritag_relocation.yaml
 </code></pre>
-<p><img alt="" src="img-008-016.png" />
-<img alt="" src="img-008-017.png" /></p>
+<p><img alt="" src="17-img-008-016.png" />
+<img alt="" src="17-img-008-017.png" /></p>
 <p>После записи положений меток нажмите <code>Ctrl+C</code>, чтобы закрыть узел записи.</p>
-<p><img alt="" src="img-008-018.png" /></p>
+<p><img alt="" src="17-img-008-018.png" /></p>
 <h2>5. Запуск режима навигации с визуальной повторной локализацией</h2>
 <pre><code>ros2 launch M3Pro_navigation toolbox_location_nav.launch.py relocation:=True detection_enabled:=True
 </code></pre>
 <p>После запуска интерфейс совпадает с обычной навигацией.</p>
-<p><img alt="" src="img-009-019.png" /></p>
+<p><img alt="" src="17-img-009-019.png" /></p>
 <h3>5.1 Проверка функции повторной локализации</h3>
 <p>Можно вручную сдвинуть положение робота (моделируя серьёзную ошибку одометрии или потерю локализации, как показано на рисунке выше).</p>
-<p><img alt="" src="img-010-020.png" /></p>
+<p><img alt="" src="17-img-010-020.png" /></p>
 <p>Когда метка с карты попадает в поле зрения камеры, автоматически запускается повторная локализация, корректирующая глобальную локализацию робота на карте.</p>
 <h3>5.2 Управление обнаружением меток через сервис</h3>
 <p>Поскольку узел обнаружения aritag с высокой частотой занимает процессор, можно отключать состояние обнаружения, когда оно не требуется. Узел предоставляет сервис <code>control_detection</code> для управления тем, выполняется ли обнаружение меток.</p>
 <p><strong>Запрос состояния</strong></p>
 <pre><code>ros2 service call /control_detection apriltag_localization/srv/ControlDetection &quot;{command: 0}&quot;
 </code></pre>
-<p><img alt="" src="img-011-021.png" /></p>
+<p><img alt="" src="17-img-011-021.png" /></p>
 <p><strong>Включение обнаружения</strong></p>
 <pre><code>ros2 service call /control_detection apriltag_localization/srv/ControlDetection &quot;{command: 1}&quot;
 </code></pre>
-<p><img alt="" src="img-011-022.png" /></p>
+<p><img alt="" src="17-img-011-022.png" /></p>
 <p><strong>Отключение обнаружения (снижает загрузку процессора)</strong></p>
 <pre><code>ros2 service call /control_detection apriltag_localization/srv/ControlDetection &quot;{command: 2}&quot;
 </code></pre>
-<p><img alt="" src="img-011-023.png" /></p>
+<p><img alt="" src="17-img-011-023.png" /></p>
 <h2>6. Анализ исходного кода</h2>
 <h3>6.1 Launch-файл узла записи меток</h3>
 <pre><code>$HOME/M3Pro_ws/src/m3pro_bringup/launch/record_tag.launch.py
@@ -737,7 +737,7 @@ apriltag:                      # имя узла
         frames: [tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9, tag10, tag11, tag12, tag13, tag14, tag15, tag16, tag17, tag18, tag19, tag20]
 ...
 </code></pre>
-<p><img alt="" src="img-020-024.png" /></p>
+<p><img alt="" src="17-img-020-024.png" /></p>
 <h3>6.6 Схема взаимодействия узлов</h3>
 <p>Запустите во время работы навигации с повторной локализацией:</p>
 <pre><code>ros2 run rqt_graph rqt_graph

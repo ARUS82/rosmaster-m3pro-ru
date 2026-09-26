@@ -158,7 +158,7 @@
 <li><strong>Построение графа положений (pose graph)</strong>: строит графовую структуру, объединяя узлы положений робота и ограничения относительных положений, получаемые из сопоставления сканов.</li>
 <li><strong>Глобальная оптимизация</strong>: использует алгоритм нелинейной оптимизации (например, Ceres Solver) для оптимизации графа положений, устраняя накопленную ошибку и обеспечивая глобальную согласованность карты.</li>
 </ul>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="08-img-001-000.png" /></p>
 <p>Адрес проекта на GitHub: https://github.com/SteveMacenski/slam_toolbox</p>
 <h2>3. Подготовка</h2>
 <h3>3.1 Описание содержания</h3>
@@ -169,7 +169,7 @@
 <pre><code>sh start_agent.sh
 </code></pre>
 <p>Терминал выведет следующее сообщение, означающее успешное подключение.</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="08-img-002-001.png" /></p>
 <h2>4. Запуск примера</h2>
 <h3>4.1 Процесс построения карты</h3>
 <p>Обратите внимание:</p>
@@ -186,25 +186,25 @@
 <p>Команда запуска интерфейса визуализации RVIZ в терминале робота:</p>
 <pre><code>ros2 launch slam_mapping slam_view.launch.py
 </code></pre>
-<p><img alt="" src="img-003-002.png" /></p>
+<p><img alt="" src="08-img-003-002.png" /></p>
 <p>Откройте на виртуальной машине ещё один терминал и запустите узел управления с клавиатуры (также можно использовать управление с геймпада; чтобы предварительно запустить узел управления с геймпада, см. [5. Chassis Control — 2. Controller Control]):</p>
 <pre><code>ros2 run yahboomcar_ctrl yahboom_keyboard
 </code></pre>
 <p>Кликните мышью по окну терминала и нажмите <code>z</code>, чтобы снизить скорость.</p>
-<p><img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="08-img-003-003.png" /></p>
 <p>Кликните мышью по окну терминала и нажмите <code>z</code>, чтобы снизить скорость. Нажимайте <code>I</code>, <code>&lt;</code>, <code>J</code> и <code>L</code> для управления движением робота вперёд, назад, поворотом влево и поворотом вправо соответственно. Перемещайте робота для завершения построения карты.</p>
 <h3>4.2 Сохранение карты</h3>
 <p>Откройте на роботе новый терминал и сохраните карту.</p>
 <pre><code>ros2 launch slam_mapping save_map.launch.py
 </code></pre>
 <p>Сообщение в терминале «Map saved successful» означает, что карта успешно сохранена.</p>
-<p><img alt="" src="img-004-004.png" /></p>
+<p><img alt="" src="08-img-004-004.png" /></p>
 <p>Путь сохранения карты следующий:</p>
 <p>Jetson Orin Nano, Jetson Orin NX:</p>
 <pre><code>/home/jetson/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map
 </code></pre>
 <p>Jetson Orin Nano, Raspberry Pi:</p>
-<p><img alt="" src="img-004-005.png" /></p>
+<p><img alt="" src="08-img-004-005.png" /></p>
 <p>Сначала необходимо войти в Docker.</p>
 <pre><code>/root/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map/
 </code></pre>
@@ -217,7 +217,7 @@ negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.25
 </code></pre>
-<p><img alt="" src="img-005-006.png" /></p>
+<p><img alt="" src="08-img-005-006.png" /></p>
 <p>Разбор параметров:</p>
 <ul>
 <li><code>image</code>: путь к файлу карты, абсолютный или относительный.</li>
@@ -237,7 +237,7 @@ free_thresh: 0.25
 <pre><code>ros2 run rqt_tf_tree rqt_tf_tree
 </code></pre>
 <p>Размер изображения слишком большой; оригинальное изображение можно посмотреть в папке этого урока.</p>
-<p><img alt="" src="img-006-007.png" /></p>
+<p><img alt="" src="08-img-006-007.png" /></p>
 <h3>5.3 Подробности узла slam-toolbox</h3>
 <pre><code>ros2 node info /slam_toolbox
 </code></pre>
@@ -280,7 +280,7 @@ free_thresh: 0.25
 
   Action Clients:
 </code></pre>
-<p><img alt="" src="img-006-008.png" /></p><div class="pager"><a href="7-cartographer-slam-mapping.html">&larr; Алгоритм построения карты Cartographer-SLAM</a><a href="9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2 &rarr;</a></div>
+<p><img alt="" src="08-img-006-008.png" /></p><div class="pager"><a href="7-cartographer-slam-mapping.html">&larr; Алгоритм построения карты Cartographer-SLAM</a><a href="9-navigation2-single-point-navigation-avoid.html">Одноточечная навигация и избегание препятствий Navigation2 &rarr;</a></div>
 </main>
 </div>
 </body>

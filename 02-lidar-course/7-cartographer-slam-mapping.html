@@ -149,9 +149,9 @@
 <h3>2.1 Введение</h3>
 <p>Cartographer — это библиотека 2D и 3D SLAM (одновременная локализация и построение карты), с открытым исходным кодом от Google, поддерживающая систему ROS. Это алгоритм построения карты, основанный на оптимизации графа (многопоточная оптимизация на backend, задача оптимизации построена на Ceres). Он способен объединять данные от нескольких датчиков (например, лидара, IMU и камер) для одновременного вычисления положения датчика и построения карты окружающего пространства.</p>
 <p>Исходный код Cartographer состоит в основном из трёх частей: <code>cartographer</code>, <code>cartographer_ros</code> и <code>ceres-solver</code> (оптимизация на backend).</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="07-img-001-000.png" /></p>
 <p>Cartographer использует основной подход SLAM, то есть трёхэтапный процесс: извлечение признаков, обнаружение замыкания петли (loop closure detection) и оптимизация на backend. Определённое количество сканов лидара (LaserScan) образует подкарту (submap), а последовательность подкарт образует глобальную карту. Накопленная ошибка на коротком этапе построения подкарты из сканов лидара невелика, но на длительном этапе построения глобальной карты из подкарт накопленная ошибка становится значительной. Поэтому для коррекции положений подкарт требуется обнаружение замыкания петли. Базовой единицей обнаружения замыкания петли является подкарта, а само обнаружение использует стратегию сопоставления сканов (<code>scan_match</code>). Ключевое содержание Cartographer заключается в создании подкарт путём объединения данных нескольких датчиков (одометрия, IMU, LaserScan и т.д.) и реализации стратегии <code>scan_match</code> для обнаружения замыкания петли.</p>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="07-img-002-001.png" /></p>
 <p><strong>cartographer_ros</strong></p>
 <p><code>cartographer_ros</code> работает под управлением ROS и может принимать данные различных датчиков в виде сообщений ROS. После обработки он публикует их в виде сообщений для отладки и визуализации.</p>
 <h3>2.2 Дополнительные материалы</h3>
@@ -175,7 +175,7 @@
 <li>При построении карты, чем медленнее скорость (особенно скорость поворота), тем лучше результат. Высокая скорость приведёт к плохому качеству карты.</li>
 <li>Для контроллеров серии Jetson Nano и Raspberry Pi необходимо сначала войти в Docker-контейнер (см. [Docker Course Chapter — Entering the Robot Docker Container]).</li>
 </ul>
-<p><img alt="" src="img-003-002.png" /></p>
+<p><img alt="" src="07-img-003-002.png" /></p>
 <p>Запустите в терминале робота команду запуска нижнеуровневых датчиков:</p>
 <pre><code>ros2 launch slam_mapping bringup.launch.py
 </code></pre>
@@ -192,9 +192,9 @@
 <p>Откройте на виртуальной машине ещё один терминал, чтобы запустить узел управления с клавиатуры (также можно использовать игровой геймпад):</p>
 <pre><code>ros2 run yahboomcar_ctrl yahboom_keyboard
 </code></pre>
-<p><img alt="" src="img-004-003.png" /></p>
+<p><img alt="" src="07-img-004-003.png" /></p>
 <p>Кликните мышью по окну терминала, нажмите <code>z</code>, чтобы соответствующим образом снизить скорость, и нажимайте <code>I</code>, <code>&lt;</code>, <code>J</code>, <code>L</code> для управления движением робота вперёд, назад, поворотом влево и поворотом вправо соответственно. Медленно перемещайте робота для завершения построения карты.</p>
-<p><img alt="" src="img-004-004.png" /></p>
+<p><img alt="" src="07-img-004-004.png" /></p>
 <h3>4.2 Сохранение карты</h3>
 <p>Откройте на роботе новый терминал, чтобы сохранить карту:</p>
 <pre><code>ros2 launch slam_mapping save_map.launch.py
@@ -203,7 +203,7 @@
 <p>Путь сохранения карты следующий:</p>
 <pre><code>$HOME/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map
 </code></pre>
-<p><img alt="" src="img-005-005.png" /></p>
+<p><img alt="" src="07-img-005-005.png" /></p>
 <p>Одно изображение в формате PGM и один YAML-файл <code>yahboom_map.yaml</code>:</p>
 <pre><code class="language-yaml">image: yahboom_map.pgm
 mode: trinary
@@ -228,7 +228,7 @@ free_thresh: 0.25
 <p>После завершения построения карты откройте новый терминал и введите команду для завершения траектории карты:</p>
 <pre><code>ros2 service call /finish_trajectory cartographer_ros_msgs/srv/FinishTrajectory &quot;{trajectory_id: 0}&quot;
 </code></pre>
-<p><img alt="" src="img-006-006.png" /></p>
+<p><img alt="" src="07-img-006-006.png" /></p>
 <p>Затем откройте ещё один терминал, чтобы сохранить файл карты в формате pbstream:</p>
 <p>Для хостов Jetson Orin Nano и Jetson Orin NX команда сохранения:</p>
 <pre><code>ros2 service call /write_state cartographer_ros_msgs/srv/WriteState &quot;{filename: '/home/jetson/yahboom_map.pbstream'}&quot;
@@ -246,7 +246,7 @@ free_thresh: 0.25
 <pre><code>ros2 run rqt_tf_tree rqt_tf_tree
 </code></pre>
 <p>Изображение слишком большое. Оригинальное изображение можно посмотреть в папке этого урока.</p>
-<p><img alt="" src="img-007-007.png" /></p>
+<p><img alt="" src="07-img-007-007.png" /></p>
 <h3>5.3 Подробности узла Cartographer</h3>
 <pre><code>ros2 node info /slam_gmapping
 </code></pre>
