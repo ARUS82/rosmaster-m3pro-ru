@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Управление RGB-светодиодной лентой</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Управление RGB-светодиодной лентой</div>
 <h1>Управление RGB-светодиодной лентой</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -154,15 +154,15 @@
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, плата управления STM32 имеет встроенный RGB-интерфейс, но саму RGB-светодиодную ленту нужно подключить дополнительно. Подготовьте свою RGB-светодиодную ленту и подключите USB-кабель Type-C к компьютеру и к порту USB Connect на плате управления STM32.</p>
 <p>RGB-светодиодная лента управляется чипом WS2812, и в схеме используется SPI+DMA для эмуляции управляющих временных диаграмм WS2812 при управлении RGB-лентой.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="22-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/RGB
 </code></pre>
 <p>В соответствии с назначением выводов, сигнальный вывод RGB-светодиодной ленты подключён к PE6 (SPI4-MOSI), поэтому SPI4 инициализируется в режиме master. Тактовая частота SPI4 составляет 120 МГц, делённая на 32, поэтому итоговая частота связи SPI4 составляет 3.75 МГц.</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" />
-<img alt="" src="img-002-003.png" /></p>
+<p><img alt="" src="22-img-002-001.png" />
+<img alt="" src="22-img-002-002.png" />
+<img alt="" src="22-img-002-003.png" /></p>
 <pre><code class="language-c">void MX_SPI4_Init(void)
 {
     hspi4.Instance = SPI4;
@@ -346,12 +346,12 @@ RGB_BIT_SIZE*MAX_RGB+RGB_RESET_WIDTH);
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>RGB-светодиодная лента обновляет цвет каждую секунду, последовательность цветов: красный, зелёный, синий, белый и выключено.</p>
-<p><img alt="" src="img-006-004.png" />
-<img alt="" src="img-006-005.png" />
-<img alt="" src="img-007-006.png" />
-<img alt="" src="img-007-007.png" />
-<img alt="" src="img-007-008.png" />
-<img alt="" src="img-007-009.png" /></p><div class="pager"><a href="14-driving-oled-displays.html">&larr; Управление OLED-дисплеями</a><a href="16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS &rarr;</a></div>
+<p><img alt="" src="22-img-006-004.png" />
+<img alt="" src="22-img-006-005.png" />
+<img alt="" src="22-img-007-006.png" />
+<img alt="" src="22-img-007-007.png" />
+<img alt="" src="22-img-007-008.png" />
+<img alt="" src="22-img-007-009.png" /></p><div class="pager"><a href="14-driving-oled-displays.html">&larr; Управление OLED-дисплеями</a><a href="16-sbus-model-aircraft-remote-control.html">Пульт радиоуправления авиамоделью по SBUS &rarr;</a></div>
 </main>
 </div>
 </body>

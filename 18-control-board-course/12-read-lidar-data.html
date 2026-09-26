@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Чтение данных лидара</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Чтение данных лидара</div>
 <h1>Чтение данных лидара</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -154,18 +154,18 @@
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, плата управления STM32 имеет встроенный интерфейс лидара T-MiniPlus. Необходимо подключить кабель лидара T-MiniPlus к плате управления STM32 и к самому лидару.</p>
 <p>Подключите USB-кабель Type-C к USB-порту компьютера и к порту USB Connect на плате управления STM32.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="19-img-001-000.png" /></p>
 <p>Разъём кабеля лидара T-MiniPlus имеет защиту от неправильного подключения. Просто совместите разъём и вставьте его в левый интерфейс лидара.</p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/Read_Lidar
 </code></pre>
 <p>Поскольку лидар T-MiniPlus использует последовательную связь (UART), для связи выбран последовательный порт 4. Вывод TX порта 4 соответствует PC10, вывод RX — PC11. Скорость передачи установлена на 230400 бод, длина данных — 8 бит, стоп-бит — 1, без бита паритета. Включены канал приёма DMA и прерывание последовательного порта.</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" />
-<img alt="" src="img-002-003.png" />
-<img alt="" src="img-002-004.png" />
-<img alt="" src="img-002-005.png" /></p>
+<p><img alt="" src="19-img-002-001.png" />
+<img alt="" src="19-img-002-002.png" />
+<img alt="" src="19-img-002-003.png" />
+<img alt="" src="19-img-002-004.png" />
+<img alt="" src="19-img-002-005.png" /></p>
 <pre><code class="language-c">void MX_UART4_Init(void)
 {
     huart4.Instance = UART4;
@@ -187,7 +187,7 @@
 HAL_OK)
     {
 </code></pre>
-<p><img alt="" src="img-003-006.png" /></p>
+<p><img alt="" src="19-img-003-006.png" /></p>
 <pre><code class="language-c">        Error_Handler();
     }
     if (HAL_UARTEx_SetRxFifoThreshold(&amp;huart4, UART_RXFIFO_THRESHOLD_1_8) !=
@@ -429,9 +429,9 @@ lidar_recv_buf[10 + i + 1]; // Effective value of distance
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Откройте программу для работы с последовательным портом и установите скорость передачи 115200. Вы увидите, что расстояние, обнаруженное лидаром T-MiniPlus на 0 градусах (направление указателя), печатается каждые 200 миллисекунд в миллиметрах.</p>
-<p><img alt="" src="img-008-007.png" />
-<img alt="" src="img-008-008.png" /></p>
-<p><img alt="" src="img-009-009.png" /></p><div class="pager"><a href="11-read-imu-data.html">&larr; Чтение данных IMU</a><a href="13-flash-access-data.html">Доступ к данным во Flash-памяти &rarr;</a></div>
+<p><img alt="" src="19-img-008-007.png" />
+<img alt="" src="19-img-008-008.png" /></p>
+<p><img alt="" src="19-img-009-009.png" /></p><div class="pager"><a href="11-read-imu-data.html">&larr; Чтение данных IMU</a><a href="13-flash-access-data.html">Доступ к данным во Flash-памяти &rarr;</a></div>
 </main>
 </div>
 </body>

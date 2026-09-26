@@ -140,7 +140,7 @@
 <li><a class="" href="../23-ros-basic-course/tfthe-transform-library.html">tf: библиотека преобразований</a></li>
 </ul></details></nav>
 <main>
-<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2.Control board STM32 basic routine / Чтение данных IMU</div>
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / <a href="index.html">Курс по платам управления</a> / 2. Базовые примеры для STM32 / Чтение данных IMU</div>
 <h1>Чтение данных IMU</h1>
 <ol>
 <li>Цель эксперимента</li>
@@ -153,15 +153,15 @@
 <p>Используя чип IMU-датчика (датчика ориентации) на плате управления STM32, считать необработанные (raw) данные с устройства IMU.</p>
 <h2>2. Подключение оборудования</h2>
 <p>Как показано на рисунке ниже, плата управления STM32 имеет встроенный чип IMU-датчика ориентации. Дополнительные внешние устройства подключать не требуется. Нужно только подключить USB-кабель Type-C к компьютеру и к разъёму Connect на плате управления STM32.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="18-img-001-000.png" /></p>
 <h2>3. Анализ основного кода</h2>
 <p>Путь к исходному коду программы:</p>
 <pre><code>Board_Samples/STM32_Samples/Read_IMU
 </code></pre>
 <p>В качестве датчика IMU используется чип ICM20948, который передаёт данные по интерфейсу SPI. В соответствии с назначением выводов, сначала нужно инициализировать SPI2 в режиме хоста (master).</p>
-<p><img alt="" src="img-002-001.png" />
-<img alt="" src="img-002-002.png" />
-<img alt="" src="img-002-003.png" /></p>
+<p><img alt="" src="18-img-002-001.png" />
+<img alt="" src="18-img-002-002.png" />
+<img alt="" src="18-img-002-003.png" /></p>
 <pre><code class="language-c">void MX_SPI2_Init(void)
 {
     hspi2.Instance = SPI2;
@@ -186,7 +186,7 @@ SPI_CRC_INITIALIZATION_ALL_ZERO_PATTERN;
     hspi2.Init.MasterSSIdleness = SPI_MASTER_SS_IDLENESS_00CYCLE;
     hspi2.Init.MasterInterDataIdleness = SPI_MASTER_INTERDATA_IDLENESS_00CYCLE;
 </code></pre>
-<p><img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="18-img-003-004.png" /></p>
 <pre><code class="language-c">    hspi2.Init.MasterReceiverAutoSusp = SPI_MASTER_RX_AUTOSUSP_DISABLE;
     hspi2.Init.MasterKeepIOState = SPI_MASTER_KEEP_IO_STATE_DISABLE;
     hspi2.Init.IOSwap = SPI_IO_SWAP_DISABLE;
@@ -579,15 +579,15 @@ g_axises_mag.z);
 </code></pre>
 <h2>4. Компиляция, загрузка и прошивка firmware</h2>
 <p>Выберите проект для компиляции в окне управления файлами STM32CUBEIDE и нажмите кнопку компиляции на панели инструментов, чтобы начать компиляцию.</p>
-<p><img alt="" src="img-011-005.png" /></p>
+<p><img alt="" src="18-img-011-005.png" /></p>
 <p>Если ошибок и предупреждений нет, компиляция завершена успешно.</p>
 <p>Нажмите и удерживайте кнопку BOOT0, затем нажмите кнопку RESET для перезагрузки, отпустите кнопку BOOT0, чтобы войти в режим прошивки через последовательный порт. Затем используйте утилиту прошивки через последовательный порт, чтобы записать firmware на плату.</p>
 <p>Если у вас есть ST-Link или J-Link, вы также можете прошить firmware в один клик прямо из STM32CUBEIDE — это более удобно и быстро.</p>
 <h2>5. Результаты эксперимента</h2>
 <p>Светодиод MCU_LED мигает каждые 200 миллисекунд.</p>
 <p>Подключите плату управления к компьютеру с помощью USB-кабеля Type-C, откройте программу для работы с последовательным портом (конкретные параметры показаны на рисунке ниже) — и вы увидите, что в терминале последовательного порта отображаются и печатаются соответствующие данные Accel, Gyro и Mag.</p>
-<p><img alt="" src="img-012-006.png" />
-<img alt="" src="img-012-007.png" /></p><div class="pager"><a href="10-robot-kinematics-analysis-theory.html">&larr; Теория кинематического анализа робота</a><a href="12-read-lidar-data.html">Чтение данных лидара &rarr;</a></div>
+<p><img alt="" src="18-img-012-006.png" />
+<img alt="" src="18-img-012-007.png" /></p><div class="pager"><a href="10-robot-kinematics-analysis-theory.html">&larr; Теория кинематического анализа робота</a><a href="12-read-lidar-data.html">Чтение данных лидара &rarr;</a></div>
 </main>
 </div>
 </body>
