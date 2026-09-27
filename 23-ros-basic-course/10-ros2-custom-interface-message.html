@@ -146,7 +146,7 @@
 <p>В системе ROS, будь то топики, сервисы или экшны, используется ключевое понятие: интерфейс взаимодействия (communication interface).</p>
 <p>Взаимодействие — это не разговор с самим собой, это обмен между двумя или более сторонами. Что представляет собой содержание этого взаимодействия? Чтобы всем было проще понять, мы можем определить стандартную структуру для передаваемых данных. Это и есть интерфейс взаимодействия.</p>
 <p>Интерфейсы уменьшают зависимости между программами, облегчая использование чужого кода нам и использование нашего кода другими. Это основная цель ROS: снизить необходимость изобретать колесо заново.</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="10-img-001-000.png" /></p>
 <p>В ROS есть три распространённых механизма взаимодействия: топики, сервисы и экшны. Через интерфейсы, определённые для каждого типа взаимодействия, различные узлы органично соединяются друг с другом.</p>
 <h2>2. Процесс создания пользовательского интерфейса</h2>
 <p>Процесс создания пользовательских интерфейсных сообщений похож на написание исполняемой программы в пакете. Основные шаги следующие:</p>
@@ -167,7 +167,7 @@
 int32 age
 float64 height
 </code></pre>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="10-img-002-001.png" /></p>
 <ol>
 <li>Добавьте следующую конфигурацию в package.xml и CMakeLists.txt:</li>
 </ol>
@@ -198,9 +198,9 @@ float64 height
 <pre><code class="language-bash">ros2 interface show pkg_interfaces/msg/Person
 </code></pre>
 <p>В обычной ситуации вывод в терминале будет совпадать с содержимым файла Person.msg.</p>
-<p><img alt="" src="img-003-002.png" />
-<img alt="" src="img-003-003.png" />
-<img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="10-img-003-002.png" />
+<img alt="" src="10-img-003-003.png" />
+<img alt="" src="10-img-003-004.png" /></p>
 <h2>5. Создание пользовательского интерфейса сервис-взаимодействия</h2>
 <ol>
 <li>В курсе [ROS2 Action Communication Server Implementation] мы создали пакет пользовательского интерфейса. Создайте новую папку srv в пакете pkg_interfaces. Создайте новый файл Add.srv в папке srv и введите в файле следующее содержимое:</li>
@@ -210,7 +210,7 @@ int32 num2
 ---
 int32 sum
 </code></pre>
-<p><img alt="" src="img-004-005.png" /></p>
+<p><img alt="" src="10-img-004-005.png" /></p>
 <ol>
 <li>Добавьте следующую конфигурацию в package.xml и CMakeLists.txt:</li>
 </ol>
@@ -240,8 +240,8 @@ source install/setup.bash
 <pre><code class="language-bash">ros2 interface show pkg_interfaces/srv/Add
 </code></pre>
 <p>В обычной ситуации терминал выведет то же содержимое, что и файл Person.msg.</p>
-<p><img alt="" src="img-005-006.png" />
-<img alt="" src="img-005-007.png" /></p><div class="pager"><a href="9-ros2-action-communication.html">&larr; Экшн-взаимодействие в ROS2</a><a href="11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2 &rarr;</a></div>
+<p><img alt="" src="10-img-005-006.png" />
+<img alt="" src="10-img-005-007.png" /></p><div class="pager"><a href="9-ros2-action-communication.html">&larr; Экшн-взаимодействие в ROS2</a><a href="11-ros2-parameter-service-case.html">Кейс с параметрами и сервисом в ROS2 &rarr;</a></div>
 </main>
 </div>
 </body>

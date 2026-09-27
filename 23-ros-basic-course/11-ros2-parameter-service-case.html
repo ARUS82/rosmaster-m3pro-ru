@@ -155,13 +155,13 @@
 <pre><code class="language-bash">ros2 run turtlesim turtlesim_node
 ros2 run turtlesim turtle_teleop_key
 </code></pre>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="11-img-001-000.png" /></p>
 <ol>
 <li>Запустите терминал в виртуальной машине и используйте следующую команду для просмотра списка параметров:</li>
 </ol>
 <pre><code class="language-bash">ros2 param list
 </code></pre>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="11-img-002-001.png" /></p>
 <ol>
 <li>Запрос и изменение параметров</li>
 </ol>
@@ -207,7 +207,7 @@ callback function that is executed periodically by the timer
 self.get_parameter('robot_name').get_parameter_value().string_value                # Read
 parameter values from the ROS2 system
 </code></pre>
-<p><img alt="" src="img-003-002.png" /></p>
+<p><img alt="" src="11-img-003-002.png" /></p>
 <pre><code class="language-python">        self.get_logger().info('Hello %s!' % robot_name_param)               # Output log
 information and print the parameter values read
 
@@ -231,13 +231,13 @@ interface
 <p>Сначала обновите переменные окружения, затем запустите узел.</p>
 <pre><code class="language-bash">ros2 run pkg_param param_demo
 </code></pre>
-<p><img alt="" src="img-004-003.png" /></p>
+<p><img alt="" src="11-img-004-003.png" /></p>
 <p>Откройте другой терминал и установите robot_name в robot:</p>
 <pre><code class="language-bash">ros2 param set param_declare robot_name Robot
 </code></pre>
-<p><img alt="" src="img-004-004.png" /></p>
+<p><img alt="" src="11-img-004-004.png" /></p>
 <p>Вы можете видеть, как в терминале циклически выводится информация журнала. "muto" — значение параметра "robot_name" по умолчанию. Изменение этого параметра через командную строку также изменит значение в терминале.</p>
-<p><img alt="" src="img-005-005.png" /></p><div class="pager"><a href="10-ros2-custom-interface-message.html">&larr; Пользовательские интерфейсные сообщения ROS2</a><a href="12-ros2-meta-function-package.html">Метапакеты ROS2 &rarr;</a></div>
+<p><img alt="" src="11-img-005-005.png" /></p><div class="pager"><a href="10-ros2-custom-interface-message.html">&larr; Пользовательские интерфейсные сообщения ROS2</a><a href="12-ros2-meta-function-package.html">Метапакеты ROS2 &rarr;</a></div>
 </main>
 </div>
 </body>
