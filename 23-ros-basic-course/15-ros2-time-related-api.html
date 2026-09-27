@@ -251,8 +251,8 @@ if __name__ == &quot;__main__&quot;:
 </code></pre>
 <pre><code>ros2 run learning_time rate_demo
 </code></pre>
-<p><img alt="" src="img-003-000.png" />
-<img alt="" src="img-003-001.png" /></p>
+<p><img alt="" src="15-img-003-000.png" />
+<img alt="" src="15-img-003-001.png" /></p>
 <h2>3. Применение Timer</h2>
 <p>Timer используется для создания таймера, запускающего периодические задачи.</p>
 <p>Пример: создадим два таймера — один выводит счётчик выполнений каждую секунду, другой выводит текущее время каждые 0,5 секунды.</p>
@@ -293,7 +293,7 @@ class TimerDemoNode(Node):
 {current_time.seconds_nanoseconds()}&quot;
         )
 </code></pre>
-<p><img alt="" src="img-004-002.png" /></p>
+<p><img alt="" src="15-img-004-002.png" /></p>
 <pre><code class="language-python">   def fast_timer_callback(self):
        &quot;&quot;&quot;0.5 second timer callback function&quot;&quot;&quot;
        # Print the current timestamp (nanoseconds)
@@ -331,15 +331,15 @@ if __name__ == '__main__':
 <p>Скомпилируйте пакет функций</p>
 <pre><code>colcon build --packages-select learning_time
 </code></pre>
-<p><img alt="" src="img-005-003.png" /></p>
+<p><img alt="" src="15-img-005-003.png" /></p>
 <p>Обновите окружение рабочего пространства и запустите ноду</p>
 <pre><code>source ./install/setup.bash
 </code></pre>
 <pre><code>ros2 run learning_time Timer_demo
 </code></pre>
 <p>Видно, что таймер срабатывает в соответствии с заданным интервалом, и в каждом обратном вызове выводится соответствующая информация в лог.</p>
-<p><img alt="" src="img-006-004.png" />
-<img alt="" src="img-006-005.png" /></p>
+<p><img alt="" src="15-img-006-004.png" />
+<img alt="" src="15-img-006-005.png" /></p>
 <h2>4. Получение текущего времени с помощью get_clock</h2>
 <p>Функция get_clock позволяет получить объект часов, а затем с помощью вызова () получить текущее время.</p>
 <p>Создайте новый файл программы get_clock_demo.py и заполните его следующим примером программы:</p>
@@ -381,7 +381,7 @@ if __name__ == &quot;__main__&quot;:
 <p>Скомпилируйте пакет функций</p>
 <pre><code>colcon build --packages-select learning_time
 </code></pre>
-<p><img alt="" src="img-007-006.png" /></p>
+<p><img alt="" src="15-img-007-006.png" /></p>
 <p>Обновите окружение рабочего пространства и запустите ноду</p>
 <pre><code>source ./install/setup.bash
 </code></pre>
@@ -414,8 +414,8 @@ def main():
    node.get_logger().info(&quot;time1 &gt;= time2 ? %d&quot; % (time1 &gt;= time2))
    node.get_logger().info(&quot;time1 &lt; time2 ? %d&quot; % (time1 &lt; time2))
 </code></pre>
-<p><img alt="" src="img-008-007.png" />
-<img alt="" src="img-008-008.png" /></p>
+<p><img alt="" src="15-img-008-007.png" />
+<img alt="" src="15-img-008-008.png" /></p>
 <pre><code class="language-python">  # Time periods and times can be mathematically operated
   t3 = time1 + duration1
   t4 = time1 - time2
@@ -449,15 +449,15 @@ if __name__ == &quot;__main__&quot;:
 <p>Скомпилируйте пакет функций</p>
 <pre><code>colcon build --packages-select learning_time
 </code></pre>
-<p><img alt="" src="img-009-009.png" /></p>
+<p><img alt="" src="15-img-009-009.png" /></p>
 <p>Обновите окружение рабочего пространства и запустите ноду</p>
 <pre><code>source ./install/setup.bash
 </code></pre>
 <pre><code>ros2 run learning_time TimeDuration_demo
 </code></pre>
 <p>Этот пример доказывает, что над моментами времени и временными интервалами можно выполнять математические операции, что позволяет гибко запрашивать и обрабатывать данные с разными временными метками.</p>
-<p><img alt="" src="img-010-010.png" />
-<img alt="" src="img-010-011.png" /></p><div class="pager"><a href="14-ros2-dds.html">&larr; 14. DDS в ROS2</a><a href="16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2 &rarr;</a></div>
+<p><img alt="" src="15-img-010-010.png" />
+<img alt="" src="15-img-010-011.png" /></p><div class="pager"><a href="14-ros2-dds.html">&larr; 14. DDS в ROS2</a><a href="16-ros2-common-command-tools.html">16. Общие инструменты командной строки ROS2 &rarr;</a></div>
 </main>
 </div>
 </body>
