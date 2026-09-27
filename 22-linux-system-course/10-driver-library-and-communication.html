@@ -156,7 +156,7 @@
 <p>Проверка номера версии библиотеки драйвера последовательного порта</p>
 <pre><code>pip3 list | grep pyserial
 </code></pre>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="10-img-001-000.png" /></p>
 <h2>2. Установка библиотеки драйверов робота</h2>
 <p>В образе системы Yahboom Muto уже установлена последняя версия библиотеки драйверов робота, поэтому переустанавливать её не нужно.
 Устанавливать библиотеку драйверов робота нужно только в том случае, если вы не используете образ Yahboom либо если в библиотеке драйверов появились обновления.</p>
@@ -169,19 +169,19 @@ unzip MutoLib.zip
 <pre><code>cd MutoLib
 sudo python3 setup.py install
 </code></pre>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="10-img-002-001.png" /></p>
 <p>Проверьте номер версии после установки.</p>
 <pre><code>pip3 list | grep MutoLib
 </code></pre>
-<p><img alt="" src="img-002-002.png" /></p>
+<p><img alt="" src="10-img-002-002.png" /></p>
 <p>Проверьте номер версии прошивки нижнего уровня, считав его.</p>
 <pre><code>python3
 from MutoLib import Muto
 g_bot = Muto()
 g_bot.read_version()
 </code></pre>
-<p><img alt="" src="img-002-003.png" />
-<img alt="" src="img-002-004.png" /></p>
+<p><img alt="" src="10-img-002-003.png" />
+<img alt="" src="10-img-002-004.png" /></p>
 <p>У Muto есть два необязательных параметра: <code>Muto(port="/dev/myserial", debug=False)</code>.</p>
 <p>Параметр port указывает номер устройства заданного последовательного порта.</p>
 <p>По умолчанию указан /dev/myserial. Если используется не заводской образ, его можно изменить на номер устройства вида /dev/ttyUSB0; параметр debug=True означает вывод отладочной информации, False — её отсутствие.</p><div class="pager"><a href="9-transfer-files-remotely.html">&larr; Удалённая передача файлов</a><a href="11-static-ip-and-hotspot-mode.html">Статический IP и режим точки доступа &rarr;</a></div>
