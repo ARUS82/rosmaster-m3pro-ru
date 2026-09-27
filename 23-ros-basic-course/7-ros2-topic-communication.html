@@ -145,7 +145,7 @@
 <h2>1. Введение в топик-взаимодействие</h2>
 <p>Топик-взаимодействие (topic communication) — самый часто используемый способ взаимодействия в ROS2. Издатель (publisher) публикует данные в указанном топике, а подписчики (subscribers), подписанные на этот топик, получают эти данные.</p>
 <p>Топик-взаимодействие основано на модели публикация/подписка (publish/subscribe), как показано на рисунке:</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="07-img-001-000.png" /></p>
 <p>Передача данных топика — это процесс, при котором данные передаются от одного узла к другому. Объект, отправляющий данные, называется издателем, а объект, принимающий данные, — подписчиком. У каждого топика должно быть имя, а передаваемые данные должны иметь фиксированный тип данных.</p>
 <p>Далее мы объясним, как реализовать топик-взаимодействие между узлами с помощью Python.</p>
 <h2>2. Создание нового пакета</h2>
@@ -190,9 +190,9 @@ Topic_Pub class object just created as a parameter
       pub_demo.destroy_node()     #Destroy the node object
       rclpy.shutdown()           #Shut down the ROS2 Python interface
 </code></pre>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="07-img-002-001.png" /></p>
 <h3>3.2 Редактирование конфигурационного файла</h3>
-<p><img alt="" src="img-003-002.png" /></p>
+<p><img alt="" src="07-img-003-002.png" /></p>
 <h3>3.3 Компиляция пакета</h3>
 <p>Компиляция пакета:</p>
 <pre><code class="language-bash">colcon build --packages-select pkg_topic
@@ -202,17 +202,17 @@ Topic_Pub class object just created as a parameter
 <p>После обновления переменных окружения выполните команду:</p>
 <pre><code class="language-bash">ros2 run pkg_topic publisher_demo
 </code></pre>
-<p><img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="07-img-003-003.png" /></p>
 <p>После успешного запуска программы ничего не выводится. Мы можем использовать инструмент ros2 topic, чтобы посмотреть данные. Сначала проверим, публикуются ли какие-либо топики. Откройте другой терминал и введите:</p>
 <pre><code class="language-bash">ros2 topic list
 </code></pre>
-<p><img alt="" src="img-004-004.png" /></p>
+<p><img alt="" src="07-img-004-004.png" /></p>
 <p>topic_demo — это топик, определённый в программе. Далее мы используем ros2 topic echo, чтобы вывести эти данные. В терминале введите:</p>
 <pre><code class="language-bash">ros2 topic echo /topic_demo
 </code></pre>
-<p><img alt="" src="img-004-005.png" /></p>
+<p><img alt="" src="07-img-004-005.png" /></p>
 <p>Как видно, вывод "Hi, I send a message." в терминале совпадает со строкой msg.data = "Hi, I send a message." в нашем коде.</p>
-<p><img alt="" src="img-004-006.png" /></p>
+<p><img alt="" src="07-img-004-006.png" /></p>
 <h2>4. Реализация подписчика</h2>
 <h3>4.1 Создание подписчика</h3>
 <p>Создайте новый файл, [subscriber_demo.py], в той же директории, что и [publisher_demo.py].</p>
@@ -243,7 +243,7 @@ def main():
       sub_demo.destroy_node()    #Destroy the node object
       rclpy.shutdown()           #Shut down the ROS2 Python interface
 </code></pre>
-<p><img alt="" src="img-005-007.png" /></p>
+<p><img alt="" src="07-img-005-007.png" /></p>
 <h3>4.2 Редактирование конфигурационного файла</h3>
 <h2>4.3 Компиляция рабочего пространства</h2>
 <p>Компиляция пакета:</p>
@@ -257,8 +257,8 @@ ros2 run pkg_topic publisher_demo
 # Start the subscriber node
 ros2 run pkg_topic subscriber_demo
 </code></pre>
-<p><img alt="" src="img-006-008.png" />
-<img alt="" src="img-006-009.png" /></p>
+<p><img alt="" src="07-img-006-008.png" />
+<img alt="" src="07-img-006-009.png" /></p>
 <p>Как показано на рисунке выше, в терминале, где запущен узел-подписчик, будет выводиться информация, опубликованная издателем в топике /topic_demo.</p><div class="pager"><a href="6-ros2-node.html">&larr; Узлы ROS2</a><a href="8-ros2-service-communication.html">Сервис-взаимодействие в ROS2 &rarr;</a></div>
 </main>
 </div>

@@ -185,8 +185,8 @@ the path
 (os.path.join('share',package_name,'launch'),glob(os.path.join('launch','*launch
 .py')))
 </code></pre>
-<p><img alt="" src="img-002-000.png" />
-<img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="19-img-002-000.png" />
+<img alt="" src="19-img-002-001.png" /></p>
 <h3>2.3. Компиляция пакета</h3>
 <pre><code>colcon build --packages-select learn_launch
 </code></pre>
@@ -219,8 +219,8 @@ from launch_ros.actions import Node
 <li>executable: представляет имя исполняемой программы.</li>
 </ul>
 <p>Наконец, мы вызываем функцию LaunchDescription, передавая параметр node, и выполняем функцию.</p>
-<p><img alt="" src="img-003-002.png" />
-<img alt="" src="img-003-003.png" /></p>
+<p><img alt="" src="19-img-003-002.png" />
+<img alt="" src="19-img-003-003.png" /></p>
 <h2>3. Написание программы запуска для нескольких нод</h2>
 <h3>3.1. Создание файла запуска</h3>
 <p>Создайте новый файл [multi_node_launch.py] и добавьте следующее содержимое:</p>
@@ -253,7 +253,7 @@ def generate_launch_description():
 </ul>
 <pre><code>ros2 launch learn_launch multi_node_launch.py
 </code></pre>
-<p><img alt="" src="img-004-004.png" /></p>
+<p><img alt="" src="19-img-004-004.png" /></p>
 <p>Если терминал ничего не выводит, мы можем убедиться в успешном запуске нод, проверив, какие ноды запустились. В терминале введите:</p>
 <pre><code>ros2 node list
 </code></pre>
@@ -277,8 +277,8 @@ def generate_launch_description():
          publisher_node
     ])
 </code></pre>
-<p><img alt="" src="img-005-005.png" />
-<img alt="" src="img-005-006.png" /></p>
+<p><img alt="" src="19-img-005-005.png" />
+<img alt="" src="19-img-005-006.png" /></p>
 <h3>4.2. Компиляция пакета</h3>
 <pre><code>colcon build --packages-select learn_launch
 </code></pre>
@@ -294,8 +294,8 @@ ros2 topic list
 <pre><code>ros2 launch learn_launch remap_name_launch.py
 ros2 topic list
 </code></pre>
-<p><img alt="" src="img-006-007.png" />
-<img alt="" src="img-006-008.png" /></p>
+<p><img alt="" src="19-img-006-007.png" />
+<img alt="" src="19-img-006-008.png" /></p>
 <p>Как показано выше, имя топика было переназначено на [/topic_update]</p>
 <h3>4.4 Анализ исходного кода</h3>
 <p>Был добавлен следующий раздел:</p>
@@ -322,7 +322,7 @@ def generate_launch_description():
          hello_launch
     ])
 </code></pre>
-<p><img alt="" src="img-007-009.png" /></p>
+<p><img alt="" src="19-img-007-009.png" /></p>
 <h3>5.2. Компиляция пакета функций</h3>
 <pre><code>colcon build --packages-select learn_launch
 </code></pre>
@@ -348,8 +348,8 @@ from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 </code></pre>
-<p><img alt="" src="img-008-010.png" />
-<img alt="" src="img-008-011.png" /></p>
+<p><img alt="" src="19-img-008-010.png" />
+<img alt="" src="19-img-008-011.png" /></p>
 <pre><code class="language-python">from launch.actions import IncludeLaunchDescription
 from launch.actions import GroupAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -459,15 +459,15 @@ def generate_launch_description():
 <pre><code>ros2 launch learn_launch complex_launch.py
 </code></pre>
 <p>На хост-машине в VNC появятся две черепахи.</p>
-<p><img alt="" src="img-010-012.png" /></p>
+<p><img alt="" src="19-img-010-012.png" /></p>
 <p>Запустите ноду клавиатурного управления и добавьте пространство имён (namespace) (так как мы добавили пространство имён при запуске ноды в файле запуска).</p>
 <pre><code>ros2 run turtlesim turtle_teleop_key --ros-args -r __ns:=/turtlesim1
 </code></pre>
 <ul>
 <li>Используйте клавиши вверх, вниз, влево и вправо для управления движением черепахи 1. Черепаха 2 будет полностью повторять поведение черепахи 1.</li>
 </ul>
-<p><img alt="" src="img-011-013.png" />
-<img alt="" src="img-011-014.png" /></p>
+<p><img alt="" src="19-img-011-013.png" />
+<img alt="" src="19-img-011-014.png" /></p>
 <h3>6.4. Описание программы</h3>
 <p>Программа в основном запускает:</p>
 <ol>
@@ -534,8 +534,8 @@ namespace=&quot;turtlesim2&quot;&gt;
 <ul>
 <li>Как и ожидалось, появятся две черепахи, а в терминале будет выведена информация журнала.</li>
 </ul>
-<p><img alt="" src="img-013-015.png" />
-<img alt="" src="img-013-016.png" /></p>
+<p><img alt="" src="19-img-013-015.png" />
+<img alt="" src="19-img-013-016.png" /></p>
 <p>Запустите ноду клавиатурного управления и добавьте пространство имён.</p>
 <pre><code>ros2 run turtlesim turtle_teleop_key --ros-args -r __ns:=/turtlesim1
 </code></pre>
@@ -558,7 +558,7 @@ namespace=&quot;turtlesim2&quot;&gt;
      default: &quot;0&quot;
 - arg:
 </code></pre>
-<p><img alt="" src="img-014-017.png" /></p>
+<p><img alt="" src="19-img-014-017.png" /></p>
 <pre><code class="language-yaml">    name: &quot;chatter_ns&quot;
     default: &quot;my/chatter/ns&quot;
 
@@ -635,13 +635,13 @@ parameters
 <ul>
 <li>Как и ожидалось, появляются две маленькие черепахи, а в терминале выводится информация журнала.</li>
 </ul>
-<p><img alt="" src="img-016-018.png" />
-<img alt="" src="img-016-019.png" /></p>
+<p><img alt="" src="19-img-016-018.png" />
+<img alt="" src="19-img-016-019.png" /></p>
 <p>Запустите ноду клавиатурного управления и добавьте пространство имён.</p>
 <pre><code>ros2 run turtlesim turtle_teleop_key --ros-args -r __ns:=/turtlesim1
 </code></pre>
 <p>Запустите черепаху 1 с помощью клавиатурного управления. Черепаха 2 будет полностью повторять поведение черепахи 1.</p>
-<p><img alt="" src="img-017-020.png" /></p><div class="pager"><a href="18-ros2-rqt-toolbox.html">&larr; 18. Набор инструментов rqt в ROS2</a><a href="20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2 &rarr;</a></div>
+<p><img alt="" src="19-img-017-020.png" /></p><div class="pager"><a href="18-ros2-rqt-toolbox.html">&larr; 18. Набор инструментов rqt в ROS2</a><a href="20-ros2-recording-and-playback-tool.html">20. Инструмент записи и воспроизведения ROS2 &rarr;</a></div>
 </main>
 </div>
 </body>

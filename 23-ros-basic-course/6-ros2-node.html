@@ -161,7 +161,7 @@ ros2 pkg create pkg_helloworld_py --build-type ament_python --dependencies rclpy
 </code></pre>
 <h3>3.2. Написание кода</h3>
 <p>Выполнение приведённой выше команды создаст pkg_helloworld_py и файл helloworld.py для написания узла:</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="06-img-001-000.png" /></p>
 <p>Удалите исходный helloworld.py и напишите следующий код:</p>
 <pre><code class="language-python">import rclpy                                             # ROS2 Python interface library
 from rclpy.node import Node                              # ROS2 node class
@@ -193,7 +193,7 @@ exit.
       rclpy.shutdown()                                     # Close the ROS2 Python
 interface
 </code></pre>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="06-img-002-001.png" /></p>
 <p>После написания кода необходимо настроить параметры компиляции пакета, чтобы система знала точку входа для Python-программы. Откройте файл setup.py пакета и добавьте следующую конфигурацию точки входа:</p>
 <h2>3.3. Компиляция пакета</h2>
 <p>Компиляция пакета:</p>
@@ -206,7 +206,7 @@ interface
 <pre><code class="language-bash">ros2 run pkg_helloworld_py helloworld
 </code></pre>
 <p>После успешного запуска в терминале вы увидите циклический вывод строки "Hello World":</p>
-<p><img alt="" src="img-003-002.png" /></p><div class="pager"><a href="5-ros2-function-package.html">&larr; Пакеты ROS2</a><a href="7-ros2-topic-communication.html">Топик-взаимодействие в ROS2 &rarr;</a></div>
+<p><img alt="" src="06-img-003-002.png" /></p><div class="pager"><a href="5-ros2-function-package.html">&larr; Пакеты ROS2</a><a href="7-ros2-topic-communication.html">Топик-взаимодействие в ROS2 &rarr;</a></div>
 </main>
 </div>
 </body>

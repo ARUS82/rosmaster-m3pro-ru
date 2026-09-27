@@ -145,7 +145,7 @@
 <h2>1. Введение в экшн-взаимодействие</h2>
 <p>Экшн-взаимодействие (action communication) — это модель взаимодействия с непрерывной обратной связью. Между двумя сторонами взаимодействия клиент отправляет данные запроса серверу, а сервер отвечает клиенту. Однако с момента получения запроса сервером до момента формирования финального ответа сервер непрерывно отправляет обратную связь клиенту.</p>
 <p>Модель клиент/сервер для экшн-взаимодействия выглядит так:</p>
-<p><img alt="" src="img-001-000.png" /></p>
+<p><img alt="" src="09-img-001-000.png" /></p>
 <h2>2. Пример</h2>
 <p>Экшн-клиент передаёт целочисленное значение N. Экшн-сервер получает данные запроса и суммирует все целые числа от 1 до N, возвращая итоговый результат экшн-клиенту. При каждом сложении вычисляется текущий прогресс выполнения и передаётся в виде обратной связи экшн-клиенту.</p>
 <h2>3. Создание нового пакета</h2>
@@ -165,7 +165,7 @@ int64 sum
 ---
 float64 progress
 </code></pre>
-<p><img alt="" src="img-002-001.png" /></p>
+<p><img alt="" src="09-img-002-001.png" /></p>
 <ol>
 <li>Добавьте несколько пакетов зависимостей в package.xml. Содержимое приведено ниже:</li>
 </ol>
@@ -200,9 +200,9 @@ ros2 interface show pkg_interfaces/action/Progress
 <pre><code class="language-bash">ros2 pkg create pkg_action --build-type ament_python --dependencies rclpy pkg_interfaces --node-name action_server_demo
 </code></pre>
 <p>После выполнения указанной команды будет создан пакет pkg_action, а также узел action_server_demo и соответствующие конфигурационные файлы.</p>
-<p><img alt="" src="img-003-002.png" />
-<img alt="" src="img-003-003.png" />
-<img alt="" src="img-003-004.png" /></p>
+<p><img alt="" src="09-img-003-002.png" />
+<img alt="" src="09-img-003-003.png" />
+<img alt="" src="09-img-003-004.png" /></p>
 <h2>4. Реализация сервера</h2>
 <h3>4.1 Создание сервера</h3>
 <p>Далее отредактируйте [action_server_demo.py], чтобы реализовать функциональность сервера, и добавьте следующий код:</p>
@@ -236,7 +236,7 @@ class Action_Server(Node):
           for i in range(1, goal_handle.request.num + 1):
                sum += i
 </code></pre>
-<p><img alt="" src="img-004-005.png" /></p>
+<p><img alt="" src="09-img-004-005.png" /></p>
 <pre><code class="language-python">            feedback_msg.progress = i / goal_handle.request.num
             self.get_logger().info('连续反馈: %.2f' % feedback_msg.progress)
             goal_handle.publish_feedback(feedback_msg)
@@ -265,7 +265,7 @@ def main(args=None):
 <p>Откройте setup.py и добавьте следующую строку в список console_scripts:</p>
 <pre><code class="language-python">'action_server_demo = pkg_action.action_server_demo:main',
 </code></pre>
-<p><img alt="" src="img-005-006.png" /></p>
+<p><img alt="" src="09-img-005-006.png" /></p>
 <h2>4.3 Компиляция пакета</h2>
 <pre><code class="language-bash">colcon build --packages-select pkg_action
 </code></pre>
@@ -279,9 +279,9 @@ def main(args=None):
 <pre><code class="language-bash">ros2 action send_goal /get_sum pkg_interfaces/action/Progress &quot;{num: 10}&quot;
 </code></pre>
 <p>Здесь мы вычисляем сумму значений от 1 до 10:</p>
-<p><img alt="" src="img-006-007.png" />
-<img alt="" src="img-006-008.png" />
-<img alt="" src="img-006-009.png" /></p>
+<p><img alt="" src="09-img-006-007.png" />
+<img alt="" src="09-img-006-008.png" />
+<img alt="" src="09-img-006-009.png" /></p>
 <p>В верхней части изображения выше показан сервер, а в нижней — клиент. Вы можете видеть, что сервер непрерывно сообщает о прогрессе во время вычисления суммы от 1 до 10. Наконец, задача завершается, и клиент получает обратную связь с результатом суммы, равным 55.</p>
 <h2>5. Реализация клиента</h2>
 <h3>5.1 Создание клиента</h3>
@@ -339,12 +339,12 @@ def main(args=None):
   action_client.send_goal(10)
   rclpy.spin(action_client)
 </code></pre>
-<p><img alt="" src="img-007-010.png" /></p>
+<p><img alt="" src="09-img-007-010.png" /></p>
 <h3>5.2 Редактирование конфигурационного файла</h3>
 <p>Откройте setup.py и добавьте следующую строку в список console_scripts:</p>
 <pre><code class="language-python">'action_client_demo = pkg_action.action_client_demo:main'
 </code></pre>
-<p><img alt="" src="img-008-011.png" /></p>
+<p><img alt="" src="09-img-008-011.png" /></p>
 <h3>5.3 Компиляция пакета</h3>
 <pre><code class="language-bash">colcon build --packages-select pkg_action
 </code></pre>
@@ -355,8 +355,8 @@ ros2 run pkg_action action_server_demo
 # Start the client node
 ros2 run pkg_action action_client_demo
 </code></pre>
-<p><img alt="" src="img-009-012.png" />
-<img alt="" src="img-009-013.png" /></p>
+<p><img alt="" src="09-img-009-012.png" />
+<img alt="" src="09-img-009-013.png" /></p>
 <p>На изображении выше сервер показан сверху, клиент — снизу. Здесь мы вычисляем сумму от 1 до 10. Вы можете видеть, что сервер непрерывно сообщает о прогрессе во время вычисления. Наконец, задача завершается, и клиент получает обратную связь с результатом суммы, равным 55.</p><div class="pager"><a href="8-ros2-service-communication.html">&larr; Сервис-взаимодействие в ROS2</a><a href="10-ros2-custom-interface-message.html">Пользовательские интерфейсные сообщения ROS2 &rarr;</a></div>
 </main>
 </div>
